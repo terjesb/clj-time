@@ -66,6 +66,7 @@
    Note that all functions in this namespace work with Joda objects or ints. If
    you need to print or parse date-times, see clj-time.format. If you need to
    ceorce date-times to or from other types, see clj-time.coerce."
+  (:refer-clojure :exclude [extend])
   (:use [clojure.contrib.def :only (defvar)])
   (:import
     (org.joda.time DateTime DateTimeZone Period Interval)))
