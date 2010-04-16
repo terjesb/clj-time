@@ -23,6 +23,7 @@
    Note that the parse function always returns a DateTime instance with a UTC
    time zone, and the unparse function always represents a given DateTime
    instance in UTC."
+  (:refer-clojure :exclude [extend])
   (:use [clojure.contrib.def :only (defvar defvar-)]
         [clojure.set :only (difference)]
         clj-time.core)
