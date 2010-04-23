@@ -122,6 +122,12 @@
   [#^DateTime dt]
   (.getDayOfMonth dt))
 
+(defn day-of-week
+  "Return the day of month component of the given DateTime. Monday is 1 and
+   Sunday is 7."
+  [#^DateTime dt]
+  (.getDayOfWeek dt))
+
 (defn hour
   "Return the hour of day component of the given DateTime. A time of 12:01am
    will have an hour component of 0."
