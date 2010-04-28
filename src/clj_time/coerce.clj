@@ -7,6 +7,7 @@
      
      => (from-long 893462400000)
      #<DateTime 1998-04-25T00:00:00.000Z>"
+  (:refer-clojure :exclude [extend])
   (:use clj-time.core)
   (:import (org.joda.time DateTime DateTimeZone)
            java.util.Date))
