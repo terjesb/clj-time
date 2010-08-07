@@ -1,7 +1,7 @@
 (ns clj-time.core-test
   (:refer-clojure :exclude [extend])
-  (:use clojure.test
-        clj-time.core))
+  (:use clojure.test)
+  (:use clj-time.core))
 
 (deftest test-now
   (is (<= 2010 (year (now)))))

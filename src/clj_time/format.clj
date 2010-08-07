@@ -24,10 +24,10 @@
    time zone, and the unparse function always represents a given DateTime
    instance in UTC."
   (:refer-clojure :exclude [extend])
-  (:use [clojure.contrib.def :only (defvar defvar-)]
-        [clojure.set :only (difference)]
-        clj-time.core)
-  (:import (org.joda.time DateTime)
+  (:use [clojure.contrib.def :only (defvar defvar-)])
+  (:use [clojure.set :only (difference)])
+  (:use clj-time.core)
+  (:import org.joda.time.DateTime
            (org.joda.time.format DateTimeFormat DateTimeFormatter
                                  ISODateTimeFormat)))
 

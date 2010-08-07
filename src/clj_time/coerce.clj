@@ -9,8 +9,8 @@
      #<DateTime 1998-04-25T00:00:00.000Z>"
   (:refer-clojure :exclude [extend])
   (:use clj-time.core)
-  (:import (org.joda.time DateTime DateTimeZone)
-           java.util.Date))
+  (:import (org.joda.time DateTime DateTimeZone))
+  (:import java.util.Date))
 
 (defn to-long
   "Returns the number of milliseconds that the given DateTime is after Unix

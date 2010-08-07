@@ -1,7 +1,7 @@
 (ns clj-time.format-test
   (:refer-clojure :exclude [extend])
-  (:use clojure.test
-        (clj-time core format)))
+  (:use clojure.test)
+  (:use (clj-time core format)))
 
 (deftest test-formatter
   (let [fmt (formatter "yyyyMMdd")]

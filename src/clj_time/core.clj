@@ -68,8 +68,7 @@
    ceorce date-times to or from other types, see clj-time.coerce."
   (:refer-clojure :exclude [extend])
   (:use [clojure.contrib.def :only (defvar)])
-  (:import
-    (org.joda.time DateTime DateTimeZone Period Interval)))
+  (:import (org.joda.time DateTime DateTimeZone Period Interval)))
 
 (defvar utc
   (DateTimeZone/UTC)
