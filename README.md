@@ -1,10 +1,6 @@
-# clj-time
+# `clj-time`
 
 A date and time library for Clojure, wrapping the [Joda Time](http://joda-time.sourceforge.net/) library.
-
-## Installation
-
-`clj-time` is available as a Maven artifact via [Clojars](http://clojars.org/clj-time).
 
 ## Usage
 
@@ -77,7 +73,7 @@ Printing and printing are controlled by formatters. You can either use one of th
 
 To see a list of available built-in formatters and an example of a date-time printed in their format:
 
-    (show-formatters)
+    => (show-formatters)
 
 Once you have a formatter, parsing and printing are strait-forward:
 
@@ -98,3 +94,18 @@ For example, to convert a Joda `DateTime` to and from a Java `long`:
   
     => (from-long 893462400000)
     #<DateTime 1998-04-25T00:00:00.000Z>"
+
+## Installation
+
+`clj-time` is available as a Maven artifact via [Clojars](http://clojars.org/clj-time).
+
+## Development
+
+Running the tests:
+
+    $ lein deps
+    $ lein test
+
+## License
+
+Released under the MIT License: <http://www.opensource.org/licenses/mit-license.php>
