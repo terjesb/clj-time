@@ -1,4 +1,5 @@
 (ns clj-time.format-test
+  (:refer-clojure :exclude [extend])
   (:use clojure.test
         (clj-time core format)))
 

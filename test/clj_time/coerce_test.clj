@@ -1,4 +1,5 @@
 (ns clj-time.coerce-test
+  (:refer-clojure :exclude [extend])
   (:use clojure.test
         (clj-time core coerce))
   (:import java.util.Date))
