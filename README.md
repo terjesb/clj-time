@@ -49,11 +49,6 @@ example, to find the time 1 month and 3 weeks from a given date-time:
     => (plus (date-time 1986 10 14) (months 1) (weeks 3))
     #<DateTime 1986-12-05T00:00:00.000Z>
 
-To represent the amount of time between two `DateTime` instances, use `duration`. The `in-secs` and `in-minutes` functions can then be used to describe this duration in the corresponding temporal units:
-
-    => (in-minutes (duration (date-time 1986 10 2) (date-time 1986 10 14)))
-    17280
-
 An `Interval` is used to represent the span of time between two `DateTime`
 instances. Construct one using `interval`, then query them using `within?`,
 `overlaps?`, and `abuts?`
@@ -61,6 +56,11 @@ instances. Construct one using `interval`, then query them using `within?`,
     => (within? (interval (date-time 1986) (date-time 1990))
                 (date-time 1987))
     true
+
+The `in-secs` and `in-minutes` functions can be used to describe intervals in the corresponding temporal units:
+
+    => (in-minutes (interval (date-time 1986 10 2) (date-time 1986 10 14)))
+    17280
 
 If you need to parse or print date-times, use `clj-time.format:
 
