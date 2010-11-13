@@ -107,12 +107,12 @@
   "Returns a DateTime instance in the UTC time zone obtained by parsing the
    given string according to the given formatter."
   ([#^DateTimeFormatter fmt #^String s]
-   (.parseDateTime fmt s))
+     (.parseDateTime fmt s))
   ([#^String s]
-   (first
-       (for [f (vals formatters)
-             :let [d (try (parse f s) (catch Exception _ nil))]
-             :when d] d))))
+     (first
+      (for [f (vals formatters)
+	    :let [d (try (parse f s) (catch Exception _ nil))]
+	    :when d] d))))
 
 (defn unparse
   "Returns a string representing the given DateTime instance in UTC and in the

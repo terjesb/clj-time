@@ -9,6 +9,7 @@
      #<DateTime 1998-04-25T00:00:00.000Z>"
   (:refer-clojure :exclude [extend])
   (:use clj-time.core)
+  (:require [clj-time.format :as time-fmt])
   (:import (org.joda.time DateTime DateTimeZone))
   (:import java.util.Date))
 
@@ -24,6 +25,15 @@
    [#^Long millis]
    (DateTime. millis #^DateTimeZone utc))
 
+(defn from-string
+  "return DateTime instance from string using
+   formatters in clj-time.format"
+  [s]
+  (first
+       (for [f (vals time-fmt/formatters)
+             :let [d (try (time-fmt/parse f s) (catch Exception _ nil))]
+             :when d] d)))
+
 (defn to-date
   "Returns a Java Date object corresponding to the given DateTime instance."
   [#^DateTime dt]
@@ -34,3 +44,9 @@
    Java Date object."
   [#^Date date]
   (from-long (.getTime date)))
+
+(defn to-string
+  "Returns a string representation of date in UTC time-zone using
+   :date-time representation. "
+  [#^DateTime dt]
+  (time-fmt/unparse (:date-time time-fmt/formatters) dt))
