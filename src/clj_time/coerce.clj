@@ -27,7 +27,8 @@
 
 (defn from-string
   "return DateTime instance from string using
-   formatters in clj-time.format"
+   formatters in clj-time.format, returning first
+   which parses"
   [s]
   (first
        (for [f (vals time-fmt/formatters)
@@ -47,6 +48,6 @@
 
 (defn to-string
   "Returns a string representation of date in UTC time-zone using
-   :date-time representation. "
+   (ISODateTimeFormat/dateTime) date-time representation. "
   [#^DateTime dt]
   (time-fmt/unparse (:date-time time-fmt/formatters) dt))
