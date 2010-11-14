@@ -15,3 +15,11 @@
         d  (to-date dt)]
     (is (instance? Date d))
     (is (= dt (from-date d)))))
+
+(deftest test-to-string
+  (is (= (to-string (date-time 1998 4 25))
+	 "1998-04-25T00:00:00.000Z")))
+
+(deftest test-from-string
+  (is (= (from-string "1998-04-25T00:00:00.000Z")
+	 (date-time 1998 4 25))))
