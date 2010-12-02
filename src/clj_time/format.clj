@@ -2,7 +2,7 @@
   "Utilities for parsing and unparsing DateTimes as Strings.
 
    Parsing and printing are controlled by formatters. You can either use one
-   of the built in ISO8601 and RFC822 formatters or define your own, e.g.:
+   of the built in ISO 8601 and a single RFC 822 formatters or define your own, e.g.:
 
      (def built-in-formatter (formatters :basic-date-time))
      (def custom-formatter (formatter \"yyyyMMdd\"))
@@ -94,7 +94,7 @@
      :year-month (ISODateTimeFormat/yearMonth)
      :year-month-day (ISODateTimeFormat/yearMonthDay)
      :rfc822 (formatter "EEE, dd MMM yyyy HH:mm:ss Z")}))
-  "Map of ISO 8601 and RFC 822 formatters that can be used for parsing and, in most
+  "Map of ISO 8601 and a single RFC 822 formatters that can be used for parsing and, in most
   cases, printing.")
 
 (defvar- parsers
