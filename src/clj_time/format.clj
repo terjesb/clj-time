@@ -2,7 +2,7 @@
   "Utilities for parsing and unparsing DateTimes as Strings.
 
    Parsing and printing are controlled by formatters. You can either use one
-   of the built in ISO8601 formatters or define your own, e.g.:
+   of the built in ISO8601 and RFC822 formatters or define your own, e.g.:
 
      (def built-in-formatter (formatters :basic-date-time))
      (def custom-formatter (formatter \"yyyyMMdd\"))
@@ -31,7 +31,8 @@
            (org.joda.time.format DateTimeFormat DateTimeFormatter
                                  ISODateTimeFormat)))
 
-; The formatters map and show-formatters idea are strait from chrono.
+(declare formatter)
+;; The formatters map and show-formatters idea are strait from chrono.
 
 (defvar formatters
   (into {} (map
@@ -86,8 +87,9 @@
      :weekyear-week-day (ISODateTimeFormat/weekyearWeekDay)
      :year (ISODateTimeFormat/year)
      :year-month (ISODateTimeFormat/yearMonth)
-     :year-month-day (ISODateTimeFormat/yearMonthDay)}))
-  "Map of ISO8601-standard formatters that can be used for parsing and, in most
+     :year-month-day (ISODateTimeFormat/yearMonthDay)
+     :rfc822 (formatter "EEE, dd MMM yyyy HH:mm:ss Z")}))
+  "Map of ISO8601 RFC822 formatters that can be used for parsing and, in most
   cases, printing.")
 
 (defvar- parsers
