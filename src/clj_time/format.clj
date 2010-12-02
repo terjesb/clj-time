@@ -34,6 +34,11 @@
 (declare formatter)
 ;; The formatters map and show-formatters idea are strait from chrono.
 
+(defn formatter
+  "Returns a custom formatter for the given date-time pattern."
+  [#^String fmts]
+  (.withZone (DateTimeFormat/forPattern fmts) #^DateTimeZone utc))
+
 (defvar formatters
   (into {} (map
     (fn [[k #^DateTimeFormatter f]] [k (.withZone f #^DateTimeZone utc)])
@@ -89,7 +94,7 @@
      :year-month (ISODateTimeFormat/yearMonth)
      :year-month-day (ISODateTimeFormat/yearMonthDay)
      :rfc822 (formatter "EEE, dd MMM yyyy HH:mm:ss Z")}))
-  "Map of ISO8601 RFC822 formatters that can be used for parsing and, in most
+  "Map of ISO 8601 and RFC 822 formatters that can be used for parsing and, in most
   cases, printing.")
 
 (defvar- parsers
@@ -99,11 +104,6 @@
 
 (defvar- printers
   (difference (set (keys formatters)) parsers))
-
-(defn formatter
-  "Returns a custom formatter for the given date-time pattern."
-  [#^String fmts]
-  (.withZone (DateTimeFormat/forPattern fmts) #^DateTimeZone utc))
 
 (defn parse
   "Returns a DateTime instance in the UTC time zone obtained by parsing the
