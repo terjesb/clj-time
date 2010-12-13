@@ -12,7 +12,7 @@
      => (date-time 1986 10 14)
      #<DateTime 1986-10-14T00:00:00.000Z>
 
-   Get the current time with (now) and the start of the Unix epoch with (epcoh).
+   Get the current time with (now) and the start of the Unix epoch with (epoch).
 
    Once you have a date-time, use accessors like hour and sec to access the
    corresponding fields:
