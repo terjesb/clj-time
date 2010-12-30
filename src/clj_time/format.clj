@@ -36,8 +36,10 @@
 
 (defn formatter
   "Returns a custom formatter for the given date-time pattern."
-  [#^String fmts]
-  (.withZone (DateTimeFormat/forPattern fmts) #^DateTimeZone utc))
+  ([#^String fmts]
+     (formatter fmts utc))
+  ([#^String fmts #^DateTimeZone dtz]
+     (.withZone (DateTimeFormat/forPattern fmts) dtz)))
 
 (defvar formatters
   (into {} (map
