@@ -20,9 +20,11 @@
      => (unparse custom-formatter (date-time 2010 10 3))
      \"20101003\"
    
-   Note that the parse function always returns a DateTime instance with a UTC
+   By default the parse function always returns a DateTime instance with a UTC
    time zone, and the unparse function always represents a given DateTime
-   instance in UTC."
+   instance in UTC. A formatter can be modified to different timezones, locales,
+   etc with the functions with-zone, with-locale, with-chronology, and
+   with-pivot-year."
   (:refer-clojure :exclude [extend])
   (:use [clojure.contrib.def :only (defvar defvar-)])
   (:use [clojure.set :only (difference)])
