@@ -27,7 +27,8 @@
   (:use [clojure.contrib.def :only (defvar defvar-)])
   (:use [clojure.set :only (difference)])
   (:use clj-time.core)
-  (:import org.joda.time.DateTime
+  (:import (java.util.Locale)
+           (org.joda.time Chronology DateTime)
            (org.joda.time.format DateTimeFormat DateTimeFormatter
                                  ISODateTimeFormat)))
 
@@ -40,6 +41,26 @@
      (formatter fmts utc))
   ([#^String fmts #^DateTimeZone dtz]
      (.withZone (DateTimeFormat/forPattern fmts) dtz)))
+
+(defn with-chronology
+  "Return a copy of a formatter that uses the given Chronology."
+  [#^DateTimeFormatter f #^Chronology c]
+  (.withChronology f c))
+
+(defn with-locale
+  "Return a copy of a formatter that uses the given Locale."
+  [#^DateTimeFormatter f #^Locale l]
+  (.withLocale f l))
+
+(defn with-pivot-year
+  "Return a copy of a formatter that uses the given pivot year."
+  [#^DateTimeFormatter f #^Integer pivot-year]
+  (.withPivotYear f pivot-year))
+
+(defn with-zone
+  "Return a copy of a formatter that uses the given DateTimeZone."
+  [#^DateTimeFormatter f #^DateTimeZone dtz]
+  (.withZone f dtz))
 
 (defvar formatters
   (into {} (map
