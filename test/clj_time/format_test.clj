@@ -1,7 +1,8 @@
 (ns clj-time.format-test
   (:refer-clojure :exclude [extend])
-  (:use clojure.test)
-  (:use (clj-time core format)))
+  (:use clojure.test
+        (clj-time core format))
+  (:import [org.joda.time DateTimeZone]))
 
 (deftest test-formatter
   (let [fmt (formatter "yyyyMMdd")]
@@ -22,4 +23,8 @@
            (unparse fmt (date-time 2010 3 11)))))
   (let [fmt (formatters :basic-date-time)]
     (is (= "20100311T174920.881Z"
-           (unparse fmt (date-time 2010 3 11 17 49 20 881))))))
+           (unparse fmt (date-time 2010 3 11 17 49 20 881))))
+    (is (= "20100311T124920.881-0500"
+           (unparse (formatter "yyyyMMdd'T'HHmmss.SSSZ"
+                               (DateTimeZone/forOffsetHours -5))
+                    (date-time 2010 3 11 17 49 20 881))))))
