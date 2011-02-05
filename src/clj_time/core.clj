@@ -60,7 +60,7 @@
    To find the amount of time encompased by an interval, use in-secs and
    in-minutes:
    
-     => (in-minutes (duration (date-time 1986 10 2) (date-time 1986 10 14)))
+     => (in-minutes (interval (date-time 1986 10 2) (date-time 1986 10 14)))
      17280
 
    Note that all functions in this namespace work with Joda objects or ints. If
@@ -266,6 +266,11 @@
    of the given Interval"
   [#^Interval in & by]
   (.withEnd in (apply plus (end in) by)))
+
+(defn in-msecs
+  "Returns the number of standard seconds in the given Interval."
+  [#^Interval in]
+  (.. #^Interval in toDurationMillis))
 
 (defn in-secs
   "Returns the number of standard seconds in the given Interval."
