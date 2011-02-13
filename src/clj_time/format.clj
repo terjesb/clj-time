@@ -29,8 +29,8 @@
   (:use [clojure.contrib.def :only (defvar defvar-)])
   (:use [clojure.set :only (difference)])
   (:use clj-time.core)
-  (:import (java.util.Locale)
-           (org.joda.time Chronology DateTime)
+  (:import (java.util Locale)
+           (org.joda.time Chronology DateTime DateTimeZone)
            (org.joda.time.format DateTimeFormat DateTimeFormatter
                                  ISODateTimeFormat)))
 
@@ -56,7 +56,7 @@
 
 (defn with-pivot-year
   "Return a copy of a formatter that uses the given pivot year."
-  [#^DateTimeFormatter f #^Integer pivot-year]
+  [#^DateTimeFormatter f #^Long pivot-year]
   (.withPivotYear f pivot-year))
 
 (defn with-zone
