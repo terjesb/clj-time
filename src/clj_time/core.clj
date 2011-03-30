@@ -116,13 +116,12 @@
   (.getMonthOfYear dt))
 
 (defn day
-  "Return the day of month component of the given DateTime. Monday is 1 and
-   Sunday is 7."
+  "Return the day of month component of the given DateTime."
   [#^DateTime dt]
   (.getDayOfMonth dt))
 
 (defn day-of-week
-  "Return the day of month component of the given DateTime. Monday is 1 and
+  "Return the day of week component of the given DateTime. Monday is 1 and
    Sunday is 7."
   [#^DateTime dt]
   (.getDayOfWeek dt))
