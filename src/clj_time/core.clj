@@ -295,3 +295,8 @@
    beginning of i-b."
   [#^Interval i-a #^Interval i-b]
   (.abuts i-a i-b))
+
+(defn mins-ago [d]
+  (in-minutes (interval d (now))))
+
+

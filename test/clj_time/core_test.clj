@@ -135,3 +135,6 @@
     (is (not (abuts? (interval d1 d2) (interval d3 d4))))
     (is (not (abuts? (interval d1 d3) (interval d2 d3))))
     (is (abuts? (interval d2 d3) (interval d1 d2)))))
+
+(deftest mins-ago-test
+  (is (= 5 (mins-ago (minus (now) (minutes 5))))))
