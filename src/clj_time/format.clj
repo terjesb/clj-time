@@ -20,14 +20,17 @@
      => (unparse custom-formatter (date-time 2010 10 3))
      \"20101003\"
    
-   Note that the parse function always returns a DateTime instance with a UTC
+   By default the parse function always returns a DateTime instance with a UTC
    time zone, and the unparse function always represents a given DateTime
-   instance in UTC."
+   instance in UTC. A formatter can be modified to different timezones, locales,
+   etc with the functions with-zone, with-locale, with-chronology, and
+   with-pivot-year."
   (:refer-clojure :exclude [extend])
   (:use [clojure.contrib.def :only (defvar defvar-)])
   (:use [clojure.set :only (difference)])
   (:use clj-time.core)
-  (:import org.joda.time.DateTime
+  (:import (java.util Locale)
+           (org.joda.time Chronology DateTime DateTimeZone)
            (org.joda.time.format DateTimeFormat DateTimeFormatter
                                  ISODateTimeFormat)))
 
@@ -36,8 +39,30 @@
 
 (defn formatter
   "Returns a custom formatter for the given date-time pattern."
-  [#^String fmts]
-  (.withZone (DateTimeFormat/forPattern fmts) #^DateTimeZone utc))
+  ([#^String fmts]
+     (formatter fmts utc))
+  ([#^String fmts #^DateTimeZone dtz]
+     (.withZone (DateTimeFormat/forPattern fmts) dtz)))
+
+(defn with-chronology
+  "Return a copy of a formatter that uses the given Chronology."
+  [#^DateTimeFormatter f #^Chronology c]
+  (.withChronology f c))
+
+(defn with-locale
+  "Return a copy of a formatter that uses the given Locale."
+  [#^DateTimeFormatter f #^Locale l]
+  (.withLocale f l))
+
+(defn with-pivot-year
+  "Return a copy of a formatter that uses the given pivot year."
+  [#^DateTimeFormatter f #^Long pivot-year]
+  (.withPivotYear f pivot-year))
+
+(defn with-zone
+  "Return a copy of a formatter that uses the given DateTimeZone."
+  [#^DateTimeFormatter f #^DateTimeZone dtz]
+  (.withZone f dtz))
 
 (defvar formatters
   (into {} (map

@@ -12,7 +12,7 @@
      => (date-time 1986 10 14)
      #<DateTime 1986-10-14T00:00:00.000Z>
 
-   Get the current time with (now) and the start of the Unix epoch with (epcoh).
+   Get the current time with (now) and the start of the Unix epoch with (epoch).
 
    Once you have a date-time, use accessors like hour and sec to access the
    corresponding fields:
@@ -60,7 +60,7 @@
    To find the amount of time encompased by an interval, use in-secs and
    in-minutes:
    
-     => (in-minutes (duration (date-time 1986 10 2) (date-time 1986 10 14)))
+     => (in-minutes (interval (date-time 1986 10 2) (date-time 1986 10 14)))
      17280
 
    Note that all functions in this namespace work with Joda objects or ints. If
@@ -116,13 +116,12 @@
   (.getMonthOfYear dt))
 
 (defn day
-  "Return the day of month component of the given DateTime. Monday is 1 and
-   Sunday is 7."
+  "Return the day of month component of the given DateTime."
   [#^DateTime dt]
   (.getDayOfMonth dt))
 
 (defn day-of-week
-  "Return the day of month component of the given DateTime. Monday is 1 and
+  "Return the day of week component of the given DateTime. Monday is 1 and
    Sunday is 7."
   [#^DateTime dt]
   (.getDayOfWeek dt))
@@ -266,6 +265,11 @@
    of the given Interval"
   [#^Interval in & by]
   (.withEnd in (apply plus (end in) by)))
+
+(defn in-msecs
+  "Returns the number of standard seconds in the given Interval."
+  [#^Interval in]
+  (.. #^Interval in toDurationMillis))
 
 (defn in-secs
   "Returns the number of standard seconds in the given Interval."

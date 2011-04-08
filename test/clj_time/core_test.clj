@@ -105,7 +105,8 @@
 (deftest test-interval-in
   (let [p (interval (date-time 1986 10 14 12 5 4) (date-time 1986 11 3  22 2 6))]
     (is (= 29397   (in-minutes p)))
-    (is (= 1763822 (in-secs p)))))
+    (is (= 1763822 (in-secs p)))
+    (is (= 1763822000 (in-msecs p)))))
 
 (deftest test-within?
   (let [d1 (date-time 1985)
