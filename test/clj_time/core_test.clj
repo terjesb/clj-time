@@ -91,6 +91,16 @@
   (is (= (date-time 1986 10 14 4 2)
          (minus (date-time 1986 10 14 6 5) (hours 2) (minutes 3)))))
 
+(deftest test-ago
+  (binding [now #(date-time 2011 4 16 10 9 00)]
+    (is (= (-> 10 years ago)
+           (date-time 2001 4 16 10 9 00)))))
+
+(deftest test-from-now
+  (binding [now #(date-time 2011 4 16 10 9 00)]
+    (is (= (-> 30 minutes from-now)
+           (date-time 2011 4 16 10 39 00)))))
+
 (deftest test-start-end
   (let [s (date-time 1986 10 14 12 5 4)
         e (date-time 1986 11 3  22 2 6)

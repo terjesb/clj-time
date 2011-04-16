@@ -244,6 +244,18 @@
   ([dt p & ps]
    (reduce #(minus %1 %2) (minus dt p) ps)))
 
+(defn ago
+  "Returns a DateTime a supplied period before the present.
+  e.g. (-> 5 years ago)"
+  [#^Period period]
+  (minus (now) period))
+
+(defn from-now
+  "Returns a DateTime a supplied period after the present.
+  e.g. (-> 30 minutes from-now)"
+  [#^Period period]
+  (plus (now) period))
+
 (defn interval
   "Returns an interval representing the span between the two given DateTimes.
    Note that intervals are closed on the left and open on the right."
