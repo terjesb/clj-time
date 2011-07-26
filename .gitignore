@@ -4,3 +4,5 @@ clj-time.jar
 pom.xml
 *.jar
 *~
+.lein-failures
+checkouts
