@@ -279,7 +279,7 @@
   (.withEnd in (apply plus (end in) by)))
 
 (defn in-msecs
-  "Returns the number of standard seconds in the given Interval."
+  "Returns the number of milliseconds in the given Interval."
   [#^Interval in]
   (.. #^Interval in toDurationMillis))
 
