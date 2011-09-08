@@ -293,6 +293,16 @@
   [#^Interval in]
   (int (/ (in-secs in) 60)))
 
+(defn in-hours
+  "Returns the number of standard hours in the given Interval."
+  [#^Interval in]
+  (int (/ (in-minutes in) 60)))
+
+(defn in-days
+  "Returns the number of standard days in the given Interval."
+  [#^Interval in]
+  (int (/ (in-hours in) 24)))
+
 (defn within?
   "Returns true if the given Interval contains the given DateTime. Note that
    if the DateTime is exactly equal to the end of the interval, this function
