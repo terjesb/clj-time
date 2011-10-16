@@ -1,4 +1,5 @@
 lib
+bin
 classes
 clj-time.jar
 pom.xml
@@ -6,3 +7,6 @@ pom.xml
 *~
 .lein-failures
 checkouts
+.classpath
+.project
+.settings
