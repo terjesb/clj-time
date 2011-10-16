@@ -91,15 +91,45 @@
   (is (= (date-time 1986 10 14 4 2)
          (minus (date-time 1986 10 14 6 5) (hours 2) (minutes 3)))))
 
+(defmacro when-available
+  [sym & body]
+  (try
+    (and (resolve sym)
+         (list* 'do body))
+    (catch ClassNotFoundException _#)))
+
+(defmacro when-not-available
+  [sym & body]
+  (when-not
+    (try
+      (resolve sym)
+      (catch ClassNotFoundException _#
+        nil))
+    `(do ~@body)))
+
 (deftest test-ago
-  (binding [now #(date-time 2011 4 16 10 9 00)]
-    (is (= (-> 10 years ago)
-           (date-time 2001 4 16 10 9 00)))))
+  (when-available
+    with-redefs
+    (with-redefs [now #(date-time 2011 4 16 10 9 00)]
+      (is (= (-> 10 years ago)
+             (date-time 2001 4 16 10 9 00)))))
+  (when-not-available
+    with-redefs
+    (binding [now #(date-time 2011 4 16 10 9 00)]
+      (is (= (-> 10 years ago)
+             (date-time 2001 4 16 10 9 00))))))
 
 (deftest test-from-now
-  (binding [now #(date-time 2011 4 16 10 9 00)]
-    (is (= (-> 30 minutes from-now)
-           (date-time 2011 4 16 10 39 00)))))
+  (when-available
+    with-redefs
+    (with-redefs [now #(date-time 2011 4 16 10 9 00)]
+      (is (= (-> 30 minutes from-now)
+             (date-time 2011 4 16 10 39 00)))))
+  (when-not-available
+    with-redefs
+    (binding [now #(date-time 2011 4 16 10 9 00)]
+      (is (= (-> 30 minutes from-now)
+             (date-time 2011 4 16 10 39 00))))))
 
 (deftest test-start-end
   (let [s (date-time 1986 10 14 12 5 4)
