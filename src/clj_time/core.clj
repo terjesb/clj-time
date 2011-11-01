@@ -67,7 +67,7 @@
    you need to print or parse date-times, see clj-time.format. If you need to
    ceorce date-times to or from other types, see clj-time.coerce."
   (:refer-clojure :exclude [extend])
-  (:import (org.joda.time ReadableDateTime DateTime DateMidnight DateTimeZone Period Interval)))
+  (:import (org.joda.time ReadableDateTime DateTime DateMidnight DateTimeZone Period PeriodType Interval)))
 
 (def ^{:doc "DateTimeZone for UTC."}
       utc
@@ -200,44 +200,68 @@
   (.isBefore dt-a dt-b))
 
 (defn years
-  "Returns a Period representing the given number of years."
-  [#^Integer n]
-  (Period/years n))
+  "Given a number, returns a Period representing that many years.
+   Without an argument, returns a PeriodType representing only years."
+  ([]
+     (PeriodType/years))
+  ([#^Integer n]
+     (Period/years n)))
 
 (defn months
-  "Returns a Period representing the given number of months."
-  [#^Integer n]
-  (Period/months n))
+  "Given a number, returns a Period representing that many months.
+   Without an argument, returns a PeriodType representing only months."
+  ([]
+     (PeriodType/months))
+  ([#^Integer n]
+     (Period/months n)))
 
 (defn weeks
-  "Returns a Period representing the given number of weeks."
-  [#^Integer n]
-  (Period/weeks n))
+  "Given a number, returns a Period representing that many weeks.
+   Without an argument, returns a PeriodType representing only weeks."
+  ([]
+     (PeriodType/weeks))
+  ([#^Integer n]
+     (Period/weeks n)))
 
 (defn days
-  "Returns a Period representing the given number of days."
-  [#^Integer n]
-  (Period/days n))
+  "Given a number, returns a Period representing that many days.
+   Without an argument, returns a PeriodType representing only days."
+  ([]
+     (PeriodType/days))
+  ([#^Integer n]
+     (Period/days n)))
 
 (defn hours
-  "Returns a Period representing the given number of hours."
-  [#^Integer n]
-  (Period/hours n))
+  "Given a number, returns a Period representing that many hours.
+   Without an argument, returns a PeriodType representing only hours."
+  ([]
+     (PeriodType/hours))
+  ([#^Integer n]
+     (Period/hours n)))
 
 (defn minutes
-  "Returns a Period representing the given number of minutes."
-  [#^Integer n]
-  (Period/minutes n))
+  "Given a number, returns a Period representing that many minutes.
+   Without an argument, returns a PeriodType representing only minutes."
+  ([]
+     (PeriodType/minutes))
+  ([#^Integer n]
+     (Period/minutes n)))
 
 (defn secs
-  "Returns a Period representing the given number of seconds."
-  [#^Integer n]
-  (Period/seconds n))
+  "Given a number, returns a Period representing that many seconds.
+   Without an argument, returns a PeriodType representing only seconds."
+  ([]
+     (PeriodType/seconds))
+  ([#^Integer n]
+     (Period/seconds n)))
 
 (defn millis
-  "Returns a Period representing the given number of milliseconds."
-  [#^Integer n]
-  (Period/millis n))
+  "Given a number, returns a Period representing that many milliseconds.
+   Without an argument, returns a PeriodType representing only milliseconds."
+  ([]
+     (PeriodType/millis))
+  ([#^Integer n]
+     (Period/millis n)))
 
 (defn plus
   "Returns a new ReadableDateTime corresponding to the given ReadableDateTime moved forwards by
@@ -292,27 +316,42 @@
 (defn in-msecs
   "Returns the number of milliseconds in the given Interval."
   [#^Interval in]
-  (.. #^Interval in toDurationMillis))
+  (.getMillis (.toPeriod in (millis))))
 
 (defn in-secs
   "Returns the number of standard seconds in the given Interval."
   [#^Interval in]
-  (.. #^Interval in toDuration toStandardSeconds getSeconds))
+  (.getSeconds (.toPeriod in (secs))))
 
 (defn in-minutes
   "Returns the number of standard minutes in the given Interval."
   [#^Interval in]
-  (int (/ (in-secs in) 60)))
+  (.getMinutes (.toPeriod in (minutes))))
 
 (defn in-hours
   "Returns the number of standard hours in the given Interval."
   [#^Interval in]
-  (int (/ (in-minutes in) 60)))
+  (.getHours (.toPeriod in (hours))))
 
 (defn in-days
   "Returns the number of standard days in the given Interval."
   [#^Interval in]
-  (int (/ (in-hours in) 24)))
+  (.getDays (.toPeriod in (days))))
+
+(defn in-weeks
+  "Returns the number of standard weeks in the given Interval."
+  [#^Interval in]
+  (.getWeeks (.toPeriod in (weeks))))
+
+(defn in-months
+  "Returns the number of standard years in the given Interval."
+  [#^Interval in]
+  (.getMonths (.toPeriod in (months))))
+
+(defn in-years
+  "Returns the number of standard years in the given Interval."
+  [#^Interval in]
+  (.getYears (.toPeriod in (years))))
 
 (defn within?
   "Returns true if the given Interval contains the given ReadableDateTime. Note that

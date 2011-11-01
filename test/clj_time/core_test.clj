@@ -162,11 +162,22 @@
 
 (deftest test-interval-in
   (let [p (interval (date-time 1986 10 14 12 5 4) (date-time 1986 11 3  22 2 6))]
+    (is (= 0       (in-years p)))
+    (is (= 0       (in-months p)))
+    (is (= 2       (in-weeks p)))
     (is (= 20      (in-days p)))
     (is (= 489     (in-hours p)))
     (is (= 29397   (in-minutes p)))
     (is (= 1763822 (in-secs p)))
     (is (= 1763822000 (in-msecs p)))))
+
+(deftest test-interval-in-bigger
+  (let [p (interval (date-time 1986 10 14 12 5 4) (date-time 1987 11 3  22 2 6))]
+    (is (= 1       (in-years p)))
+    (is (= 12      (in-months p)))
+    (is (= 55      (in-weeks p)))
+    (is (= 385     (in-days p)))
+    (is (= 9249    (in-hours p)))))
 
 (deftest test-within?
   (let [d1 (date-time 1985)
