@@ -6,6 +6,7 @@ pom.xml
 *.jar
 *~
 .lein-failures
+.lein-deps-sum
 checkouts
 .classpath
 .project
