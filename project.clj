@@ -1,4 +1,4 @@
-(defproject clj-time "0.3.3"
+(defproject clj-time "0.3.4"
   :description "A date and time library for Clojure, wrapping Joda Time."
   :dev-dependencies [[utilize "0.1.2"]]
   :dependencies [[org.clojure/clojure "1.2.1"]

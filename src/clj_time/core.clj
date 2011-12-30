@@ -320,7 +320,7 @@
 (defn in-msecs
   "Returns the number of milliseconds in the given Interval."
   [#^Interval in]
-  (.getMillis (.toPeriod in (millis))))
+  (.toDurationMillis in))
 
 (defn in-secs
   "Returns the number of standard seconds in the given Interval."
