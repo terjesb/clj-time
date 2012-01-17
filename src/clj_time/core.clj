@@ -377,5 +377,40 @@
   [#^Interval i-a #^Interval i-b]
   (.abuts i-a i-b))
 
+(defn years?
+  "Returns true if the given value is an instance of Years"
+  [val]
+  (instance? Years val))
+
+(defn months?
+  "Returns true if the given value is an instance of Months"
+  [val]
+  (instance? Months val))
+
+(defn weeks?
+  "Returns true if the given value is an instance of Weeks"
+  [val]
+  (instance? Weeks val))
+
+(defn days?
+  "Returns true if the given value is an instance of Days"
+  [val]
+  (instance? Days val))
+
+(defn hours?
+  "Returns true if the given value is an instance of Hours"
+  [val]
+  (instance? Hours val))
+
+(defn minutes?
+  "Returns true if the given value is an instance of Minutes"
+  [val]
+  (instance? Minutes val))
+
+(defn seconds?
+  "Returns true if the given value is an instance of Seconds"
+  [val]
+  (instance? Seconds val))
+
 (defn mins-ago [d]
   (in-minutes (interval d (now))))
