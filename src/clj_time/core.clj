@@ -407,7 +407,7 @@
   [val]
   (instance? Minutes val))
 
-(defn seconds?
+(defn secs?
   "Returns true if the given value is an instance of Seconds"
   [val]
   (instance? Seconds val))
