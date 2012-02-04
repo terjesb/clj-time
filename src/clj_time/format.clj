@@ -47,8 +47,7 @@
     (let [printer (.getPrinter (formatter fmts dtz))
           parsers (map #(.getParser (formatter % dtz)) (cons fmts more))]
       (-> (DateTimeFormatterBuilder.)
-        (.append printer)
-        (.append nil (into-array DateTimeParser parsers))
+        (.append printer (into-array DateTimeParser parsers))
         (.toFormatter)))))
 
 (defn with-chronology
