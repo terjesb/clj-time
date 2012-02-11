@@ -18,6 +18,8 @@
     "Returns the number of milliseconds the given obj is after the Unix epoch.")
   (to-date [obj]
     "Returns a Java Date object corresponding to the given obj.")
+  (to-date-time [obj]
+    "Returns a Joda DateTime object corresponding to the given obj.")
   (to-string [obj]
     "Returns a string representation of obj in UTC time-zone
     using (ISODateTimeFormat/dateTime) date-time representation."))
@@ -46,9 +48,11 @@
 
 (extend-type DateTime
   ICoerce
-  (to-date [date-time]
-    (Date. (.getMillis date-time)))
-  (to-long [date-time]
-    (.getMillis date-time))
-  (to-string [date-time]
-    (time-fmt/unparse (:date-time time-fmt/formatters) date-time)))
+  (to-date [dt]
+    (Date. (.getMillis dt)))
+  (to-date-time [dt]
+    dt)
+  (to-long [dt]
+    (.getMillis dt))
+  (to-string [dt]
+    (time-fmt/unparse (:date-time time-fmt/formatters) dt)))
