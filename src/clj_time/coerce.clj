@@ -46,6 +46,17 @@
   [#^Date date]
   (from-long (.getTime date)))
 
+(extend-type Date
+  ICoerce
+  (to-date [date]
+    date)
+  (to-date-time [date]
+    (DateTime. (to-long date) utc))
+  (to-long [date]
+    (.getTime date))
+  (to-string [date]
+    (to-string (to-date-time date))))
+
 (extend-type DateTime
   ICoerce
   (to-date [dt]
