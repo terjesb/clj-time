@@ -11,7 +11,7 @@
   (:use clj-time.core)
   (:require [clj-time.format :as time-fmt])
   (:import (org.joda.time DateTime DateTimeZone))
-  (:import java.util.Date))
+  (:import java.util.Date java.sql.Timestamp))
 
 (defprotocol ICoerce
   (to-long [obj]
@@ -67,3 +67,14 @@
     (.getMillis dt))
   (to-string [dt]
     (time-fmt/unparse (:date-time time-fmt/formatters) dt)))
+
+(extend-type Timestamp
+  ICoerce
+  (to-date [ts]
+    (Date. (.getTime ts)))
+  (to-date-time [ts]
+    (DateTime. (to-long ts) utc))
+  (to-long [ts]
+    (.getTime ts))
+  (to-string [ts]
+    (to-string (to-date-time ts))))
