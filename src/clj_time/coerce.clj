@@ -46,6 +46,13 @@
   [#^Date date]
   (from-long (.getTime date)))
 
+(extend-type nil
+  ICoerce
+  (to-date [_] nil)
+  (to-date-time [_] nil)
+  (to-long [_] nil)
+  (to-string [_] nil))
+
 (extend-type Date
   ICoerce
   (to-date [date]
@@ -60,7 +67,7 @@
 (extend-type DateTime
   ICoerce
   (to-date [dt]
-    (Date. (.getMillis dt)))
+    (Date. (to-long dt)))
   (to-date-time [dt]
     dt)
   (to-long [dt]
@@ -71,7 +78,7 @@
 (extend-type Timestamp
   ICoerce
   (to-date [ts]
-    (Date. (.getTime ts)))
+    (Date. (to-long ts)))
   (to-date-time [ts]
     (DateTime. (to-long ts) utc))
   (to-long [ts]
