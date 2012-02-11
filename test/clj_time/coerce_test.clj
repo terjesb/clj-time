@@ -21,22 +21,28 @@
   (is (nil? (to-date nil)))
   (is (= (Date. 893462400000) (to-date (date-time 1998 4 25))))
   (is (= (Date. 893462400000) (to-date (Date. 893462400000))))
-  (is (= (Date. 893462400000) (to-date (Timestamp. 893462400000)))))
+  (is (= (Date. 893462400000) (to-date (Timestamp. 893462400000))))
+  (is (= (Date. 893462400000) (to-date "1998-04-25T00:00:00.000Z"))))
 
 (deftest test-to-date-time
   (is (nil? (to-date-time nil)))
   (is (= (date-time 1998 4 25) (to-date-time (date-time 1998 4 25))))
   (is (= (date-time 1998 4 25) (to-date-time (Date. 893462400000))))
-  (is (= (date-time 1998 4 25) (to-date-time (Timestamp. 893462400000)))))
+  (is (= (date-time 1998 4 25) (to-date-time (Timestamp. 893462400000))))
+  (is (= (date-time 1998 4 25) (to-date-time "1998-04-25T00:00:00.000Z"))))
 
 (deftest test-to-long
   (is (nil? (to-long nil)))
   (is (= 893462400000 (to-long (date-time 1998 4 25))))
   (is (= 893462400000 (to-long (Date. 893462400000))))
-  (is (= 893462400000 (to-long (Timestamp. 893462400000)))))
+  (is (= 893462400000 (to-long (Timestamp. 893462400000))))
+  (is (= 893462400000 (to-long "1998-04-25T00:00:00.000Z"))))
 
 (deftest test-to-string
   (is (nil? (to-string nil)))
+  (is (nil? (to-string "")))
+  (is (nil? (to-string "x")))
   (is (= "1998-04-25T00:00:00.000Z" (to-string (date-time 1998 4 25))))
   (is (= "1998-04-25T00:00:00.000Z" (to-string (Date. 893462400000))))
-  (is (= "1998-04-25T00:00:00.000Z" (to-string (Timestamp. 893462400000)))))
+  (is (= "1998-04-25T00:00:00.000Z" (to-string (Timestamp. 893462400000))))
+  (is (= "1998-04-25T00:00:00.000Z" (to-string "1998-04-25T00:00:00.000Z"))))

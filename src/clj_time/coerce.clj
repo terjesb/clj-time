@@ -74,3 +74,14 @@
     (.getMillis dt))
   (to-string [dt]
     (time-fmt/unparse (:date-time time-fmt/formatters) dt)))
+
+(extend-type String
+  ICoerce
+  (to-date [s]
+    (to-date (to-date-time s)))
+  (to-date-time [s]
+    (from-string s))
+  (to-long [s]
+    (to-long (to-date-time s)))
+  (to-string [s]
+    (to-string (to-date-time s))))
