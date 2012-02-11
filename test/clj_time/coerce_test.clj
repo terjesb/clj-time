@@ -19,6 +19,8 @@
 
 (deftest test-to-date
   (is (nil? (to-date nil)))
+  (is (nil? (to-date "")))
+  (is (nil? (to-date "x")))
   (is (= (Date. 893462400000) (to-date (date-time 1998 4 25))))
   (is (= (Date. 893462400000) (to-date (Date. 893462400000))))
   (is (= (Date. (long 0)) (to-date 0)))
@@ -28,6 +30,8 @@
 
 (deftest test-to-date-time
   (is (nil? (to-date-time nil)))
+  (is (nil? (to-date-time "")))
+  (is (nil? (to-date-time "x")))
   (is (= (date-time 1998 4 25) (to-date-time (date-time 1998 4 25))))
   (is (= (date-time 1998 4 25) (to-date-time (Date. 893462400000))))
   (is (= (date-time 1970 1 1) (to-date-time 0)))
@@ -37,6 +41,8 @@
 
 (deftest test-to-long
   (is (nil? (to-long nil)))
+  (is (nil? (to-long "")))
+  (is (nil? (to-long "x")))
   (is (= 893462400000 (to-long (date-time 1998 4 25))))
   (is (= 893462400000 (to-long (Date. 893462400000))))
   (is (= (long 0) (to-long 0)))
@@ -57,6 +63,8 @@
 
 (deftest test-to-timestamp
   (is (nil? (to-timestamp nil)))
+  (is (nil? (to-timestamp "")))
+  (is (nil? (to-timestamp "x")))
   (is (= (Timestamp. 893462400000) (to-timestamp (date-time 1998 4 25))))
   (is (= (Timestamp. 893462400000) (to-timestamp (Date. 893462400000))))
   (is (= (Timestamp. (long 0)) (to-timestamp 0)))
