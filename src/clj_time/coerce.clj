@@ -75,6 +75,17 @@
   (to-string [dt]
     (time-fmt/unparse (:date-time time-fmt/formatters) dt)))
 
+(extend-type Long
+  ICoerce
+  (to-date [number]
+    (Date. number))
+  (to-date-time [number]
+    (DateTime. number utc))
+  (to-long [number]
+    (Long. number))
+  (to-string [number]
+    (to-string (to-date-time number))))
+
 (extend-type String
   ICoerce
   (to-date [s]
