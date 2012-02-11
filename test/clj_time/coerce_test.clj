@@ -54,3 +54,12 @@
   (is (= "1998-04-25T00:00:00.000Z" (to-string 893462400000)))
   (is (= "1998-04-25T00:00:00.000Z" (to-string (Timestamp. 893462400000))))
   (is (= "1998-04-25T00:00:00.000Z" (to-string "1998-04-25T00:00:00.000Z"))))
+
+(deftest test-to-timestamp
+  (is (nil? (to-timestamp nil)))
+  (is (= (Timestamp. 893462400000) (to-timestamp (date-time 1998 4 25))))
+  (is (= (Timestamp. 893462400000) (to-timestamp (Date. 893462400000))))
+  (is (= (Timestamp. (long 0)) (to-timestamp 0)))
+  (is (= (Timestamp. 893462400000) (to-timestamp 893462400000)))
+  (is (= (Timestamp. 893462400000) (to-timestamp (Timestamp. 893462400000))))
+  (is (= (Timestamp. 893462400000) (to-timestamp "1998-04-25T00:00:00.000Z"))))

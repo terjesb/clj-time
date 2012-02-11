@@ -11,18 +11,20 @@
   (:use clj-time.core)
   (:require [clj-time.format :as time-fmt])
   (:import (org.joda.time DateTime DateTimeZone))
-  (:import java.util.Date))
+  (:import java.util.Date java.sql.Timestamp))
 
 (defprotocol ICoerce
   (to-long [obj]
-    "Returns the number of milliseconds the given obj is after the Unix epoch.")
+    "Convert `obj` to the number of milliseconds after the Unix epoch.")
   (to-date [obj]
-    "Returns a Java Date object corresponding to the given obj.")
+    "Convert `obj` to a Java Date instance.")
   (to-date-time [obj]
-    "Returns a Joda DateTime object corresponding to the given obj.")
+    "Convert `obj` to a Joda DateTime instance.")
   (to-string [obj]
     "Returns a string representation of obj in UTC time-zone
-    using (ISODateTimeFormat/dateTime) date-time representation."))
+    using (ISODateTimeFormat/dateTime) date-time representation.")
+  (to-timestamp [obj]
+    "Convert `obj` to a Java SQL Timestamp instance."))
 
 (defn from-long
   "Returns a DateTime instance in the UTC time zone corresponding to the given
@@ -51,7 +53,8 @@
   (to-date [_] nil)
   (to-date-time [_] nil)
   (to-long [_] nil)
-  (to-string [_] nil))
+  (to-string [_] nil)
+  (to-timestamp [_] nil))
 
 (extend-type Date
   ICoerce
@@ -62,7 +65,9 @@
   (to-long [date]
     (.getTime date))
   (to-string [date]
-    (to-string (to-date-time date))))
+    (to-string (to-date-time date)))
+  (to-timestamp [date]
+    (Timestamp. (.getTime date))))
 
 (extend-type DateTime
   ICoerce
@@ -73,7 +78,9 @@
   (to-long [dt]
     (.getMillis dt))
   (to-string [dt]
-    (time-fmt/unparse (:date-time time-fmt/formatters) dt)))
+    (time-fmt/unparse (:date-time time-fmt/formatters) dt))
+  (to-timestamp [dt]
+    (Timestamp. (.getMillis dt))))
 
 (extend-type Integer
   ICoerce
@@ -84,7 +91,9 @@
   (to-long [number]
     (long number))
   (to-string [number]
-    (to-string (to-date-time number))))
+    (to-string (to-date-time number)))
+  (to-timestamp [number]
+    (Timestamp. (long number))))
 
 (extend-type Long
   ICoerce
@@ -95,7 +104,9 @@
   (to-long [number]
     (Long. number))
   (to-string [number]
-    (to-string (to-date-time number))))
+    (to-string (to-date-time number)))
+  (to-timestamp [number]
+    (Timestamp. (long number))))
 
 (extend-type String
   ICoerce
@@ -106,4 +117,19 @@
   (to-long [s]
     (to-long (to-date-time s)))
   (to-string [s]
-    (to-string (to-date-time s))))
+    (to-string (to-date-time s)))
+  (to-timestamp [s]
+    (to-timestamp (to-date-time s))))
+
+(extend-type Timestamp
+  ICoerce
+  (to-date [ts]
+    (Date. (to-long ts)))
+  (to-date-time [ts]
+    (DateTime. (to-long ts) utc))
+  (to-long [ts]
+    (.getTime ts))
+  (to-string [ts]
+    (to-string (to-date-time ts)))
+  (to-timestamp [ts]
+    ts))
