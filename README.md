@@ -69,7 +69,7 @@ If you need to parse or print date-times, use `clj-time.format:
 Printing and printing are controlled by formatters. You can either use one of the built in ISO8601 formatters or define your own, e.g.:
 
     (def built-in-formatter (formatters :basic-date-time))
-    (def custom-formatter (formatter \"yyyyMMdd\"))
+    (def custom-formatter (formatter "yyyyMMdd"))
 
 To see a list of available built-in formatters and an example of a date-time printed in their format:
 
@@ -77,21 +77,21 @@ To see a list of available built-in formatters and an example of a date-time pri
 
 Once you have a formatter, parsing and printing are strait-forward:
 
-    => (parse custom-formatter \"20100311\")
+    => (parse custom-formatter "20100311")
     #<DateTime 2010-03-11T00:00:00.000Z>
     
     => (unparse custom-formatter (date-time 2010 10 3))
-    \"20101003\"
+    "20101003"
 
 To parse dates in multiple formats and format dates in just one format, you can do this:
 
-    => (def multi-parser (formatter (default-time-zone) \"YYYY-MM-dd\" \"YYYY/MM/dd\"))
+    => (def multi-parser (formatter (default-time-zone) "YYYY-MM-dd" "YYYY/MM/dd"))
 
-    => (unparse multi-parser (parse multi-parser "\2012-02-01\"))
-    \"2012-02-01\"
+    => (unparse multi-parser (parse multi-parser "2012-02-01"))
+    "2012-02-01"
 
-    => (unparse multi-parser (parse multi-parser \"2012/02/01\"))
-    \"2012-02-01\"
+    => (unparse multi-parser (parse multi-parser "2012/02/01"))
+    "2012-02-01"
 
 The namespace `clj-time.coerce` contains utility functions for coercing Joda `DateTime` instances to and from various other types:
 
@@ -114,7 +114,7 @@ For example, to convert a Joda `DateTime` to and from a Java `long`:
 Running the tests:
 
     $ lein deps
-    $ lein test
+    $ lein multi test
 
 ## License
 
