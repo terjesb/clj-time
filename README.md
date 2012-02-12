@@ -103,7 +103,7 @@ For example, to convert a Joda `DateTime` to and from a Java `long`:
     893462400000
   
     => (from-long 893462400000)
-    #<DateTime 1998-04-25T00:00:00.000Z>"
+    #<DateTime 1998-04-25T00:00:00.000Z>
 
 ## Installation
 
