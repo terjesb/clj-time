@@ -42,7 +42,7 @@
   (is (= (java.sql.Date. 893462400000) (to-sql-date (date-time 1998 4 25))))
   (is (= (java.sql.Date. 893462400000) (to-sql-date (Date. 893462400000))))
   (is (= (java.sql.Date. 893462400000) (to-sql-date (java.sql.Date. 893462400000))))
-  (is (= (java.sql.Date. (long 0)) (to-date 0)))
+  (is (= (java.sql.Date. (long 0)) (to-sql-date 0)))
   (is (= (java.sql.Date. 893462400000) (to-sql-date 893462400000)))
   (is (= (java.sql.Date. 893462400000) (to-sql-date (Timestamp. 893462400000))))
   (is (= (java.sql.Date. 893462400000) (to-sql-date "1998-04-25T00:00:00.000Z"))))
