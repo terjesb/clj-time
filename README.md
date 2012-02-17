@@ -105,6 +105,8 @@ For example, to convert a Joda `DateTime` to and from a Java `long`:
     => (from-long 893462400000)
     #<DateTime 1998-04-25T00:00:00.000Z>
 
+There are also conversions to and from `java.util.Date` (`to-date` and `from-date`), `java.sql.Date` (`to-sql-date` and `from-sql-date`) and several other types.
+
 ## Installation
 
 `clj-time` is available as a Maven artifact via [Clojars](http://clojars.org/clj-time).
