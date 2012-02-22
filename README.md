@@ -1,4 +1,4 @@
-# `clj-time`
+# `clj-time` <a href="http://travis-ci.org/#!/seancorfield/clj-time/builds"><img src="https://secure.travis-ci.org/seancorfield/clj-time.png" /></a>
 
 A date and time library for Clojure, wrapping the [Joda Time](http://joda-time.sourceforge.net/) library.
 
