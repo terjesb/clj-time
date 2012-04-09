@@ -3,8 +3,7 @@
            [clj-time.coerce :as coerce]
            [clj-time.format :as fmt])
   (:import (org.joda.time DateTime)
-           (org.joda.time.format DateTimeFormatter)
-           java.util.Date java.sql.Timestamp))
+           (org.joda.time.format DateTimeFormatter)))
 
 (def ^{:doc "Map of local formatters for parsing and printing." :dynamic true}
   *local-formatters*
@@ -13,14 +12,14 @@
             fmt/formatters)))
 
 (defprotocol ILocalCoerce
-  (to-local-date-time [obj] "convert `obj` to a local Joda DateTime instance."))
+  (to-local-date-time [obj] "convert `obj` to a local Joda DateTime instance retaining time zone fields."))
 
 (defn- as-local-date-time [obj]
-  (-> obj coerce/to-date-time (time/to-time-zone (time/default-time-zone))))
+  (-> obj coerce/to-date-time (time/from-time-zone (time/default-time-zone))))
 
 (defn from-local-string
   "Return local DateTime instance from string using
-   formatters in clj-time.format, returning first
+   formatters in *local-formatters*, returning first
    which parses."
   [s]
   (first
@@ -33,7 +32,7 @@
   (to-local-date-time [_]
     nil)
 
-  Date
+  java.util.Date
   (to-local-date-time [date]
     (as-local-date-time date))
 
@@ -51,17 +50,16 @@
 
   Long
   (to-local-date-time [long]
-    (as-local-date-time
-     long))
+    (as-local-date-time long))
 
   String
   (to-local-date-time [string]
     (from-local-string string))
 
-  Timestamp
-  (to-date-time [timestamp]
+  java.sql.Timestamp
+  (to-local-date-time [timestamp]
     (as-local-date-time timestamp)))
 
-(defn local-format-time [obj format-key]
+(defn format-local-time [obj format-key]
   (when-let [fmt (format-key *local-formatters*)]
     (fmt/unparse fmt (to-local-date-time obj))))
