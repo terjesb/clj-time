@@ -11,11 +11,9 @@
             (fn [[k #^DateTimeFormatter f]] [k (.withZone f #^DateTimeZone (time/default-time-zone))])
             fmt/formatters)))
 
-(defprotocol ILocalCoerce
-  (to-local-date-time [obj] "convert `obj` to a local Joda DateTime instance retaining time zone fields."))
-
-(defn- as-local-date-time [obj]
-  (-> obj coerce/to-date-time (time/from-time-zone (time/default-time-zone))))
+(defn local-now []
+  "Returns a DateTime for the current instant in the default time zone."
+  (DateTime.))
 
 (defn from-local-string
   "Return local DateTime instance from string using
@@ -26,6 +24,12 @@
    (for [f (vals *local-formatters*)
          :let [d (try (fmt/parse f s) (catch Exception _ nil))]
          :when d] d)))
+
+(defprotocol ILocalCoerce
+  (to-local-date-time [obj] "convert `obj` to a local Joda DateTime instance retaining time zone fields."))
+
+(defn- as-local-date-time [obj]
+  (-> obj coerce/to-date-time (time/from-time-zone (time/default-time-zone))))
 
 (extend-protocol ILocalCoerce
   nil
