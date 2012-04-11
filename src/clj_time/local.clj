@@ -1,4 +1,17 @@
 (ns clj-time.local
+  #_"Functions for working with local time without having to shift
+   to/from utc, the preferred time zone of clj-time.core.
+
+   Get the current local time with (local-now).
+
+   (to-local-date-time obj) returns a local date-time instance 
+   retaining the time fields.
+
+
+  (to-local-date-time (clj-time.core/date-time 1986 10 14 4 3 27 246))
+  (to-local-date-time \"1986-10-14T04:03:27.246\")
+  (to-local-date-time \"1986-10-14T04:03:27.246Z\")
+"
   (require [clj-time.core :as time]
            [clj-time.coerce :as coerce]
            [clj-time.format :as fmt])
@@ -13,9 +26,16 @@
 
 (defn local-now []
   "Returns a DateTime for the current instant in the default time zone."
-  (DateTime.))
+  (DateTime/now (time/default-time-zone)))
 
-(defn from-local-string
+(defprotocol ILocalCoerce
+  (to-local-date-time [obj] "convert `obj` to a local Joda DateTime instance retaining time fields."))
+
+(defn- as-local-date-time [obj]
+  "Coerce to date-time in the default time zone retaining time fields."
+  (-> obj coerce/to-date-time (time/from-time-zone (time/default-time-zone))))
+
+(defn- from-local-string
   "Return local DateTime instance from string using
    formatters in *local-formatters*, returning first
    which parses."
@@ -24,12 +44,6 @@
    (for [f (vals *local-formatters*)
          :let [d (try (fmt/parse f s) (catch Exception _ nil))]
          :when d] d)))
-
-(defprotocol ILocalCoerce
-  (to-local-date-time [obj] "convert `obj` to a local Joda DateTime instance retaining time zone fields."))
-
-(defn- as-local-date-time [obj]
-  (-> obj coerce/to-date-time (time/from-time-zone (time/default-time-zone))))
 
 (extend-protocol ILocalCoerce
   nil
@@ -65,5 +79,7 @@
     (as-local-date-time timestamp)))
 
 (defn format-local-time [obj format-key]
+  "Format obj as local time using the local formatter corresponding
+   to format-key."
   (when-let [fmt (format-key *local-formatters*)]
     (fmt/unparse fmt (to-local-date-time obj))))
