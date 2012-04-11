@@ -1,5 +1,5 @@
 (ns clj-time.local
-  #_"Functions for working with local time without having to shift
+  "Functions for working with local time without having to shift
    to/from utc, the preferred time zone of clj-time.core.
 
    Get the current local time with (local-now).
@@ -7,10 +7,21 @@
    (to-local-date-time obj) returns a local date-time instance 
    retaining the time fields.
 
+  The following all return 1986-10-14 04:03:27.246 with the
+  local time zone.
 
   (to-local-date-time (clj-time.core/date-time 1986 10 14 4 3 27 246))
   (to-local-date-time \"1986-10-14T04:03:27.246\")
   (to-local-date-time \"1986-10-14T04:03:27.246Z\")
+
+  The dynamic var *local-formatters* contains a map of local formatters
+  for parsing and printing. It is initialized with all the formatters in
+  clj-time.format localized.
+
+  to-local-date-time for strings uses *local-formatters* to parse.
+
+  (format-local-time (local-now) :basic-date-time) formats an obj using
+  a formatter in *local-formatters* corresponding format-key passed in.  
 "
   (require [clj-time.core :as time]
            [clj-time.coerce :as coerce]
