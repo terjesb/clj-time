@@ -95,7 +95,7 @@
     (date-midnight year 1 1))
   ([year month]
     (date-midnight year month 1))
-  ([year month day]
+  ([^Long year ^Long month ^Long day]
     (DateMidnight. year month day #^DateTimeZone utc)))
 
 (defn date-time
