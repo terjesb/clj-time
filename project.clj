@@ -2,7 +2,7 @@
 (def deps '[[joda-time "2.0"]])
 
 ;; project definition with additional dependencies:
-(defproject clj-time "0.4.1"
+(defproject clj-time "0.4.2-SNAPSHOT"
   :description "A date and time library for Clojure, wrapping Joda Time."
   :dev-dependencies [[utilize "0.1.2"]
                      [lein-multi "1.1.0"]]
