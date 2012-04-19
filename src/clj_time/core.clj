@@ -98,7 +98,7 @@
   ([^Long year ^Long month ^Long day]
     (DateMidnight. year month day #^DateTimeZone utc)))
 
-(defn date-time
+(defn #^org.joda.time.DateTime date-time
   "Constructs and returns a new DateTime in UTC.
    Specify the year, month of year, day of month, hour of day, minute if hour,
    second of minute, and millisecond of second. Note that month and day are
@@ -180,14 +180,16 @@
   "Returns the default DateTimeZone for the current environment."
   (DateTimeZone/getDefault))
 
-(defn to-time-zone
+(defn #^org.joda.time.DateTime
+  to-time-zone
   "Returns a new ReadableDateTime corresponding to the same absolute instant in time as
    the given ReadableDateTime, but with calendar fields corresponding to the given
    TimeZone."
   [#^DateTime dt #^DateTimeZone tz]
   (.withZone dt tz))
 
-(defn from-time-zone
+(defn #^org.joda.time.DateTime
+  from-time-zone
   "Returns a new ReadableDateTime corresponding to the same point in calendar time as
    the given ReadableDateTime, but for a correspondingly different absolute instant in
    time."
