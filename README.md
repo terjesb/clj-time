@@ -145,8 +145,7 @@ Current stable build dependency:
 
 Running the tests:
 
-    $ lein deps
-    $ lein multi test
+    $ lein2 test-all
 
 ## License
 
