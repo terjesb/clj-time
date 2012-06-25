@@ -1,6 +1,7 @@
 lib
 bin
 classes
+target
 clj-time.jar
 pom.xml
 *.jar
