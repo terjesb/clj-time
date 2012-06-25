@@ -137,6 +137,10 @@ Format an obj using a formatter in \*local-formatters\* corresponding to the for
 
 `clj-time` is available as a Maven artifact via [Clojars](http://clojars.org/clj-time).
 
+Current stable build dependency:
+
+    [clj-time "0.4.3"]
+
 ## Development
 
 Running the tests:
