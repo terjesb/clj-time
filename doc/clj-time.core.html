@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html><head><link href="css/default.css" rel="stylesheet" type="text/css"><script src="js/jquery.min.js" type="text/javascript"></script><script src="js/page_effects.js" type="text/javascript"></script><title>clj-time.core documentation</title></head><body><div id="header"><h1><a href="index.html">Clj-time 0.4.5-SNAPSHOT API documentation</a></h1></div><div class="sidebar" id="namespaces"><h3><span>Namespaces</span></h3><ul><li><a href="clj-time.coerce.html"><span>clj-time.coerce</span></a></li><li class="current"><a href="clj-time.core.html"><span>clj-time.core</span></a></li><li><a href="clj-time.format.html"><span>clj-time.format</span></a></li><li><a href="clj-time.local.html"><span>clj-time.local</span></a></li></ul></div><div class="sidebar" id="vars"><h3>Public Vars</h3><ul><li><a href="clj-time.core.html#var-DateTimeProtocol"><span>DateTimeProtocol</span></a></li><li><a href="clj-time.core.html#var-abuts%3F"><span>abuts?</span></a></li><li><a href="clj-time.core.html#var-after%3F"><span>after?</span></a></li><li><a href="clj-time.core.html#var-ago"><span>ago</span></a></li><li><a href="clj-time.core.html#var-before%3F"><span>before?</span></a></li><li><a href="clj-time.core.html#var-date-midnight"><span>date-midnight</span></a></li><li><a href="clj-time.core.html#var-date-time"><span>date-time</span></a></li><li><a href="clj-time.core.html#var-day"><span>day</span></a></li><li><a href="clj-time.core.html#var-day-of-week"><span>day-of-week</span></a></li><li><a href="clj-time.core.html#var-days"><span>days</span></a></li><li><a href="clj-time.core.html#var-days%3F"><span>days?</span></a></li><li><a href="clj-time.core.html#var-end"><span>end</span></a></li><li><a href="clj-time.core.html#var-extend"><span>extend</span></a></li><li><a href="clj-time.core.html#var-from-now"><span>from-now</span></a></li><li><a href="clj-time.core.html#var-from-time-zone"><span>from-time-zone</span></a></li><li><a href="clj-time.core.html#var-hour"><span>hour</span></a></li><li><a href="clj-time.core.html#var-hours"><span>hours</span></a></li><li><a href="clj-time.core.html#var-hours%3F"><span>hours?</span></a></li><li><a href="clj-time.core.html#var-in-days"><span>in-days</span></a></li><li><a href="clj-time.core.html#var-in-hours"><span>in-hours</span></a></li><li><a href="clj-time.core.html#var-in-minutes"><span>in-minutes</span></a></li><li><a href="clj-time.core.html#var-in-months"><span>in-months</span></a></li><li><a href="clj-time.core.html#var-in-msecs"><span>in-msecs</span></a></li><li><a href="clj-time.core.html#var-in-secs"><span>in-secs</span></a></li><li><a href="clj-time.core.html#var-in-weeks"><span>in-weeks</span></a></li><li><a href="clj-time.core.html#var-in-years"><span>in-years</span></a></li><li><a href="clj-time.core.html#var-interval"><span>interval</span></a></li><li><a href="clj-time.core.html#var-local-date-time"><span>local-date-time</span></a></li><li><a href="clj-time.core.html#var-milli"><span>milli</span></a></li><li><a href="clj-time.core.html#var-millis"><span>millis</span></a></li><li><a href="clj-time.core.html#var-minus"><span>minus</span></a></li><li><a href="clj-time.core.html#var-minus-"><span>minus-</span></a></li><li><a href="clj-time.core.html#var-minute"><span>minute</span></a></li><li><a href="clj-time.core.html#var-minutes"><span>minutes</span></a></li><li><a href="clj-time.core.html#var-minutes%3F"><span>minutes?</span></a></li><li><a href="clj-time.core.html#var-month"><span>month</span></a></li><li><a href="clj-time.core.html#var-months"><span>months</span></a></li><li><a href="clj-time.core.html#var-months%3F"><span>months?</span></a></li><li><a href="clj-time.core.html#var-overlaps%3F"><span>overlaps?</span></a></li><li><a href="clj-time.core.html#var-plus"><span>plus</span></a></li><li><a href="clj-time.core.html#var-plus-"><span>plus-</span></a></li><li><a href="clj-time.core.html#var-sec"><span>sec</span></a></li><li><a href="clj-time.core.html#var-secs"><span>secs</span></a></li><li><a href="clj-time.core.html#var-secs%3F"><span>secs?</span></a></li><li><a href="clj-time.core.html#var-start"><span>start</span></a></li><li><a href="clj-time.core.html#var-time-zone-for-offset"><span>time-zone-for-offset</span></a></li><li><a href="clj-time.core.html#var-to-time-zone"><span>to-time-zone</span></a></li><li><a href="clj-time.core.html#var-utc"><span>utc</span></a></li><li><a href="clj-time.core.html#var-weeks"><span>weeks</span></a></li><li><a href="clj-time.core.html#var-weeks%3F"><span>weeks?</span></a></li><li><a href="clj-time.core.html#var-within%3F"><span>within?</span></a></li><li><a href="clj-time.core.html#var-year"><span>year</span></a></li><li><a href="clj-time.core.html#var-years"><span>years</span></a></li><li><a href="clj-time.core.html#var-years%3F"><span>years?</span></a></li></ul></div><div class="namespace-docs" id="content"><h2>clj-time.core documentation</h2><pre class="doc">The core namespace for date-time operations in the clj-time library.
+
+Create a DateTime instance with date-time (or a LocalDateTime instance with local-date-time),
+specifying the year, month, day, hour, minute, second, and millisecond:
+
+  =&gt; (date-time 1986 10 14 4 3 27 456)
+  #&lt;DateTime 1986-10-14T04:03:27.456Z&gt;
+
+  =&gt; (local-date-time 1986 10 14 4 3 27 456)
+  #&lt;LocalDateTime 1986-10-14T04:03:27.456&gt;
+
+Less-significant fields can be omitted:
+
+  =&gt; (date-time 1986 10 14)
+  #&lt;DateTime 1986-10-14T00:00:00.000Z&gt;
+
+  =&gt; (local-date-time 1986 10 14)
+  #&lt;LocalDateTime 1986-10-14T00:00:00.000&gt;
+
+Get the current time with (now) and the start of the Unix epoch with (epoch).
+
+Once you have a date-time, use accessors like hour and sec to access the
+corresponding fields:
+
+  =&gt; (hour (date-time 1986 10 14 22))
+  22
+
+  =&gt; (hour (local-date-time 1986 10 14 22))
+  22
+
+The date-time constructor always returns times in the UTC time zone. If you
+want a time with the specified fields in a different time zone, use
+from-time-zone:
+
+  =&gt; (from-time-zone (date-time 1986 10 22) (time-zone-for-offset -2))
+  #&lt;DateTime 1986-10-22T00:00:00.000-02:00&gt;
+
+If on the other hand you want a given absolute instant in time in a
+different time zone, use to-time-zone:
+
+  =&gt; (to-time-zone (date-time 1986 10 22) (time-zone-for-offset -2))
+  #&lt;DateTime 1986-10-21T22:00:00.000-02:00&gt;
+
+In addition to time-zone-for-offset, you can use the time-zone-for-id and
+default-time-zone functions and the utc Var to constgruct or get DateTimeZone
+instances.
+
+The functions after? and before? determine the relative position of two
+DateTime instances:
+
+  =&gt; (after? (date-time 1986 10) (date-time 1986 9))
+  true
+
+  =&gt; (after? (local-date-time 1986 10) (local-date-time 1986 9))
+  true
+
+Often you will want to find a date some amount of time from a given date. For
+example, to find the time 1 month and 3 weeks from a given date-time:
+
+  =&gt; (plus (date-time 1986 10 14) (months 1) (weeks 3))
+  #&lt;DateTime 1986-12-05T00:00:00.000Z&gt;
+
+  =&gt; (plus (local-date-time 1986 10 14) (months 1) (weeks 3))
+  #&lt;LocalDateTime 1986-12-05T00:00:00.000Z&gt;
+
+An Interval is used to represent the span of time between two DateTime
+instances. Construct one using interval, then query them using within?,
+overlaps?, and abuts?
+
+  =&gt; (within? (interval (date-time 1986) (date-time 1990))
+              (date-time 1987))
+  true
+
+To find the amount of time encompased by an interval, use in-secs and
+in-minutes:
+
+  =&gt; (in-minutes (interval (date-time 1986 10 2) (date-time 1986 10 14)))
+  17280
+
+Note that all functions in this namespace work with Joda objects or ints. If
+you need to print or parse date-times, see clj-time.format. If you need to
+ceorce date-times to or from other types, see clj-time.coerce.</pre><div class="public" id="var-DateTimeProtocol"><h3>DateTimeProtocol</h3><div class="usage"></div><pre class="doc">Interface for various date time functions
+</pre></div><div class="public" id="var-abuts%3F"><h3>abuts?</h3><div class="usage"><code>(abuts? i-a i-b)</code></div><pre class="doc">Returns true if Interval i-a abuts i-b, i.e. then end of i-a is exactly the
+beginning of i-b.</pre></div><div class="public" id="var-after%3F"><h3>after?</h3><div class="usage"><code>(after? this that)</code></div><pre class="doc">Returns true if ReadableDateTime dt-a is strictly after date/time dt-b.
+</pre></div><div class="public" id="var-ago"><h3>ago</h3><div class="usage"><code>(ago period)</code></div><pre class="doc">Returns a DateTime a supplied period before the present.
+e.g. (-&gt; 5 years ago)</pre></div><div class="public" id="var-before%3F"><h3>before?</h3><div class="usage"><code>(before? this that)</code></div><pre class="doc">Returns true if ReadableDateTime dt-a is strictly before date/time dt-b.
+</pre></div><div class="public" id="var-date-midnight"><h3>date-midnight</h3><div class="usage"><code>(date-midnight year)</code><code>(date-midnight year month)</code><code>(date-midnight year month day)</code></div><pre class="doc">Constructs and returns a new DateMidnight in UTC.
+Specify the year, month of year, day of month. Note that month and day are
+1-indexed. Any number of least-significant components can be ommited, in which case
+they will default to 1.</pre></div><div class="public" id="var-date-time"><h3>date-time</h3><div class="usage"><code>(date-time year)</code><code>(date-time year month)</code><code>(date-time year month day)</code><code>(date-time year month day hour)</code><code>(date-time year month day hour minute)</code><code>(date-time year month day hour minute second)</code><code>(date-time year month day hour minute second millis)</code></div><pre class="doc">Constructs and returns a new DateTime in UTC.
+Specify the year, month of year, day of month, hour of day, minute if hour,
+second of minute, and millisecond of second. Note that month and day are
+1-indexed while hour, second, minute, and millis are 0-indexed.
+Any number of least-significant components can be ommited, in which case
+they will default to 1 or 0 as appropriate.</pre></div><div class="public" id="var-day"><h3>day</h3><div class="usage"><code>(day this)</code></div><pre class="doc">Return the day of month component of the given date/time.
+</pre></div><div class="public" id="var-day-of-week"><h3>day-of-week</h3><div class="usage"><code>(day-of-week this)</code></div><pre class="doc">Return the day of week component of the given date/time. Monday is 1 and Sunday is 7
+</pre></div><div class="public" id="var-days"><h3>days</h3><div class="usage"><code>(days)</code><code>(days n)</code></div><pre class="doc">Given a number, returns a Period representing that many days.
+Without an argument, returns a PeriodType representing only days.</pre></div><div class="public" id="var-days%3F"><h3>days?</h3><div class="usage"><code>(days? val)</code></div><pre class="doc">Returns true if the given value is an instance of Days
+</pre></div><div class="public" id="var-end"><h3>end</h3><div class="usage"><code>(end in)</code></div><pre class="doc">Returns the end DateTime of an Interval.
+</pre></div><div class="public" id="var-extend"><h3>extend</h3><div class="usage"><code>(extend in &amp; by)</code></div><pre class="doc">Returns an Interval with an end ReadableDateTime the specified Period after the end
+of the given Interval</pre></div><div class="public" id="var-from-now"><h3>from-now</h3><div class="usage"><code>(from-now period)</code></div><pre class="doc">Returns a DateTime a supplied period after the present.
+e.g. (-&gt; 30 minutes from-now)</pre></div><div class="public" id="var-from-time-zone"><h3>from-time-zone</h3><div class="usage"><code>(from-time-zone dt tz)</code></div><pre class="doc">Returns a new ReadableDateTime corresponding to the same point in calendar time as
+the given ReadableDateTime, but for a correspondingly different absolute instant in
+time.</pre></div><div class="public" id="var-hour"><h3>hour</h3><div class="usage"><code>(hour this)</code></div><pre class="doc">Return the hour of day component of the given date/time. A time of 12:01am will have an hour component of 0.
+</pre></div><div class="public" id="var-hours"><h3>hours</h3><div class="usage"><code>(hours)</code><code>(hours n)</code></div><pre class="doc">Given a number, returns a Period representing that many hours.
+Without an argument, returns a PeriodType representing only hours.</pre></div><div class="public" id="var-hours%3F"><h3>hours?</h3><div class="usage"><code>(hours? val)</code></div><pre class="doc">Returns true if the given value is an instance of Hours
+</pre></div><div class="public" id="var-in-days"><h3>in-days</h3><div class="usage"><code>(in-days in)</code></div><pre class="doc">Returns the number of standard days in the given Interval.
+</pre></div><div class="public" id="var-in-hours"><h3>in-hours</h3><div class="usage"><code>(in-hours in)</code></div><pre class="doc">Returns the number of standard hours in the given Interval.
+</pre></div><div class="public" id="var-in-minutes"><h3>in-minutes</h3><div class="usage"><code>(in-minutes in)</code></div><pre class="doc">Returns the number of standard minutes in the given Interval.
+</pre></div><div class="public" id="var-in-months"><h3>in-months</h3><div class="usage"><code>(in-months in)</code></div><pre class="doc">Returns the number of standard years in the given Interval.
+</pre></div><div class="public" id="var-in-msecs"><h3>in-msecs</h3><div class="usage"><code>(in-msecs in)</code></div><pre class="doc">Returns the number of milliseconds in the given Interval.
+</pre></div><div class="public" id="var-in-secs"><h3>in-secs</h3><div class="usage"><code>(in-secs in)</code></div><pre class="doc">Returns the number of standard seconds in the given Interval.
+</pre></div><div class="public" id="var-in-weeks"><h3>in-weeks</h3><div class="usage"><code>(in-weeks in)</code></div><pre class="doc">Returns the number of standard weeks in the given Interval.
+</pre></div><div class="public" id="var-in-years"><h3>in-years</h3><div class="usage"><code>(in-years in)</code></div><pre class="doc">Returns the number of standard years in the given Interval.
+</pre></div><div class="public" id="var-interval"><h3>interval</h3><div class="usage"><code>(interval dt-a dt-b)</code></div><pre class="doc">Returns an interval representing the span between the two given ReadableDateTimes.
+Note that intervals are closed on the left and open on the right.</pre></div><div class="public" id="var-local-date-time"><h3>local-date-time</h3><div class="usage"><code>(local-date-time year)</code><code>(local-date-time year month)</code><code>(local-date-time year month day)</code><code>(local-date-time year month day hour)</code><code>(local-date-time year month day hour minute)</code><code>(local-date-time year month day hour minute second)</code><code>(local-date-time year month day hour minute second millis)</code></div><pre class="doc">Constructs and returns a new LocalDateTime.
+Specify the year, month of year, day of month, hour of day, minute if hour,
+second of minute, and millisecond of second. Note that month and day are
+1-indexed while hour, second, minute, and millis are 0-indexed.
+Any number of least-significant components can be ommited, in which case
+they will default to 1 or 0 as appropriate.</pre></div><div class="public" id="var-milli"><h3>milli</h3><div class="usage"><code>(milli this)</code></div><pre class="doc">Return the millisecond of second component of the given date/time.
+</pre></div><div class="public" id="var-millis"><h3>millis</h3><div class="usage"><code>(millis)</code><code>(millis n)</code></div><pre class="doc">Given a number, returns a Period representing that many milliseconds.
+Without an argument, returns a PeriodType representing only milliseconds.</pre></div><div class="public" id="var-minus"><h3>minus</h3><div class="usage"><code>(minus dt p)</code><code>(minus dt p &amp; ps)</code></div><pre class="doc">Returns a new date/time object corresponding to the given date/time moved backwards by
+the given Period(s).</pre></div><div class="public" id="var-minus-"><h3>minus-</h3><div class="usage"><code>(minus- this period)</code></div><pre class="doc">Returns a new date/time corresponding to the given date/time moved backwards by the given Period(s).
+</pre></div><div class="public" id="var-minute"><h3>minute</h3><div class="usage"><code>(minute this)</code></div><pre class="doc">Return the minute of hour component of the given date/time.
+</pre></div><div class="public" id="var-minutes"><h3>minutes</h3><div class="usage"><code>(minutes)</code><code>(minutes n)</code></div><pre class="doc">Given a number, returns a Period representing that many minutes.
+Without an argument, returns a PeriodType representing only minutes.</pre></div><div class="public" id="var-minutes%3F"><h3>minutes?</h3><div class="usage"><code>(minutes? val)</code></div><pre class="doc">Returns true if the given value is an instance of Minutes
+</pre></div><div class="public" id="var-month"><h3>month</h3><div class="usage"><code>(month this)</code></div><pre class="doc">Return the month component of the given date/time.
+</pre></div><div class="public" id="var-months"><h3>months</h3><div class="usage"><code>(months)</code><code>(months n)</code></div><pre class="doc">Given a number, returns a Period representing that many months.
+Without an argument, returns a PeriodType representing only months.</pre></div><div class="public" id="var-months%3F"><h3>months?</h3><div class="usage"><code>(months? val)</code></div><pre class="doc">Returns true if the given value is an instance of Months
+</pre></div><div class="public" id="var-overlaps%3F"><h3>overlaps?</h3><div class="usage"><code>(overlaps? i-a i-b)</code></div><pre class="doc">Returns true of the two given Intervals overlap. Note that intervals that
+satisfy abuts? do not satisfy overlaps?</pre></div><div class="public" id="var-plus"><h3>plus</h3><div class="usage"><code>(plus dt p)</code><code>(plus dt p &amp; ps)</code></div><pre class="doc">Returns a new date/time corresponding to the given date/time moved forwards by
+the given Period(s).</pre></div><div class="public" id="var-plus-"><h3>plus-</h3><div class="usage"><code>(plus- this period)</code></div><pre class="doc">Returns a new date/time corresponding to the given date/time moved forwards by the given Period(s).
+</pre></div><div class="public" id="var-sec"><h3>sec</h3><div class="usage"><code>(sec this)</code></div><pre class="doc">Return the second of minute component of the given date/time.
+</pre></div><div class="public" id="var-secs"><h3>secs</h3><div class="usage"><code>(secs)</code><code>(secs n)</code></div><pre class="doc">Given a number, returns a Period representing that many seconds.
+Without an argument, returns a PeriodType representing only seconds.</pre></div><div class="public" id="var-secs%3F"><h3>secs?</h3><div class="usage"><code>(secs? val)</code></div><pre class="doc">Returns true if the given value is an instance of Seconds
+</pre></div><div class="public" id="var-start"><h3>start</h3><div class="usage"><code>(start in)</code></div><pre class="doc">Returns the start DateTime of an Interval.
+</pre></div><div class="public" id="var-time-zone-for-offset"><h3>time-zone-for-offset</h3><div class="usage"><code>(time-zone-for-offset hours)</code><code>(time-zone-for-offset hours minutes)</code></div><pre class="doc">Returns a DateTimeZone for the given offset, specified either in hours or
+hours and minutes.</pre></div><div class="public" id="var-to-time-zone"><h3>to-time-zone</h3><div class="usage"><code>(to-time-zone dt tz)</code></div><pre class="doc">Returns a new ReadableDateTime corresponding to the same absolute instant in time as
+the given ReadableDateTime, but with calendar fields corresponding to the given
+TimeZone.</pre></div><div class="public" id="var-utc"><h3>utc</h3><div class="usage"></div><pre class="doc">DateTimeZone for UTC.
+</pre></div><div class="public" id="var-weeks"><h3>weeks</h3><div class="usage"><code>(weeks)</code><code>(weeks n)</code></div><pre class="doc">Given a number, returns a Period representing that many weeks.
+Without an argument, returns a PeriodType representing only weeks.</pre></div><div class="public" id="var-weeks%3F"><h3>weeks?</h3><div class="usage"><code>(weeks? val)</code></div><pre class="doc">Returns true if the given value is an instance of Weeks
+</pre></div><div class="public" id="var-within%3F"><h3>within?</h3><div class="usage"><code>(within? i dt)</code></div><pre class="doc">Returns true if the given Interval contains the given ReadableDateTime. Note that
+if the ReadableDateTime is exactly equal to the end of the interval, this function
+returns false.</pre></div><div class="public" id="var-year"><h3>year</h3><div class="usage"><code>(year this)</code></div><pre class="doc">Return the year component of the given date/time.
+</pre></div><div class="public" id="var-years"><h3>years</h3><div class="usage"><code>(years)</code><code>(years n)</code></div><pre class="doc">Given a number, returns a Period representing that many years.
+Without an argument, returns a PeriodType representing only years.</pre></div><div class="public" id="var-years%3F"><h3>years?</h3><div class="usage"><code>(years? val)</code></div><pre class="doc">Returns true if the given value is an instance of Years
+</pre></div></div></body></html>
