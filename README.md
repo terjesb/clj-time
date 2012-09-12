@@ -79,7 +79,7 @@ Once you have a formatter, parsing and printing are strait-forward:
 
     => (parse custom-formatter "20100311")
     #<DateTime 2010-03-11T00:00:00.000Z>
-    
+
     => (unparse custom-formatter (date-time 2010 10 3))
     "20101003"
 
@@ -101,16 +101,16 @@ For example, to convert a Joda `DateTime` to and from a Java `long`:
 
     => (to-long (date-time 1998 4 25))
     893462400000
-  
+
     => (from-long 893462400000)
     #<DateTime 1998-04-25T00:00:00.000Z>
 
 There are also conversions to and from `java.util.Date` (`to-date` and `from-date`), `java.sql.Date` (`to-sql-date` and `from-sql-date`) and several other types.
 
-The namespace `clj-time.local` contains functions for working with local time without having to shift to/from utc, 
+The namespace `clj-time.local` contains functions for working with local time without having to shift to/from utc,
 the preferred time zone of clj-time.core.
 
-Get the current local time with 
+Get the current local time with
 
     => (local-now)
 
@@ -124,7 +124,7 @@ The following all return 1986-10-14 04:03:27.246 with the local time zone.
     (to-local-date-time "1986-10-14T04:03:27.246")
     (to-local-date-time "1986-10-14T04:03:27.246Z")
 
-The dynamic var \*local-formatters\* contains a map of local formatters for parsing and printing. It is initialized 
+The dynamic var \*local-formatters\* contains a map of local formatters for parsing and printing. It is initialized
 with all the formatters in clj-time.format localized.
 
 to-local-date-time for strings uses \*local-formatters\* to parse.
@@ -146,6 +146,10 @@ Current stable build dependency:
 Running the tests:
 
     $ lein2 test-all
+
+## Documentation
+
+The complete [API documentation](http://seancorfield.github.com/clj-time/doc/index.html) is also available (codox generated).
 
 ## License
 
