@@ -64,6 +64,7 @@
   (is (nil? (to-long "")))
   (is (nil? (to-long "x")))
   (is (= 893462400000 (to-long (date-time 1998 4 25))))
+  (is (= 0 (to-long (date-midnight 1970))))
   (is (= 893462400000 (to-long (Date. 893462400000))))
   (is (= 893462400000 (to-long (java.sql.Date. 893462400000))))
   (is (= (long 0) (to-long 0)))
