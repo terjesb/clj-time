@@ -188,7 +188,7 @@
         (printf "%-40s%s\n" p (unparse fmt dt))))))
 
 (defmulti instant->map
-  "Returns a map representation of the given interval. It will contain the
+  "Returns a map representation of the given instant. It will contain the
   following keys: :years, :months, :days, :hours, :minutes and :seconds."
   class)
 
