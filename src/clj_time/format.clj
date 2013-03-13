@@ -29,7 +29,7 @@
   (:use [clojure.set :only (difference)])
   (:use clj-time.core)
   (:import (java.util Locale)
-           (org.joda.time Chronology DateTime LocalDateTime DateTimeZone)
+           (org.joda.time Chronology DateTime DateTimeZone Interval LocalDateTime PeriodType)
            (org.joda.time.format DateTimeFormat DateTimeFormatter DateTimePrinter
                                  DateTimeFormatterBuilder DateTimeParser
                                  ISODateTimeFormat)))
@@ -186,3 +186,21 @@
     (doseq [p (sort printers)]
       (let [fmt (formatters p)]
         (printf "%-40s%s\n" p (unparse fmt dt))))))
+
+(defn readable
+  "Returns a map representation of the given interval. It will contain
+  the following keys: :years, :months, :days, :minutes, :seconds and
+  :millis.
+  The default period type used is yearMonthDayTime when none is given.
+  It is possible to specify another one if necessary."
+  ([#^Interval it]
+   (readable it (PeriodType/yearMonthDayTime)))
+  ([#^Interval it #^PeriodType period-type]
+   (let [period (.toPeriod it period-type)]
+     {:years (.getYears period)
+      :months (.getMonths period)
+      :days (.getDays period)
+      :hours (.getHours period)
+      :minutes (.getMinutes period)
+      :seconds (.getSeconds period)})))
+

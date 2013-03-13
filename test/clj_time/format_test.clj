@@ -84,3 +84,13 @@
            (parse fmt "201202012215")))
     (is (= "2012-02-01 22:15"
            (unparse fmt (date-time 2012 2 1 22 15))))))
+
+(deftest test-readable
+  (let [it (interval (date-time 1986 9 2 0 0 2)  (date-time 1986 11 30 2 5 12))]
+    (is (= (readable it)
+      {:years 0
+       :months 2
+       :days 28
+       :hours 2
+       :minutes 5
+       :seconds 10}))))
