@@ -188,9 +188,8 @@
         (printf "%-40s%s\n" p (unparse fmt dt))))))
 
 (defmulti instant->map
-  "Returns a map representation of the given interval. It will contain
-  the following keys: :years, :months, :days, :minutes, :seconds and
-  :millis."
+  "Returns a map representation of the given interval. It will contain the
+  following keys: :years, :months, :days, :hours, :minutes and :seconds."
   class)
 
 (defmethod instant->map DateTime [dt]
