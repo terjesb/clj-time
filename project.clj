@@ -13,6 +13,5 @@
                    :plugins [[codox "0.6.1"]]}
              :1.2 {:dependencies [[org.clojure/clojure "1.2.1"]]}
              :1.3 {:dependencies [[org.clojure/clojure "1.3.0"]]}
-             :1.5 {:repositories [["sonatype-snapshots" "https://oss.sonatype.org/content/repositories/snapshots/"]]
-                   :dependencies [[org.clojure/clojure "1.5.0-master-SNAPSHOT"]]}}
+             :1.5 {:dependencies [[org.clojure/clojure "1.5.1"]]}}
   :aliases {"test-all" ["with-profile" "dev,default:dev,1.2,default:dev,1.3,default:dev,1.5,default" "test"]})
