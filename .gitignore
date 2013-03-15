@@ -14,3 +14,4 @@ checkouts
 .settings
 *.iml
 .idea
+/pom.xml.asc
