@@ -136,6 +136,8 @@ To see a list of available built-in formatters and an example of a date-time pri
 => (show-formatters)
 ```
 
+Remember that `mm` is minutes, `MM` is months, `ss` is seconds and `SS` is milliseconds.
+
 Once you have a formatter, parsing and printing are strait-forward:
 
 ``` clj
