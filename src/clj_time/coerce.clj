@@ -76,6 +76,12 @@
   (if-let [dt (to-date-time obj)]
     (Timestamp. (.getMillis dt))))
 
+(defn to-local-date
+  "Convert `obj` to a org.joda.time.LocalDate instance"
+  [obj]
+  (if-let [dt (to-date-time obj)]
+    (LocalDate. (.getMillis dt))))
+
 (extend-protocol ICoerce
   nil
   (to-date-time [_]
