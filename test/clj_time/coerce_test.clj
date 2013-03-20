@@ -27,6 +27,10 @@
   (is (= (to-date-time (year-month 1998 4))
          (date-time 1998 4))))
 
+(deftest test-from-local-date
+  (is (= (to-date-time (local-date 2013 03 20))
+         (date-time 2013 03 20))))
+
 (deftest test-to-date
   (is (nil? (to-date nil)))
   (is (nil? (to-date "")))
