@@ -7,7 +7,7 @@
   :license {:name "MIT License"
             :url "http://www.opensource.org/licenses/mit-license.php"
             :distribution :repo}
-  :dependencies [[joda-time "2.1"] [org.clojure/clojure "1.4.0"]]
+  :dependencies [[joda-time "2.2"] [org.clojure/clojure "1.5.1"]]
   :min-lein-version "2.0.0"
   :profiles {:dev {:dependencies [[utilize "0.1.2"]]
                    :plugins [[codox "0.6.1"]]}
