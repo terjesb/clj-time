@@ -20,7 +20,7 @@ If you are using Maven, add the following repository definition to your `pom.xml
 With Leiningen:
 
 ``` clj
-[clj-time "0.4.5"]
+[clj-time "0.5.0"]
 ```
 
 With Maven:
@@ -29,7 +29,7 @@ With Maven:
 <dependency>
   <groupId>clj-time</groupId>
   <artifactId>clj-time</artifactId>
-  <version>0.4.5</version>
+  <version>0.5.0</version>
 </dependency>
 ```
 
