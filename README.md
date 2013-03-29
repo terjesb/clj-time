@@ -168,6 +168,17 @@ To parse dates in multiple formats and format dates in just one format, you can 
 "2012-02-01"
 ```
 
+`clojure-time.core/today-at` returns a moment in time at the given hour, minute and second
+on the current date:
+
+``` clojure
+=> (today-at 12 00)
+#<DateTime 2013-03-29T12:00:00.000Z>
+=> (today-at 12 00 05)
+#<DateTime 2013-03-29T12:00:05.000Z>
+```
+
+
 ### clj-time.coerce
 
 The namespace `clj-time.coerce` contains utility functions for coercing Joda `DateTime` instances to and from various other types:
@@ -223,6 +234,22 @@ Format an obj using a formatter in \*local-formatters\* corresponding to the for
 ``` clj
 => (format-local-time (local-now) :basic-date-time)
 ```
+
+
+### clj-time.periodic
+
+`clj-time.periodic/periodic-seq` returns an infinite sequence of instants
+separated by a time period starting with the given point in time:
+
+``` clojure
+(use 'clj-time.periodic)
+(use 'clj.time.core)
+
+;; returns 10 instants starting with current time separated
+;; by 12 hours
+(take 10 (periodic-seq (t/now) (t/hours 12)))
+```
+
 
 ## Development
 
