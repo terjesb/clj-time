@@ -247,7 +247,7 @@ separated by a time period starting with the given point in time:
 
 ;; returns 10 instants starting with current time separated
 ;; by 12 hours
-(take 10 (periodic-seq (t/now) (t/hours 12)))
+(take 10 (periodic-seq (now) (hours 12)))
 ```
 
 
