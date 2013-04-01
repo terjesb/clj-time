@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html><head><link href="css/default.css" rel="stylesheet" type="text/css"><script src="js/jquery.min.js" type="text/javascript"></script><script src="js/page_effects.js" type="text/javascript"></script><title>clj-time.local documentation</title></head><body><div id="header"><h1><a href="index.html">Clj-time 0.4.4 API documentation</a></h1></div><div class="sidebar" id="namespaces"><h3><span>Namespaces</span></h3><ul><li><a href="clj-time.coerce.html"><span>clj-time.coerce</span></a></li><li><a href="clj-time.core.html"><span>clj-time.core</span></a></li><li><a href="clj-time.format.html"><span>clj-time.format</span></a></li><li class="current"><a href="clj-time.local.html"><span>clj-time.local</span></a></li></ul></div><div class="sidebar" id="vars"><h3>Public Vars</h3><ul><li><a href="clj-time.local.html#var-*local-formatters*"><span>*local-formatters*</span></a></li><li><a href="clj-time.local.html#var-to-local-date-time"><span>to-local-date-time</span></a></li></ul></div><div class="namespace-docs" id="content"><h2>clj-time.local documentation</h2><pre class="doc">Functions for working with local time without having to shift
+<html><head><link href="css/default.css" rel="stylesheet" type="text/css"><script src="js/jquery.min.js" type="text/javascript"></script><script src="js/page_effects.js" type="text/javascript"></script><title>clj-time.local documentation</title></head><body><div id="header"><h1><a href="index.html">Clj-time 0.5.1-SNAPSHOT API documentation</a></h1></div><div class="sidebar" id="namespaces"><h3><span>Namespaces</span></h3><ul><li><a href="clj-time.coerce.html"><span>clj-time.coerce</span></a></li><li><a href="clj-time.core.html"><span>clj-time.core</span></a></li><li><a href="clj-time.format.html"><span>clj-time.format</span></a></li><li><a href="clj-time.internal.fn.html"><span>clj-time.internal.fn</span></a></li><li class="current"><a href="clj-time.local.html"><span>clj-time.local</span></a></li><li><a href="clj-time.periodic.html"><span>clj-time.periodic</span></a></li><li><a href="clj-time.predicates.html"><span>clj-time.predicates</span></a></li></ul></div><div class="sidebar" id="vars"><h3>Public Vars</h3><ul><li><a href="clj-time.local.html#var-*local-formatters*"><span>*local-formatters*</span></a></li><li><a href="clj-time.local.html#var-to-local-date-time"><span>to-local-date-time</span></a></li></ul></div><div class="namespace-docs" id="content"><h2>clj-time.local documentation</h2><pre class="doc">Functions for working with local time without having to shift
  to/from utc, the preferred time zone of clj-time.core.
 
  Get the current local time with (local-now).
 
- (to-local-date-time obj) returns a local date-time instance 
+ (to-local-date-time obj) returns a local date-time instance
  retaining the time fields.
 
 The following all return 1986-10-14 04:03:27.246 with the
@@ -22,6 +22,6 @@ to-local-date-time for strings uses *local-formatters* to parse.
 
 (format-local-time (local-now) :basic-date-time) formats an obj using
 a formatter in *local-formatters* corresponding to the  format-key
-passed in.  </pre><div class="public" id="var-*local-formatters*"><h3>*local-formatters*</h3><div class="usage"></div><pre class="doc">Map of local formatters for parsing and printing.
+passed in.</pre><div class="public" id="var-*local-formatters*"><h3>*local-formatters*</h3><div class="usage"></div><pre class="doc">Map of local formatters for parsing and printing.
 </pre></div><div class="public" id="var-to-local-date-time"><h3>to-local-date-time</h3><div class="usage"><code>(to-local-date-time obj)</code></div><pre class="doc">convert `obj` to a local Joda DateTime instance retaining time fields.
 </pre></div></div></body></html>
