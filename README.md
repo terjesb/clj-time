@@ -20,7 +20,7 @@ If you are using Maven, add the following repository definition to your `pom.xml
 With Leiningen:
 
 ``` clj
-[clj-time "0.5.0"]
+[clj-time "0.5.1"]
 ```
 
 With Maven:
@@ -29,7 +29,7 @@ With Maven:
 <dependency>
   <groupId>clj-time</groupId>
   <artifactId>clj-time</artifactId>
-  <version>0.5.0</version>
+  <version>0.5.1</version>
 </dependency>
 ```
 
@@ -259,7 +259,9 @@ separated by a time period starting with the given point in time:
 
 Running the tests:
 
-    $ lein2 test-all
+    $ lein test-all
+
+(assumes Leiningen 2.x)
 
 ## Documentation
 
