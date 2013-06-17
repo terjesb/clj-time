@@ -45,6 +45,12 @@
   [#^java.sql.Date sql-date]
   (from-long (.getTime sql-date)))
 
+(defn from-sql-time
+  "Returns a DateTime instance in the UTC time zone corresponding to the given
+   java.sql.Timestamp object."
+  [#^java.sql.Timestamp sql-time]
+  (from-long (.getTime sql-time)))
+
 (defn to-long
   "Convert `obj` to the number of milliseconds after the Unix epoch."
   [obj]
@@ -100,6 +106,10 @@
   java.sql.Date
   (to-date-time [sql-date]
     (from-sql-date sql-date))
+
+  java.sql.Timestamp
+  (to-date-time [sql-time]
+    (from-sql-time sql-time))
 
   DateTime
   (to-date-time [date-time]
