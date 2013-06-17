@@ -63,6 +63,12 @@
   (if-let [dt (to-date-time obj)]
     (java.sql.Date. (.getMillis dt))))
 
+(defn to-sql-time
+  "Convert `obj` to a java.sql.Timestamp instance."
+  [obj]
+  (if-let [dt (to-date-time obj)]
+    (java.sql.Timestamp. (.getMillis dt))))
+
 (defn to-string
   "Returns a string representation of obj in UTC time-zone
   using (ISODateTimeFormat/dateTime) date-time representation."
