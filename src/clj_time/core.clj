@@ -557,7 +557,7 @@
   "DEPRECATED"
   [val]
   (deprecated "Please use seconds? instead.")
-  (instance? Seconds val))
+  (seconds? val))
 
 (defn mins-ago
   [d]
