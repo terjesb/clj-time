@@ -63,7 +63,7 @@ Less-significant fields can be omitted:
 
 Get the current time with `(now)` and the start of the Unix epoch with `(epoch)`.
 
-Once you have a date-time, use accessors like `hour` and `sec` to access the corresponding fields:
+Once you have a date-time, use accessors like `hour` and `second` to access the corresponding fields:
 
 ``` clj
 => (hour (date-time 1986 10 14 22))
@@ -120,7 +120,7 @@ instances. Construct one using `interval`, then query them using `within?`,
 true
 ```
 
-The `in-secs` and `in-minutes` functions can be used to describe intervals in the corresponding temporal units:
+The `in-seconds` and `in-minutes` functions can be used to describe intervals in the corresponding temporal units:
 
 ``` clj
 => (in-minutes (interval (date-time 1986 10 2) (date-time 1986 10 14)))
@@ -201,7 +201,9 @@ For example, to convert a Joda `DateTime` to and from a Java `long`:
 #<DateTime 1998-04-25T00:00:00.000Z>
 ```
 
-There are also conversions to and from `java.util.Date` (`to-date` and `from-date`), `java.sql.Date` (`to-sql-date` and `from-sql-date`) and several other types.
+There are also conversions to and from `java.util.Date` (`to-date` and
+`from-date`), `java.sql.Date` (`to-sql-date` and `from-sql-date`),
+`java.sql.Timestamp` (`to-sql-time` and `from-sql-time`) and several other types.
 
 ### clj-time.local
 

@@ -7,7 +7,7 @@
 
      => (from-long 893462400000)
      #<DateTime 1998-04-25T00:00:00.000Z>"
-  (:refer-clojure :exclude [extend])
+  (:refer-clojure :exclude [extend second])
   (:use clj-time.core)
   (:require [clj-time.format :as time-fmt])
   (:import (org.joda.time DateTime DateTimeZone DateMidnight YearMonth LocalDate))
@@ -45,11 +45,23 @@
   [#^java.sql.Date sql-date]
   (from-long (.getTime sql-date)))
 
+(defn from-sql-time
+  "Returns a DateTime instance in the UTC time zone corresponding to the given
+   java.sql.Timestamp object."
+  [#^java.sql.Timestamp sql-time]
+  (from-long (.getTime sql-time)))
+
 (defn to-long
   "Convert `obj` to the number of milliseconds after the Unix epoch."
   [obj]
   (if-let [dt (to-date-time obj)]
     (.getMillis dt)))
+
+(defn to-epoch
+  "Convert `obj` to Unix epoch."
+  [obj]
+  (let [millis (to-long obj)]
+    (and millis (/ millis 1000))))
 
 (defn to-date
   "Convert `obj` to a Java Date instance."
@@ -62,6 +74,12 @@
   [obj]
   (if-let [dt (to-date-time obj)]
     (java.sql.Date. (.getMillis dt))))
+
+(defn to-sql-time
+  "Convert `obj` to a java.sql.Timestamp instance."
+  [obj]
+  (if-let [dt (to-date-time obj)]
+    (java.sql.Timestamp. (.getMillis dt))))
 
 (defn to-string
   "Returns a string representation of obj in UTC time-zone
@@ -94,6 +112,10 @@
   java.sql.Date
   (to-date-time [sql-date]
     (from-sql-date sql-date))
+
+  java.sql.Timestamp
+  (to-date-time [sql-time]
+    (from-sql-time sql-time))
 
   DateTime
   (to-date-time [date-time]

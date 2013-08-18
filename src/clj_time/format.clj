@@ -25,7 +25,7 @@
    instance in UTC. A formatter can be modified to different timezones, locales,
    etc with the functions with-zone, with-locale, with-chronology, and
    with-pivot-year."
-  (:refer-clojure :exclude [extend])
+  (:refer-clojure :exclude [extend second])
   (:use [clojure.set :only (difference)])
   (:use clj-time.core)
   (:import (java.util Locale)
@@ -135,7 +135,8 @@
      :year (ISODateTimeFormat/year)
      :year-month (ISODateTimeFormat/yearMonth)
      :year-month-day (ISODateTimeFormat/yearMonthDay)
-     :rfc822 (formatter "EEE, dd MMM yyyy HH:mm:ss Z")})))
+     :rfc822 (formatter "EEE, dd MMM yyyy HH:mm:ss Z")
+     :mysql (formatter "yyyy-MM-dd HH:mm:ss")})))
 
 (def ^{:private true} parsers
   #{:date-element-parser :date-opt-time :date-parser :date-time-parser
