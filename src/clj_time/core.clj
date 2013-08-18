@@ -450,7 +450,7 @@
   (.getSeconds (.toPeriod in (seconds))))
 
 (defn in-secs
-  "DEPRECATED: Returns the number of standard seconds in the given Interval.""
+  "DEPRECATED: Returns the number of standard seconds in the given Interval."
   [#^Interval in]
   (deprecated "Please use in-seconds instead.")
   (in-seconds in))
