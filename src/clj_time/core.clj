@@ -556,6 +556,7 @@
 (defn secs?
   "DEPRECATED"
   [val]
+  (deprecated "Please use seconds? instead.")
   (instance? Seconds val))
 
 (defn mins-ago
