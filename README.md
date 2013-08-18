@@ -40,6 +40,8 @@ Please open issues against the [official clj-time repo on Github](https://github
 **Note: version 0.6.0 introduces a number of API changes to improve consistency.**
 The API now uses `second`, `seconds` and `millis` where it previously had `sec`, `secs` and `msecs`. The older API is still present but marked as deprecated (and calling deprecated functions will print a message to the console as well returning the result). The older API will be removed in version 0.7.0 so be prepared to update your code.
 
+## Usage
+
 ### clj-time.core
 
 The main namespace for date-time operations in the `clj-time` library is `clj-time.core`.
