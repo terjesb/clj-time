@@ -449,6 +449,12 @@
   [#^Interval in]
   (.getSeconds (.toPeriod in (seconds))))
 
+(defn in-secs
+  "DEPRECATED: Returns the number of standard seconds in the given Interval.""
+  [#^Interval in]
+  (deprecated "Please use in-seconds instead.")
+  (in-seconds in))
+
 (defn in-minutes
   "Returns the number of standard minutes in the given Interval."
   [#^Interval in]
@@ -544,6 +550,11 @@
 
 (defn seconds?
   "Returns true if the given value is an instance of Seconds"
+  [val]
+  (instance? Seconds val))
+
+(defn secs?
+  "DEPRECATED"
   [val]
   (instance? Seconds val))
 
