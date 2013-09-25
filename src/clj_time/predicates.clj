@@ -30,6 +30,7 @@
 (defn sunday? [date-time]
   (= (time/day-of-week date-time) 7))
 
+;; weekend / weekday checks
 (defn weekend? [date-time] 
   (or (saturday? date-time) (sunday? date-time)))
 
@@ -73,6 +74,8 @@
 (defn december? [date-time]
   (= (time/month date-time) 12))
 
+
+;;First and last day of month checks
 (defn- last-day-of-month [date-time] 
   (.withMaximumValue (.dayOfMonth date-time)))
 
