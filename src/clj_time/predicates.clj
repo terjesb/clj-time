@@ -30,6 +30,11 @@
 (defn sunday? [date-time]
   (= (time/day-of-week date-time) 7))
 
+(defn weekend? [date-time] 
+  (or (saturday? date-time) (sunday? date-time)))
+
+(defn weekday? [date-time]
+  (not (weekend? date-time)))
 
 ;; months of the year
 (defn january? [date-time]
@@ -67,3 +72,16 @@
 
 (defn december? [date-time]
   (= (time/month date-time) 12))
+
+(defn- last-day-of-month [date-time] 
+  (.withMaximumValue (.dayOfMonth date-time)))
+
+(defn- first-day-of-month [date-time] 
+  (.withMinimumValue (.dayOfMonth date-time)))
+
+(defn last-day-of-month? [date-time] 
+  (= (last-day-of-month date-time) date-time))
+
+(defn first-day-of-month? [date-time] 
+  (= (first-day-of-month date-time) date-time))
+
