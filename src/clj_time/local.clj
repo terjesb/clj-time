@@ -33,13 +33,13 @@
 (def ^{:doc "Map of local formatters for parsing and printing." :dynamic true}
   *local-formatters*
   (into {} (map
-            (fn [[k #^DateTimeFormatter f]] [k (.withZone f #^DateTimeZone (time/default-time-zone))])
+            (fn [[k ^DateTimeFormatter f]] [k (.withZone f ^DateTimeZone (time/default-time-zone))])
             fmt/formatters)))
 
 (defn local-now
   "Returns a DateTime for the current instant in the default time zone."
   []
-  (DateTime/now #^DateTimeZone (time/default-time-zone)))
+  (DateTime/now ^DateTimeZone (time/default-time-zone)))
 
 (defprotocol ILocalCoerce
   (to-local-date-time [obj] "convert `obj` to a local Joda DateTime instance retaining time fields."))

@@ -40,50 +40,50 @@
 
 (defn formatter
   "Returns a custom formatter for the given date-time pattern."
-  ([#^String fmts]
+  ([^String fmts]
      (formatter fmts utc))
-  ([#^String fmts #^DateTimeZone dtz]
+  ([^String fmts ^DateTimeZone dtz]
      (.withZone (DateTimeFormat/forPattern fmts) dtz))
-  ([#^DateTimeZone dtz fmts & more]
-    (let [printer (.getPrinter #^DateTimeFormatter (formatter fmts dtz))
-          parsers (map #(.getParser #^DateTimeFormatter (formatter % dtz)) (cons fmts more))]
+  ([^DateTimeZone dtz fmts & more]
+    (let [printer (.getPrinter ^DateTimeFormatter (formatter fmts dtz))
+          parsers (map #(.getParser ^DateTimeFormatter (formatter % dtz)) (cons fmts more))]
       (-> (DateTimeFormatterBuilder.)
-        #^DateTimeFormatterBuilder (.append #^DateTimePrinter printer
-                                            #^"[Lorg.joda.time.format.DateTimeParser;"
+        ^DateTimeFormatterBuilder (.append ^DateTimePrinter printer
+                                            ^"[Lorg.joda.time.format.DateTimeParser;"
                                             (into-array DateTimeParser parsers))
         (.toFormatter)
         (.withZone dtz)))))
 
 (defn formatter-local
   "Returns a custom formatter with no time zone info."
-  ([#^String fmt]
+  ([^String fmt]
      (DateTimeFormat/forPattern fmt)))
 
 (defn with-chronology
   "Return a copy of a formatter that uses the given Chronology."
-  [#^DateTimeFormatter f #^Chronology c]
+  [^DateTimeFormatter f ^Chronology c]
   (.withChronology f c))
 
 (defn with-locale
   "Return a copy of a formatter that uses the given Locale."
-  [#^DateTimeFormatter f #^Locale l]
+  [^DateTimeFormatter f ^Locale l]
   (.withLocale f l))
 
 (defn with-pivot-year
   "Return a copy of a formatter that uses the given pivot year."
-  [#^DateTimeFormatter f #^Long pivot-year]
+  [^DateTimeFormatter f ^Long pivot-year]
   (.withPivotYear f pivot-year))
 
 (defn with-zone
   "Return a copy of a formatter that uses the given DateTimeZone."
-  [#^DateTimeFormatter f #^DateTimeZone dtz]
+  [^DateTimeFormatter f ^DateTimeZone dtz]
   (.withZone f dtz))
 
 (def ^{:doc "Map of ISO 8601 and a single RFC 822 formatters that can be used for parsing and, in most
              cases, printing."}
   formatters
   (into {} (map
-    (fn [[k #^DateTimeFormatter f]] [k (.withZone f #^DateTimeZone utc)])
+    (fn [[k ^DateTimeFormatter f]] [k (.withZone f ^DateTimeZone utc)])
     {:basic-date (ISODateTimeFormat/basicDate)
      :basic-date-time (ISODateTimeFormat/basicDateTime)
      :basic-date-time-no-ms (ISODateTimeFormat/basicDateTimeNoMillis)
@@ -149,9 +149,9 @@
 (defn parse
   "Returns a DateTime instance in the UTC time zone obtained by parsing the
    given string according to the given formatter."
-  ([#^DateTimeFormatter fmt #^String s]
+  ([^DateTimeFormatter fmt ^String s]
      (.parseDateTime fmt s))
-  ([#^String s]
+  ([^String s]
      (first
       (for [f (vals formatters)
             :let [d (try (parse f s) (catch Exception _ nil))]
@@ -160,9 +160,9 @@
 (defn parse-local
   "Returns a LocalDateTime instance obtained by parsing the
    given string according to the given formatter."
-  ([#^DateTimeFormatter fmt #^String s]
+  ([^DateTimeFormatter fmt ^String s]
      (.parseLocalDateTime fmt s))
-  ([#^String s]
+  ([^String s]
      (first
       (for [f (vals formatters)
             :let [d (try (parse-local f s) (catch Exception _ nil))]
@@ -171,9 +171,9 @@
 (defn parse-local-date
   "Returns a LocalDate instance obtained by parsing the
    given string according to the given formatter."
-  ([#^DateTimeFormatter fmt #^String s]
+  ([^DateTimeFormatter fmt ^String s]
      (.parseLocalDate fmt s))
-  ([#^String s]
+  ([^String s]
      (first
       (for [f (vals formatters)
             :let [d (try (parse-local-date f s) (catch Exception _ nil))]
@@ -182,26 +182,26 @@
 (defn unparse
   "Returns a string representing the given DateTime instance in UTC and in the
   form determined by the given formatter."
-  [#^DateTimeFormatter fmt #^DateTime dt]
+  [^DateTimeFormatter fmt ^DateTime dt]
   (.print fmt dt))
 
 (defn unparse-local
   "Returns a string representing the given LocalDateTime instance in the
   form determined by the given formatter."
-  [#^DateTimeFormatter fmt #^LocalDateTime dt]
+  [^DateTimeFormatter fmt ^LocalDateTime dt]
   (.print fmt dt))
 
 (defn unparse-local-date
   "Returns a string representing the given LocalDate instance in  the form
   determined by the given formatter."
-  [#^DateTimeFormatter fmt #^LocalDate ld]
+  [^DateTimeFormatter fmt ^LocalDate ld]
   (.print fmt ld))
 
 (defn show-formatters
   "Shows how a given DateTime, or by default the current time, would be
   formatted with each of the available printing formatters."
   ([] (show-formatters (now)))
-  ([#^DateTime dt]
+  ([^DateTime dt]
     (doseq [p (sort printers)]
       (let [fmt (formatters p)]
         (printf "%-40s%s\n" p (unparse fmt dt))))))
