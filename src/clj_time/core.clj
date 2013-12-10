@@ -104,9 +104,9 @@
   (milli [this]   "Return the millisecond of second component of the given date/time.")
   (after? [this that] "Returns true if ReadableDateTime 'this' is strictly after date/time 'that'.")
   (before? [this that] "Returns true if ReadableDateTime 'this' is strictly before date/time 'that'.")
-  (plus- [this #^ReadablePeriod period]
+  (plus- [this ^ReadablePeriod period]
     "Returns a new date/time corresponding to the given date/time moved forwards by the given Period(s).")
-  (minus- [this #^ReadablePeriod period]
+  (minus- [this ^ReadablePeriod period]
     "Returns a new date/time corresponding to the given date/time moved backwards by the given Period(s)."))
 
 (extend-protocol DateTimeProtocol
@@ -123,10 +123,10 @@
     (.getSecondOfMinute this))
   (second [this] (.getSecondOfMinute this))
   (milli [this] (.getMillisOfSecond this))
-  (after? [this #^ReadableInstant that] (.isAfter this that))
-  (before? [this #^ReadableInstant that] (.isBefore this that))
-  (plus- [this #^ReadablePeriod period] (.plus this period))
-  (minus- [this #^ReadablePeriod period] (.minus this period))
+  (after? [this ^ReadableInstant that] (.isAfter this that))
+  (before? [this ^ReadableInstant that] (.isBefore this that))
+  (plus- [this ^ReadablePeriod period] (.plus this period))
+  (minus- [this ^ReadablePeriod period] (.minus this period))
 
   org.joda.time.DateMidnight
   (year [this] (.getYear this))
@@ -141,10 +141,10 @@
     (.getSecondOfMinute this))
   (second [this] (.getSecondOfMinute this))
   (milli [this] (.getMillisOfSecond this))
-  (after? [this #^ReadableInstant that] (.isAfter this that))
-  (before? [this #^ReadableInstant that] (.isBefore this that))
-  (plus- [this #^ReadablePeriod period] (.plus this period))
-  (minus- [this #^ReadablePeriod period] (.minus this period))
+  (after? [this ^ReadableInstant that] (.isAfter this that))
+  (before? [this ^ReadableInstant that] (.isBefore this that))
+  (plus- [this ^ReadablePeriod period] (.plus this period))
+  (minus- [this ^ReadablePeriod period] (.minus this period))
 
   org.joda.time.LocalDateTime
   (year [this] (.getYear this))
@@ -159,28 +159,28 @@
     (.getSecondOfMinute this))
   (second [this] (.getSecondOfMinute this))
   (milli [this] (.getMillisOfSecond this))
-  (after? [this #^ReadablePartial that] (.isAfter this that))
-  (before? [this #^ReadablePartial that] (.isBefore this that))
-  (plus- [this #^ReadablePeriod period] (.plus this period))
-  (minus- [this #^ReadablePeriod period] (.minus this period))
+  (after? [this ^ReadablePartial that] (.isAfter this that))
+  (before? [this ^ReadablePartial that] (.isBefore this that))
+  (plus- [this ^ReadablePeriod period] (.plus this period))
+  (minus- [this ^ReadablePeriod period] (.minus this period))
 
   org.joda.time.YearMonth
   (year [this] (.getYear this))
   (month [this] (.getMonthOfYear this))
-  (after? [this #^ReadablePartial that] (.isAfter this that))
-  (before? [this #^ReadablePartial that] (.isBefore this that))
-  (plus- [this #^ReadablePeriod period] (.plus this period))
-  (minus- [this #^ReadablePeriod period] (.minus this period))
+  (after? [this ^ReadablePartial that] (.isAfter this that))
+  (before? [this ^ReadablePartial that] (.isBefore this that))
+  (plus- [this ^ReadablePeriod period] (.plus this period))
+  (minus- [this ^ReadablePeriod period] (.minus this period))
 
   org.joda.time.LocalDate
   (year [this] (.getYear this))
   (month [this] (.getMonthOfYear this))
   (day [this] (.getDayOfMonth this))
   (day-of-week [this] (.getDayOfWeek this))
-  (after? [this #^ReadablePartial that] (.isAfter this that))
-  (before? [this #^ReadablePartial that] (.isBefore this that))
-  (plus- [this #^ReadablePeriod period] (.plus this period))
-  (minus- [this #^ReadablePeriod period] (.minus this period)))
+  (after? [this ^ReadablePartial that] (.isAfter this that))
+  (before? [this ^ReadablePartial that] (.isBefore this that))
+  (plus- [this ^ReadablePeriod period] (.plus this period))
+  (minus- [this ^ReadablePeriod period] (.minus this period)))
 
 (def ^{:doc "DateTimeZone for UTC."}
       utc
@@ -189,17 +189,17 @@
 (defn now
   "Returns a DateTime for the current instant in the UTC time zone."
   []
-  (DateTime. #^DateTimeZone utc))
+  (DateTime. ^DateTimeZone utc))
 
 (defn today-at-midnight
   "Returns a DateMidnight for today at midnight in the UTC time zone."
   []
-  (DateMidnight. #^DateTimeZone utc))
+  (DateMidnight. ^DateTimeZone utc))
 
 (defn epoch
   "Returns a DateTime for the begining of the Unix epoch in the UTC time zone."
   []
-  (DateTime. (long 0) #^DateTimeZone utc))
+  (DateTime. (long 0) ^DateTimeZone utc))
 
 (defn date-midnight
   "Constructs and returns a new DateMidnight in UTC.
@@ -211,7 +211,7 @@
   ([^long year ^long month]
     (date-midnight year month 1))
   ([^Long year ^Long month ^Long day]
-    (DateMidnight. year month day #^DateTimeZone utc)))
+    (DateMidnight. year month day ^DateTimeZone utc)))
 
 (defn ^DateTime date-time
   "Constructs and returns a new DateTime in UTC.
@@ -232,11 +232,11 @@
    (date-time year month day hour minute 0 0))
   ([year month day hour minute second]
    (date-time year month day hour minute second 0))
-  ([#^Integer year #^Integer month #^Integer day #^Integer hour
-    #^Integer minute #^Integer second #^Integer millis]
-   (DateTime. year month day hour minute second millis #^DateTimeZone utc)))
+  ([^Integer year ^Integer month ^Integer day ^Integer hour
+    ^Integer minute ^Integer second ^Integer millis]
+   (DateTime. year month day hour minute second millis ^DateTimeZone utc)))
 
-(defn #^org.joda.time.LocalDateTime local-date-time
+(defn ^org.joda.time.LocalDateTime local-date-time
   "Constructs and returns a new LocalDateTime.
    Specify the year, month of year, day of month, hour of day, minute if hour,
    second of minute, and millisecond of second. Note that month and day are
@@ -255,26 +255,26 @@
    (local-date-time year month day hour minute 0 0))
   ([year month day hour minute second]
    (local-date-time year month day hour minute second 0))
-  ([#^Integer year #^Integer month #^Integer day #^Integer hour
-    #^Integer minute #^Integer second #^Integer millis]
+  ([^Integer year ^Integer month ^Integer day ^Integer hour
+    ^Integer minute ^Integer second ^Integer millis]
    (LocalDateTime. year month day hour minute second millis)))
 
-(defn #^org.joda.time.YearMonth year-month
+(defn ^org.joda.time.YearMonth year-month
   "Constructs and returns a new YearMonth.
    Specify the year and month of year. Month is 1-indexed and defaults
    to January (1)."
   ([year]
      (year-month year 1))
-  ([#^Integer year #^Integer month]
+  ([^Integer year ^Integer month]
      (YearMonth. year month)))
 
-(defn #^org.joda.time.LocalDate local-date
+(defn ^org.joda.time.LocalDate local-date
   "Constructs and returns a new LocalDate.
    Specify the year, month, and day. Does not deal with timezones."
-  [#^Integer year #^Integer month #^Integer day]
+  [^Integer year ^Integer month ^Integer day]
   (LocalDate. year month day))
 
-(defn #^org.joda.time.LocalDate today
+(defn ^org.joda.time.LocalDate today
   "Constructs and returns a new LocalDate representing today's date.
    LocalDate objects do not deal with timezones at all."
   []
@@ -291,7 +291,7 @@
 (defn time-zone-for-id
   "Returns a DateTimeZone for the given ID, which must be in long form, e.g.
    'America/Matamoros'."
-  [#^String id]
+  [^String id]
   (DateTimeZone/forID id))
 
 (defn default-time-zone
@@ -299,20 +299,20 @@
   []
   (DateTimeZone/getDefault))
 
-(defn #^org.joda.time.DateTime
+(defn ^org.joda.time.DateTime
   to-time-zone
   "Returns a new ReadableDateTime corresponding to the same absolute instant in time as
    the given ReadableDateTime, but with calendar fields corresponding to the given
    TimeZone."
-  [#^DateTime dt #^DateTimeZone tz]
+  [^DateTime dt ^DateTimeZone tz]
   (.withZone dt tz))
 
-(defn #^org.joda.time.DateTime
+(defn ^org.joda.time.DateTime
   from-time-zone
   "Returns a new ReadableDateTime corresponding to the same point in calendar time as
    the given ReadableDateTime, but for a correspondingly different absolute instant in
    time."
-  [#^DateTime dt #^DateTimeZone tz]
+  [^DateTime dt ^DateTimeZone tz]
   (.withZoneRetainFields dt tz))
 
 (defn years
@@ -320,7 +320,7 @@
    Without an argument, returns a PeriodType representing only years."
   ([]
      (PeriodType/years))
-  ([#^Integer n]
+  ([^Integer n]
      (Years/years n)))
 
 (defn months
@@ -328,7 +328,7 @@
    Without an argument, returns a PeriodType representing only months."
   ([]
      (PeriodType/months))
-  ([#^Integer n]
+  ([^Integer n]
      (Months/months n)))
 
 (defn weeks
@@ -336,7 +336,7 @@
    Without an argument, returns a PeriodType representing only weeks."
   ([]
      (PeriodType/weeks))
-  ([#^Integer n]
+  ([^Integer n]
      (Weeks/weeks n)))
 
 (defn days
@@ -344,7 +344,7 @@
    Without an argument, returns a PeriodType representing only days."
   ([]
      (PeriodType/days))
-  ([#^Integer n]
+  ([^Integer n]
      (Days/days n)))
 
 (defn hours
@@ -352,7 +352,7 @@
    Without an argument, returns a PeriodType representing only hours."
   ([]
      (PeriodType/hours))
-  ([#^Integer n]
+  ([^Integer n]
      (Hours/hours n)))
 
 (defn minutes
@@ -360,7 +360,7 @@
    Without an argument, returns a PeriodType representing only minutes."
   ([]
      (PeriodType/minutes))
-  ([#^Integer n]
+  ([^Integer n]
      (Minutes/minutes n)))
 
 (defn seconds
@@ -368,7 +368,7 @@
    Without an argument, returns a PeriodType representing only seconds."
   ([]
      (PeriodType/seconds))
-  ([#^Integer n]
+  ([^Integer n]
      (Seconds/seconds n)))
 
 (defn secs
@@ -377,7 +377,7 @@
   ([]
      (deprecated "secs has been deprecated in favor of seconds")
      (seconds))
-  ([#^Integer n]
+  ([^Integer n]
      (deprecated "secs has been deprecated in favor of seconds")
      (seconds n)))
 
@@ -386,13 +386,13 @@
    Without an argument, returns a PeriodType representing only milliseconds."
   ([]
      (PeriodType/millis))
-  ([#^Integer n]
+  ([^Integer n]
      (Period/millis n)))
 
 (defn plus
   "Returns a new date/time corresponding to the given date/time moved forwards by
    the given Period(s)."
-  ([dt #^ReadablePeriod p]
+  ([dt ^ReadablePeriod p]
      (plus- dt p))
   ([dt p & ps]
      (reduce plus- (plus- dt p) ps)))
@@ -400,7 +400,7 @@
 (defn minus
   "Returns a new date/time object corresponding to the given date/time moved backwards by
    the given Period(s)."
-  ([dt #^ReadablePeriod p]
+  ([dt ^ReadablePeriod p]
    (minus- dt p))
   ([dt p & ps]
      (reduce minus- (minus- dt p) ps)))
@@ -408,89 +408,89 @@
 (defn ago
   "Returns a DateTime a supplied period before the present.
   e.g. (-> 5 years ago)"
-  [#^Period period]
+  [^Period period]
   (minus (now) period))
 
 (defn from-now
   "Returns a DateTime a supplied period after the present.
   e.g. (-> 30 minutes from-now)"
-  [#^Period period]
+  [^Period period]
   (plus (now) period))
 
 (defn interval
   "Returns an interval representing the span between the two given ReadableDateTimes.
    Note that intervals are closed on the left and open on the right."
-  [#^ReadableDateTime dt-a #^ReadableDateTime dt-b]
+  [^ReadableDateTime dt-a ^ReadableDateTime dt-b]
   (Interval. dt-a dt-b))
 
 (defn start
   "Returns the start DateTime of an Interval."
-  [#^Interval in]
+  [^Interval in]
   (.getStart in))
 
 (defn end
   "Returns the end DateTime of an Interval."
-  [#^Interval in]
+  [^Interval in]
   (.getEnd in))
 
 (defn extend
   "Returns an Interval with an end ReadableDateTime the specified Period after the end
    of the given Interval"
-  [#^Interval in & by]
+  [^Interval in & by]
   (.withEnd in (apply plus (end in) by)))
 
 (defn in-millis
   "Returns the number of milliseconds in the given Interval."
-  [#^Interval in]
+  [^Interval in]
   (.toDurationMillis in))
 
 (defn in-msecs
   "DEPRECATED: Returns the number of milliseconds in the given Interval."
   {:deprecated "0.6.0"}
-  [#^Interval in]
+  [^Interval in]
   (deprecated "in-msecs has been deprecated in favor of in-millis")
   (in-millis in))
 
 (defn in-seconds
   "Returns the number of standard seconds in the given Interval."
-  [#^Interval in]
+  [^Interval in]
   (.getSeconds (.toPeriod in (seconds))))
 
 (defn in-secs
   "DEPRECATED: Returns the number of standard seconds in the given Interval."
   {:deprecated "0.6.0"}
-  [#^Interval in]
+  [^Interval in]
   (deprecated "in-secs has been deprecated in favor of in-seconds")
   (in-seconds in))
 
 (defn in-minutes
   "Returns the number of standard minutes in the given Interval."
-  [#^Interval in]
+  [^Interval in]
   (.getMinutes (.toPeriod in (minutes))))
 
 (defn in-hours
   "Returns the number of standard hours in the given Interval."
-  [#^Interval in]
+  [^Interval in]
   (.getHours (.toPeriod in (hours))))
 
 (defn in-days
   "Returns the number of standard days in the given Interval."
-  [#^Interval in]
+  [^Interval in]
   (.getDays (.toPeriod in (days))))
 
 (defn in-weeks
   "Returns the number of standard weeks in the given Interval."
-  [#^Interval in]
+  [^Interval in]
   (.getWeeks (.toPeriod in (weeks))))
 
 (defn in-months
   "Returns the number of standard months in the given Interval."
-  [#^Interval in]
+  [^Interval in]
   (.getMonths (.toPeriod in (months))))
 
 (defn in-years
   "Returns the number of standard years in the given Interval."
-  [#^Interval in]
+  [^Interval in]
   (.getYears (.toPeriod in (years))))
 
 (defn within?
@@ -500,9 +500,9 @@
    With 3 arguments: Returns true if the start ReadablePartial is
    equal to or before and the end ReadablePartial is equal to or after the test
    ReadablePartial."
-  ([#^Interval i #^ReadableDateTime dt]
+  ([^Interval i ^ReadableDateTime dt]
      (.contains i dt))
-  ([#^ReadablePartial start #^ReadablePartial end #^ReadablePartial test]
+  ([^ReadablePartial start ^ReadablePartial end ^ReadablePartial test]
      (or (= start test)
          (= end test)
          (and (before? start test) (after? end test)))))
@@ -512,10 +512,10 @@
    Note that intervals that satisfy abuts? do not satisfy overlaps?
    With 4 arguments: Returns true if the range specified by start-a and end-a
    overlaps with the range specified by start-b and end-b."
-  ([#^Interval i-a #^Interval i-b]
+  ([^Interval i-a ^Interval i-b]
      (.overlaps i-a i-b))
-  ([#^ReadablePartial start-a #^ReadablePartial end-a
-    #^ReadablePartial start-b #^ReadablePartial end-b]
+  ([^ReadablePartial start-a ^ReadablePartial end-a
+    ^ReadablePartial start-b ^ReadablePartial end-b]
      (or (and (before? start-b end-a) (after? end-b start-a))
          (and (after? end-b start-a) (before? start-b end-a))
          (or (= start-a end-b) (= start-b end-a)))))
@@ -523,7 +523,7 @@
 (defn abuts?
   "Returns true if Interval i-a abuts i-b, i.e. then end of i-a is exactly the
    beginning of i-b."
-  [#^Interval i-a #^Interval i-b]
+  [^Interval i-a ^Interval i-b]
   (.abuts i-a i-b))
 
 (defn years?

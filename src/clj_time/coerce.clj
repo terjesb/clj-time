@@ -15,14 +15,14 @@
   (:import java.util.Date java.sql.Timestamp))
 
 (defprotocol ICoerce
-  (#^org.joda.time.DateTime
+  (^org.joda.time.DateTime
     to-date-time [obj] "Convert `obj` to a Joda DateTime instance."))
 
 (defn from-long
   "Returns a DateTime instance in the UTC time zone corresponding to the given
    number of milliseconds after the Unix epoch."
-  [#^Long millis]
-  (DateTime. millis #^DateTimeZone utc))
+  [^Long millis]
+  (DateTime. millis ^DateTimeZone utc))
 
 (defn from-string
   "return DateTime instance from string using
@@ -37,19 +37,19 @@
 (defn from-date
   "Returns a DateTime instance in the UTC time zone corresponding to the given
    Java Date object."
-  [#^Date date]
+  [^Date date]
   (from-long (.getTime date)))
 
 (defn from-sql-date
   "Returns a DateTime instance in the UTC time zone corresponding to the given
    java.sql.Date object."
-  [#^java.sql.Date sql-date]
+  [^java.sql.Date sql-date]
   (from-long (.getTime sql-date)))
 
 (defn from-sql-time
   "Returns a DateTime instance in the UTC time zone corresponding to the given
    java.sql.Timestamp object."
-  [#^java.sql.Timestamp sql-time]
+  [^java.sql.Timestamp sql-time]
   (from-long (.getTime sql-time)))
 
 (defn to-long
@@ -86,7 +86,7 @@
   "Returns a string representation of obj in UTC time-zone
   using (ISODateTimeFormat/dateTime) date-time representation."
   [obj]
-  (if-let [#^DateTime dt (to-date-time obj)]
+  (if-let [^DateTime dt (to-date-time obj)]
     (time-fmt/unparse (:date-time time-fmt/formatters) dt)))
 
 (defn to-timestamp
