@@ -267,6 +267,27 @@ separated by a time period starting with the given point in time:
 (take 10 (periodic-seq (now) (hours 12)))
 ```
 
+### clj-time.predicates
+
+`clj-time.predicates` comes with a set of handy predicates to
+check for common conditions. For instance:
+
+```clojure
+(require '[clj-time.core :as time])
+(use 'clj-time.predicates)
+
+(monday? (time/date-time 1999 9 9))
+
+(january? (time/date-time 2011 1 1))
+
+(weekend? (time/date-time 2014 1 26))
+
+(weekday? (time/date-time 2014 1 26))
+
+(last-day-of-month? (time/date-time 2014 1 26))
+
+(first-day-of-month? (time/date-time 2014 1 26))
+```
 
 ## Development
 
