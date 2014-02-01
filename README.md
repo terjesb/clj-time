@@ -153,7 +153,7 @@ To see a list of available built-in formatters and an example of a date-time pri
 
 Remember that `mm` is minutes, `MM` is months, `ss` is seconds and `SS` is milliseconds.
 
-Once you have a formatter, parsing and printing are strait-forward:
+Once you have a formatter, parsing and printing are straightforward:
 
 ``` clj
 => (parse custom-formatter "20100311")
