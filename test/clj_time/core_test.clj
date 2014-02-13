@@ -13,7 +13,10 @@
 (deftest test-today-at-midnight
   (is (= (date-midnight 2010 1 1)
          (do-at (date-midnight 2010 1 1)
-                (today-at-midnight)))))
+                (today-at-midnight))))
+  (let [midnight (do-at (date-time 2010 1 15 2)
+                        (today-at-midnight (time-zone-for-offset -3)))]
+    (is (= 14 (day midnight)))))
 
 (deftest test-epoch
   (let [e (epoch)]
