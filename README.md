@@ -260,7 +260,7 @@ separated by a time period starting with the given point in time:
 
 ``` clojure
 (use 'clj-time.periodic)
-(use 'clj.time.core)
+(use 'clj-time.core)
 
 ;; returns 10 instants starting with current time separated
 ;; by 12 hours
