@@ -239,6 +239,28 @@
       (is (= (-> 30 minutes from-now)
              (date-time 2011 4 16 10 39 00))))))
 
+(deftest test-earliest
+    (let [d1 (date-time 1990 1 1 23 1 1)
+          d2  (date-time 2000 1 1 23 1 1)
+          d3  (date-time 2010 1 1 23 1 1)
+          d4  (date-time 2020 1 1 23 1 1)]
+      (is (= d1 (earliest d1 d2 d3 d4)))
+      (is (= d1 (earliest d4 d2 d3 d1)))
+      (is (= d2 (earliest d4 d3 d2)))
+      (is (= d4 (earliest d4)))
+      (is (= Exception) (earliest d1 d2 nil))))
+
+(deftest test-latest
+    (let [d1 (date-time 1990 1 1 23 1 1)
+          d2  (date-time 2000 1 1 23 1 1)
+          d3  (date-time 2010 1 1 23 1 1)
+          d4  (date-time 2020 1 1 23 1 1)]
+      (is (= d4 (latest d1 d2 d3 d4)))
+      (is (= d4 (latest d4 d2 d3 d1)))
+      (is (= d3 (latest d2 d3 d1)))
+      (is (= d1 (latest d1)))
+      (is (= Exception) (latest d1 d2 nil))))
+
 (deftest test-start-end
   (let [s (date-time 1986 10 14 12 5 4)
         e (date-time 1986 11 3  22 2 6)

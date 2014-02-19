@@ -419,6 +419,17 @@
   [^Period period]
   (plus (now) period))
 
+(defn earliest
+  "Returns the earliest of the supplied DateTime(s)"
+  [& dts]
+    (reduce (fn [dt1 dt2]
+              (if (pos? (compare dt1 dt2)) dt2 dt1)) dts))
+
+(defn latest [& dts]
+  "Returns the latest of the supplied DateTime(s)"
+  (reduce (fn [dt1 dt2]
+            (if (neg? (compare dt1 dt2)) dt2 dt1)) dts))
+
 (defn interval
   "Returns an interval representing the span between the two given ReadableDateTimes.
    Note that intervals are closed on the left and open on the right."
