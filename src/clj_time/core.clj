@@ -421,7 +421,7 @@
 
 (defn earliest
   "Returns the earliest of the supplied DateTimes"
-  ([^DateTime dt1 ^DateTime dt2]
+  ([^ReadableInstant dt1 ^ReadableInstant dt2]
      (if (pos? (compare dt1 dt2)) dt2 dt1))
   ([dts]
      (reduce (fn [dt1 dt2]
@@ -429,7 +429,7 @@
 
 (defn latest
   "Returns the latest of the supplied DateTimes"
-  ([^DateTime dt1 ^DateTime dt2]
+  ([^ReadableInstant dt1 ^ReadableInstant dt2]
      (if (neg? (compare dt1 dt2)) dt2 dt1))
   ([dts]
      (reduce (fn [dt1 dt2]
