@@ -37,3 +37,8 @@
   (is (= true (last-day-of-month? (date-time 2013 10 31)))))
 
 
+(deftest test-same-date
+  (is (= true (same-date? (date-time 2013 10 8) (date-time 2013 10 8))))
+  (is (= true (same-date? (date-time 2012 1 1) (date-time 2012 1 1))))
+  (is (= false (same-date? (date-time 2012 2 2) (date-time 2012 1 1))))
+  (is (= false (same-date? (date-time 2011 2 2) (date-time 2012 2 2)))))
