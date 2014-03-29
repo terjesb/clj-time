@@ -6,7 +6,8 @@
 
   Is it January?
   (january? (clj-time.core/date-time 2011 1 1))"
-  (:require [clj-time.core :as time]))
+  (:require [clj-time.core :as time]
+            [clj-time.coerce :as coerce]))
 
 ;; days of the week
 (defn monday? [date-time]
@@ -88,3 +89,7 @@
 (defn first-day-of-month? [date-time] 
   (= (first-day-of-month date-time) date-time))
 
+(defn same-date?
+  "Compares two date times to see if they are the same date"
+  [this-date-time that-date-time]
+  (= (coerce/to-local-date this-date-time) (coerce/to-local-date that-date-time)))
