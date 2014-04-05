@@ -195,7 +195,7 @@ Remember that `mm` is minutes, `MM` is months, `ss` is seconds and
 Once you have a formatter, parsing and printing are strait-forward:
 
 ``` clj
-=> (parse custom-formatter "20100311")
+=> (f/parse custom-formatter "20100311")
 #<DateTime 2010-03-11T00:00:00.000Z>
 
 => (f/unparse custom-formatter (t/date-time 2010 10 3))
