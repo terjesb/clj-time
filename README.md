@@ -240,7 +240,7 @@ And by the magic of protocols you can pass in an isoformat string and
 get the unix epoch milliseconds:
 
 ``` clj
-=> (to-long "2013-08-01")
+=> (c/to-long "2013-08-01")
 1375315200000
 ```
 
