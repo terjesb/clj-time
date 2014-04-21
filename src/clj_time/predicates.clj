@@ -77,17 +77,11 @@
 
 
 ;;First and last day of month checks
-(defn- last-day-of-month [date-time] 
-  (.withMaximumValue (.dayOfMonth date-time)))
+(defn last-day-of-month? [date-time]
+  (= (time/last-day-of-the-month date-time) date-time))
 
-(defn- first-day-of-month [date-time] 
-  (.withMinimumValue (.dayOfMonth date-time)))
-
-(defn last-day-of-month? [date-time] 
-  (= (last-day-of-month date-time) date-time))
-
-(defn first-day-of-month? [date-time] 
-  (= (first-day-of-month date-time) date-time))
+(defn first-day-of-month? [date-time]
+  (= (time/first-day-of-the-month date-time) date-time))
 
 (defn same-date?
   "Compares two date times to see if they are the same date"

@@ -217,7 +217,7 @@
 
 (defn ^DateTime date-time
   "Constructs and returns a new DateTime in UTC.
-   Specify the year, month of year, day of month, hour of day, minute if hour,
+   Specify the year, month of year, day of month, hour of day, minute of hour,
    second of minute, and millisecond of second. Note that month and day are
    1-indexed while hour, second, minute, and millis are 0-indexed.
    Any number of least-significant components can be ommited, in which case
@@ -601,7 +601,8 @@
   (^long [^DateTime dt]
          (number-of-days-in-the-month (.getYear dt) (.getMonthOfYear dt)))
   (^long [^long year ^long month]
-         (.getDayOfMonth ^DateTime (last-day-of-the-month year month))))
+         (let [^DateTime dt (last-day-of-the-month year month)]
+           (.getDayOfMonth dt))))
 
 (defn ^DateTime first-day-of-the-month
   ([^DateTime dt]
