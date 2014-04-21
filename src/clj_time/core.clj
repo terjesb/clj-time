@@ -601,7 +601,8 @@
   (^long [^DateTime dt]
          (number-of-days-in-the-month (.getYear dt) (.getMonthOfYear dt)))
   (^long [^long year ^long month]
-         (.getDayOfMonth ^DateTime (last-day-of-the-month year month))))
+         (let [^DateTime dt (last-day-of-the-month year month)]
+           (.getDayOfMonth dt))))
 
 (defn ^DateTime first-day-of-the-month
   ([^DateTime dt]
