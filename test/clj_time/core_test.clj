@@ -68,7 +68,7 @@
     (is (= 0    (minute d)))
     (is (= 0    (second d)))
     (is (= 0    (milli  d))))
-  (let [d (date-time 1986 10 14 4 3 2 1)]
+  (let [d (local-date-time 1986 10 14 4 3 2 1)]
     (is (= 1986 (year   d)))
     (is (= 10   (month  d)))
     (is (= 14   (day    d)))
