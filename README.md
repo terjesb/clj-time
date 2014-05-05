@@ -133,7 +133,7 @@ date-time:
 
 
 ``` clj
-=> (plus (date-time 1986 10 14) (months 1) (weeks 3))
+=> (t/plus (t/date-time 1986 10 14) (t/months 1) (t/weeks 3))
 #<DateTime 1986-12-05T00:00:00.000Z>
 ```
 
