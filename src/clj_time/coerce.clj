@@ -38,19 +38,22 @@
   "Returns a DateTime instance in the UTC time zone corresponding to the given
    Java Date object."
   [^Date date]
-  (from-long (.getTime date)))
+  (when date
+    (from-long (.getTime date))))
 
 (defn from-sql-date
   "Returns a DateTime instance in the UTC time zone corresponding to the given
    java.sql.Date object."
   [^java.sql.Date sql-date]
-  (from-long (.getTime sql-date)))
+  (when sql-date
+    (from-long (.getTime sql-date))))
 
 (defn from-sql-time
   "Returns a DateTime instance in the UTC time zone corresponding to the given
    java.sql.Timestamp object."
   [^java.sql.Timestamp sql-time]
-  (from-long (.getTime sql-time)))
+  (when sql-time
+    (from-long (.getTime sql-time))))
 
 (defn to-long
   "Convert `obj` to the number of milliseconds after the Unix epoch."

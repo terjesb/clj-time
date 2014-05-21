@@ -9,19 +9,22 @@
   (let [dt (from-long 893462400000)
         d  (to-date dt)]
     (is (instance? Date d))
-    (is (= dt (from-date d)))))
+    (is (= dt (from-date d)))
+    (is (nil? (from-date nil)))))
 
 (deftest test-from-sql-date
   (let [dt (from-long 893462400000)
         d  (to-sql-date dt)]
     (is (instance? java.sql.Date d))
-    (is (= dt (from-sql-date d)))))
+    (is (= dt (from-sql-date d)))
+    (is (nil? (from-sql-date nil)))))
 
 (deftest test-from-sql-time
   (let [dt (from-long 893462400000)
         d  (to-sql-time dt)]
     (is (instance? java.sql.Timestamp d))
-    (is (= dt (from-sql-time d)))))
+    (is (= dt (from-sql-time d)))
+    (is (nil? (from-sql-time nil)))))
 
 (deftest test-from-long
   (is (= (date-time 1998 4 25) (from-long 893462400000))))
