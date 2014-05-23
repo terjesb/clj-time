@@ -227,6 +227,11 @@
       (is (= (-> 10 years ago)
              (date-time 2001 4 16 10 9 00))))))
 
+(deftest test-yesterday
+  (is (= (date-time 2013 12 31)
+         (do-at (date-time 2014 1 1)
+                (yesterday)))))
+
 (deftest test-from-now
   (when-available
     with-redefs

@@ -413,6 +413,11 @@
   [^Period period]
   (minus (now) period))
 
+(defn yesterday
+  "Returns a DateTime for yesterday relative to now"
+  []
+  (-> 1 days ago))
+
 (defn from-now
   "Returns a DateTime a supplied period after the present.
   e.g. (-> 30 minutes from-now)"
