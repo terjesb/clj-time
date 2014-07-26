@@ -54,22 +54,22 @@ The main namespace for date-time operations in the `clj-time` library is `clj-ti
 
 ``` clj
 => (require '[clj-time.core :as t])
-``` 
+```
 
 Create a DateTime instance with date-time, specifying the year, month,
 day, hour, minute, second, and millisecond:
 
 
 ``` clj
-=> (t/date-time 1986 10 14 4 3 27 456)
-#<DateTime 1986-10-14T04:03:27.456Z>
+(t/date-time 1986 10 14 4 3 27 456)
+=> #<DateTime 1986-10-14T04:03:27.456Z>
 ```
 
 Less-significant fields can be omitted:
 
 ``` clj
-=> (t/date-time 1986 10 14)
-#<DateTime 1986-10-14T00:00:00.000Z>
+(t/date-time 1986 10 14)
+=> #<DateTime 1986-10-14T00:00:00.000Z>
 ```
 
 Get the current time with `now` and the start of the Unix epoch with
@@ -80,8 +80,8 @@ access the corresponding fields:
 
 
 ``` clj
-=> (t/hour (date-time 1986 10 14 22))
-22
+(t/hour (date-time 1986 10 14 22))
+=> 22
 ```
 
 The date-time constructor always returns times in the UTC time
@@ -90,8 +90,8 @@ zone, use `from-time-zone`:
 
 
 ``` clj
-=> (t/from-time-zone (t/date-time 1986 10 22) (t/time-zone-for-offset -2))
-#<DateTime 1986-10-22T00:00:00.000-02:00>
+(t/from-time-zone (t/date-time 1986 10 22) (t/time-zone-for-offset -2))
+=> #<DateTime 1986-10-22T00:00:00.000-02:00>
 ```
 
 If on the other hand you want a given absolute instant in time in a
@@ -99,8 +99,8 @@ different time zone, use `to-time-zone`:
 
 
 ``` clj
-=> (t/to-time-zone (t/date-time 1986 10 22) (t/time-zone-for-offset -2))
-#<DateTime 1986-10-21T22:00:00.000-02:00>
+(t/to-time-zone (t/date-time 1986 10 22) (t/time-zone-for-offset -2))
+=> #<DateTime 1986-10-21T22:00:00.000-02:00>
 ```
 
 In addition to `time-zone-for-offset`, you can use the
@@ -115,16 +115,16 @@ timezone-related shifting).
 
 
 ``` clj
-=> (t/local-date 2013 3 20)
-#<LocalDate 2013-03-20>
+(t/local-date 2013 3 20)
+=> #<LocalDate 2013-03-20>
 ```
 
 The functions `after?` and `before?` determine the relative position of two
 DateTime instances:
 
 ``` clj
-=> (t/after? (t/date-time 1986 10) (t/date-time 1986 9))
-true
+(t/after? (t/date-time 1986 10) (t/date-time 1986 9))
+=> true
 ```
 
 Often you will want to find a date some amount of time from a given
@@ -133,8 +133,8 @@ date-time:
 
 
 ``` clj
-=> (t/plus (t/date-time 1986 10 14) (t/months 1) (t/weeks 3))
-#<DateTime 1986-12-05T00:00:00.000Z>
+(t/plus (t/date-time 1986 10 14) (t/months 1) (t/weeks 3))
+=> #<DateTime 1986-12-05T00:00:00.000Z>
 ```
 
 An `Interval` is used to represent the span of time between two
@@ -142,27 +142,27 @@ An `Interval` is used to represent the span of time between two
 using `within?`, `overlaps?`, and `abuts?`
 
 ``` clj
-=> (t/within? (t/interval (t/date-time 1986) (t/date-time 1990))
+(t/within? (t/interval (t/date-time 1986) (t/date-time 1990))
               (t/date-time 1987))
-true
+=> true
 ```
 
 The `in-seconds` and `in-minutes` functions can be used to describe
 intervals in the corresponding temporal units:
 
 ``` clj
-=> (t/in-minutes (t/interval (t/date-time 1986 10 2) (t/date-time 1986 10 14)))
-17280
+(t/in-minutes (t/interval (t/date-time 1986 10 2) (t/date-time 1986 10 14)))
+=> 17280
 ```
 
 `today-at` returns a moment in time at the given hour,
 minute and second on the current date:
 
 ``` clojure
-=> (t/today-at 12 00)
-#<DateTime 2013-03-29T12:00:00.000Z>
-=> (t/today-at 12 00 05)
-#<DateTime 2013-03-29T12:00:05.000Z>
+(t/today-at 12 00)
+=> #<DateTime 2013-03-29T12:00:00.000Z>
+(t/today-at 12 00 05)
+=> #<DateTime 2013-03-29T12:00:05.000Z>
 ```
 
 ### clj-time.format
@@ -170,7 +170,7 @@ minute and second on the current date:
 If you need to parse or print date-times, use `clj-time.format`:
 
 ``` clj
-=> (require '[clj-time.format :as f])
+(require '[clj-time.format :as f])
 ```
 
 Parsing and printing are controlled by formatters. You can either use
@@ -186,7 +186,7 @@ date-time printed in their format:
 
 
 ``` clj
-=> (f/show-formatters)
+(f/show-formatters)
 ```
 
 Remember that `mm` is minutes, `MM` is months, `ss` is seconds and
@@ -195,11 +195,11 @@ Remember that `mm` is minutes, `MM` is months, `ss` is seconds and
 Once you have a formatter, parsing and printing are straightforward:
 
 ``` clj
-=> (f/parse custom-formatter "20100311")
-#<DateTime 2010-03-11T00:00:00.000Z>
+(f/parse custom-formatter "20100311")
+=> #<DateTime 2010-03-11T00:00:00.000Z>
 
-=> (f/unparse custom-formatter (t/date-time 2010 10 3))
-"20101003"
+(f/unparse custom-formatter (t/date-time 2010 10 3))
+=> "20101003"
 ```
 
 To parse dates in multiple formats and format dates in just one
@@ -207,13 +207,13 @@ format, you can do this:
 
 
 ``` clj
-=> (def multi-parser (f/formatter (t/default-time-zone) "YYYY-MM-dd" "YYYY/MM/dd"))
+(def multi-parser (f/formatter (t/default-time-zone) "YYYY-MM-dd" "YYYY/MM/dd"))
 
-=> (f/unparse multi-parser (f/parse multi-parser "2012-02-01"))
-"2012-02-01"
+(f/unparse multi-parser (f/parse multi-parser "2012-02-01"))
+=> "2012-02-01"
 
-=> (f/unparse multi-parser (f/parse multi-parser "2012/02/01"))
-"2012-02-01"
+(f/unparse multi-parser (f/parse multi-parser "2012/02/01"))
+=> "2012-02-01"
 ```
 
 ### clj-time.coerce
@@ -223,25 +223,25 @@ coercing Joda `DateTime` instances to and from various other types:
 
 
 ``` clj
-=> (require '[clj-time.coerce :as c])
+(require '[clj-time.coerce :as c])
 ```
 
 For example, to convert a Joda `DateTime` to and from a Java `long`:
 
 ``` clj
-=> (c/to-long (t/date-time 1998 4 25))
-893462400000
+(c/to-long (t/date-time 1998 4 25))
+=> 893462400000
 
-=> (c/from-long 893462400000)
-#<DateTime 1998-04-25T00:00:00.000Z>
+(c/from-long 893462400000)
+=> #<DateTime 1998-04-25T00:00:00.000Z>
 ```
 
 And by the magic of protocols you can pass in an isoformat string and
 get the unix epoch milliseconds:
 
 ``` clj
-=> (c/to-long "2013-08-01")
-1375315200000
+(c/to-long "2013-08-01")
+=> 1375315200000
 ```
 
 There are also conversions to and from `java.util.Date` (`to-date` and
@@ -256,19 +256,19 @@ local time without having to shift to/from utc, the preferred time
 zone of clj-time.core.
 
 ``` clj
-=> (require '[clj-time.local :as l])
+(require '[clj-time.local :as l])
 ```
 
 Get the current local time with
 
 ``` clj
-=> (l/local-now)
+(l/local-now)
 ```
 
 Get a local date-time instance retaining the time fields with
 
 ``` clj
-=> (l/to-local-date-time obj)
+(l/to-local-date-time obj)
 ```
 
 The following all return 1986-10-14 04:03:27.246 with the local time
@@ -290,7 +290,7 @@ Format an obj using a formatter in `*local-formatters*` corresponding
 to the format-key passed in with
 
 ``` clj
-=> (l/format-local-time (l/local-now) :basic-date-time)
+(l/format-local-time (l/local-now) :basic-date-time)
 ```
 
 
@@ -314,26 +314,27 @@ separated by a time period starting with the given point in time:
 check for common conditions. For instance:
 
 ```clojure
+
 (require '[clj-time.core :as t])
 (require '[clj-time.predicates :as pr])
 
 (pr/monday? (t/date-time 1999 9 9))
-;; => false
+=> false
 
 (pr/january? (t/date-time 2011 1 1))
-;; => true
+=> true
 
 (pr/weekend? (t/date-time 2014 1 26))
-;; => true
+=> true
 
 (pr/weekday? (t/date-time 2014 1 26))
-;; => false
+=> false
 
 (pr/last-day-of-month? (t/date-time 2014 1 26))
-;; => false
+=> false
 
 (pr/first-day-of-month? (t/date-time 2014 1 26))
-;; => false
+=> false
 ```
 
 ## Development
