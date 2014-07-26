@@ -21,4 +21,5 @@
                    :dependencies [[org.clojure/clojure "1.5.1"]]}
              :master {:repositories [["snapshots" "https://oss.sonatype.org/content/repositories/snapshots/"]]
                    :dependencies [[org.clojure/clojure "1.7.0-master-SNAPSHOT"]]}}
-  :aliases {"test-all" ["with-profile" "dev,default:dev,1.2,default:dev,1.3,default:dev,1.4,default:dev,1.5,default:dev,master,default" "test"]})
+  :aliases {"test-all" ["with-profile" "dev,default:dev,1.2,default:dev,1.3,default:dev,1.4,default:dev,1.5,default:dev,master,default" "test"]
+            "test-14plus" ["with-profile" "dev,default:dev,1.4,default:dev,1.5,default:dev,master,default" "test"]})
