@@ -1,6 +1,6 @@
 (ns clj-time.periodic-test
   (:use clojure.test
-        [clj-time.core :only [date-time hours]]
+        [clj-time.core :only [date-time hours months]]
         clj-time.periodic))
 
 
@@ -21,3 +21,15 @@
          d4 (nth uds 4)
          d5 (nth uds 5)
          d6 (nth uds 6))))
+
+(deftest test-periodic-sequence-2
+  (let [d0 (date-time 2014 1 31)
+        d1 (date-time 2014 2 28)
+        d2 (date-time 2014 3 31)
+        d3 (date-time 2014 4 30)
+        uds (periodic-seq d0 (months 1))]
+    (are [a b] (= a b)
+         d0 (first uds)
+         d1 (second uds)
+         d2 (nth uds 2)
+         d3 (nth uds 3))))
