@@ -600,7 +600,7 @@
   ([^DateTime dt]
      (last-day-of-the-month (.getYear dt) (.getMonthOfYear dt)))
   ([^long year ^long month]
-     (-> ^DateTime (date-time year month) .dayOfMonth .withMaximumValue)))
+     (.. ^DateTime (date-time year month) dayOfMonth withMaximumValue)))
 
 (defn number-of-days-in-the-month
   (^long [^DateTime dt]
@@ -613,7 +613,7 @@
   ([^DateTime dt]
      (first-day-of-the-month (.getYear dt) (.getMonthOfYear dt)))
   ([^long year ^long month]
-     (-> ^DateTime (date-time year month) .dayOfMonth .withMinimumValue)))
+     (.. ^DateTime (date-time year month) dayOfMonth withMinimumValue)))
 
 
 (defn ^DateTime today-at
