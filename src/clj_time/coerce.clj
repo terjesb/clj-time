@@ -28,11 +28,8 @@
   "return DateTime instance from string using
    formatters in clj-time.format, returning first
    which parses"
-  [s]
-  (first
-   (for [f (vals time-fmt/formatters)
-         :let [d (try (time-fmt/parse f s) (catch Exception _ nil))]
-         :when d] d)))
+  [^String s]
+  (time-fmt/parse s))
 
 (defn from-date
   "Returns a DateTime instance in the UTC time zone corresponding to the given
