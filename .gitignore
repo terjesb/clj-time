@@ -16,3 +16,4 @@ checkouts
 .idea
 /pom.xml.asc
 test/readme.clj
+doc/*
