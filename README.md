@@ -347,7 +347,7 @@ check for common conditions. For instance:
 
 Running the tests:
 
-    $ lein test-all
+    $ rm -f test/readme.clj && lein test-all && lein test-readme
 
 (assumes Leiningen 2.x)
 
