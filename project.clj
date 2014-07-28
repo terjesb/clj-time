@@ -9,7 +9,7 @@
             :distribution :repo}
   :dependencies [[joda-time "2.4"] [org.clojure/clojure "1.6.0"]]
   :min-lein-version "2.0.0"
-  :profiles {:dev {:plugins [[codox "0.6.1"]
+  :profiles {:dev {:plugins [[codox "0.8.10"]
                              [lein-midje "3.0.0"]
                              [midje-readme "1.0.2"]]
                    :dependencies [[midje "1.5.0"]]
