@@ -14,12 +14,8 @@
                      :plugins      [[lein-midje "3.0.0"]
                                     [midje-readme "1.0.3"]]
                      :midje-readme {:require "[clj-time.core :as t] [clj-time.predicates :as pr]"}}
-             :1.2 {:dependencies [[org.clojure/clojure "1.2.1"]]}
-             :1.3 {:dependencies [[org.clojure/clojure "1.3.0"]]}
-             :1.4 {:dependencies [[org.clojure/clojure "1.4.0"]]}
              :1.5 {:repositories [["snapshots" "https://oss.sonatype.org/content/repositories/snapshots/"]]
                    :dependencies [[org.clojure/clojure "1.5.1"]]}
              :master {:repositories [["snapshots" "https://oss.sonatype.org/content/repositories/snapshots/"]]
                    :dependencies [[org.clojure/clojure "1.7.0-master-SNAPSHOT"]]}}
-  :aliases {"test-all" ["with-profile" "dev,default:dev,1.2,default:dev,1.3,default:dev,1.4,default:dev,1.5,default:dev,master,default" "test"]
-            "test-readme"  ["with-profile" "dev,default,midje:dev,1.5,midje" "test"]})
+  :aliases {"test-all" ["with-profile" "dev,1.5,default:dev,master,default:dev,default,midje:dev,1.5,midje" "test"]})
