@@ -12,7 +12,7 @@
   :profiles {:dev {:plugins [[codox "0.8.10"]]}
              :midje {:dependencies [[midje "1.5.0"]]
                      :plugins      [[lein-midje "3.0.0"]
-                                    [midje-readme "1.0.2"]]
+                                    [midje-readme "1.0.3"]]
                      :midje-readme {:require "[clj-time.core :as t] [clj-time.predicates :as pr]"}}
              :1.2 {:dependencies [[org.clojure/clojure "1.2.1"]]}
              :1.3 {:dependencies [[org.clojure/clojure "1.3.0"]]}
