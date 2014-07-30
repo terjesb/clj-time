@@ -76,6 +76,17 @@
     (is (= "20100311T000000.000"
            (unparse-local-date fmt (local-date-time 2010 3 11 00 00 00 000))))))
 
+(deftest test-local-time-parse
+  (is (= (local-time 12)
+         (parse-local-time "12:00:00")))
+  (is (= (local-time 12 13 14 15)
+         (parse-local-time "12:13:14.015"))))
+
+(deftest test-local-time-unparse
+  (let [fmt (formatter "HH:mm:ss.SSS")] ; Cannot use (formatters :local-time) here as it does not support printing
+    (is (= "13:14:15.167"
+        (unparse-local-time fmt (local-time 13 14 15 167))))))
+
 (deftest test-formatter-modifiers
   (let [fmt (formatter "YYYY-MM-dd hh:mm z" (time-zone-for-id "America/Chicago"))]
     (is (= "2010-03-11 11:49 CST"
