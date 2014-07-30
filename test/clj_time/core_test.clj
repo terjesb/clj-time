@@ -92,6 +92,14 @@
     (is (= 19   (day    d)))
     (is (= 2    (day-of-week d)))))
 
+(deftest test-local-time-and-accessors
+  (let [t (local-time 12 11 10 9)]
+    (is (= 12 (hour t)))
+    (is (= 11 (minute t)))
+    (is (= 10 (second t)))
+    (is (= 9 (milli t)))
+    ))
+
 (deftest test-today
   (is (= (local-date 2013 4 20) (do-at (from-time-zone (date-time 2013 4 20) (default-time-zone))
                                   (today)))))
@@ -319,6 +327,30 @@
     (is (not (within? ld1 ld2 ld3)))
     (is (not (within? ld3 ld2 ld1)))
     (is (not (within? ld2 ld3 ld1)))))
+
+(deftest test-time-after?
+  (let [t1 (local-time 11 12 13)
+        t2 (local-time 12 13 14)
+        t3 (local-time 13 14 15)]
+    (is (after? t2 t1))
+    (is (after? t3 t2))
+    (is (after? t3 t1))
+    (is (not (after? t2 t3)))
+    (is (not (after? t1 t2)))
+    (is (not (after? t1 t3)))
+    ))
+
+(deftest test-time-before?
+  (let [t1 (local-time 11 12 13)
+        t2 (local-time 12 13 14)
+        t3 (local-time 13 14 15)]
+    (is (before? t1 t2))
+    (is (before? t2 t3))
+    (is (before? t1 t3))
+    (is (not (before? t3 t2)))
+    (is (not (before? t2 t1)))
+    (is (not (before? t3 t1)))
+    ))
 
 (deftest test-overlaps?
   (let [d1 (date-time 1985)

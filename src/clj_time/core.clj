@@ -83,7 +83,7 @@
    ceorce date-times to or from other types, see clj-time.coerce."
   (:refer-clojure :exclude [extend second])
   (:import (org.joda.time ReadablePartial ReadableDateTime ReadableInstant ReadablePeriod DateTime
-                          DateMidnight YearMonth LocalDate DateTimeZone Period PeriodType Interval
+                          DateMidnight YearMonth LocalDate LocalTime DateTimeZone Period PeriodType Interval
                           Years Months Weeks Days Hours Minutes Seconds LocalDateTime MutableDateTime
                           DateTimeUtils)
            (org.joda.time.base BaseDateTime)))
@@ -180,7 +180,18 @@
   (after? [this ^ReadablePartial that] (.isAfter this that))
   (before? [this ^ReadablePartial that] (.isBefore this that))
   (plus- [this ^ReadablePeriod period] (.plus this period))
-  (minus- [this ^ReadablePeriod period] (.minus this period)))
+  (minus- [this ^ReadablePeriod period] (.minus this period))
+
+  org.joda.time.LocalTime
+  (hour [this] (.getHourOfDay this))
+  (minute [this] (.getMinuteOfHour this))
+  (second [this] (.getSecondOfMinute this))
+  (milli [this] (.getMillisOfSecond this))
+  (after? [this ^ReadablePartial that] (.isAfter this that))
+  (before? [this ^ReadablePartial that] (.isBefore this that))
+  (plus- [this ^ReadablePeriod period] (.plus this period))
+  (minus- [this ^ReadablePeriod period] (.minus this period))
+  )
 
 (def ^{:doc "DateTimeZone for UTC."}
       utc
@@ -190,6 +201,12 @@
   "Returns a DateTime for the current instant in the UTC time zone."
   []
   (DateTime. ^DateTimeZone utc))
+
+(defn time-now
+  "Returns a LocalTime for the current instant without date or time zone
+  using ISOChronology in the current time zone."
+  []
+  (LocalTime. ))
 
 (defn today-at-midnight
   "Returns a DateMidnight for today at midnight in the UTC time zone."
@@ -240,7 +257,7 @@
 
 (defn ^org.joda.time.LocalDateTime local-date-time
   "Constructs and returns a new LocalDateTime.
-   Specify the year, month of year, day of month, hour of day, minute if hour,
+   Specify the year, month of year, day of month, hour of day, minute of hour,
    second of minute, and millisecond of second. Note that month and day are
    1-indexed while hour, second, minute, and millis are 0-indexed.
    Any number of least-significant components can be ommited, in which case
@@ -275,6 +292,21 @@
    Specify the year, month, and day. Does not deal with timezones."
   [^Integer year ^Integer month ^Integer day]
   (LocalDate. year month day))
+
+(defn ^org.joda.time.LocalTime local-time
+  "Constructs and returns a new LocalTime.
+   Specify the hour of day, minute of hour, second of minute, and millisecond of second.
+   Any number of least-significant components can be ommited, in which case
+   they will default to 1 or 0 as appropriate."
+  ([hour]
+   (local-time hour 0 0 0))
+  ([hour minute]
+   (local-time hour minute 0 0))
+  ([hour minute second]
+   (local-time hour minute second 0))
+  ([^Integer hour ^Integer minute ^Integer second ^Integer millis]
+   (LocalTime. hour minute second millis))
+  )
 
 (defn ^org.joda.time.LocalDate today
   "Constructs and returns a new LocalDate representing today's date.

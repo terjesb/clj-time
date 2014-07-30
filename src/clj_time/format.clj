@@ -30,7 +30,7 @@
   (:use clj-time.core)
   (:import (java.util Locale)
            (org.joda.time Chronology DateTime DateTimeZone Interval LocalDateTime
-                          Period PeriodType LocalDate)
+                          Period PeriodType LocalDate LocalTime)
            (org.joda.time.format DateTimeFormat DateTimeFormatter DateTimePrinter
                                  DateTimeFormatterBuilder DateTimeParser
                                  ISODateTimeFormat)))
@@ -179,6 +179,17 @@
             :let [d (try (parse-local-date f s) (catch Exception _ nil))]
             :when d] d))))
 
+(defn parse-local-time
+  "Returns a LocalTime instance obtained by parsing the
+  given string according to the given formatter."
+  ([^DateTimeFormatter fmt ^ String s]
+   (.parseLocalTime fmt s))
+   ([^String s]
+     (first
+      (for [f (vals formatters)
+            :let [d (try (parse-local-time f s) (catch Exception _ nil))]
+            :when d] d))))
+
 (defn unparse
   "Returns a string representing the given DateTime instance in UTC and in the
   form determined by the given formatter."
@@ -192,10 +203,17 @@
   (.print fmt dt))
 
 (defn unparse-local-date
-  "Returns a string representing the given LocalDate instance in  the form
+  "Returns a string representing the given LocalDate instance in the form
   determined by the given formatter."
   [^DateTimeFormatter fmt ^LocalDate ld]
   (.print fmt ld))
+
+(defn unparse-local-time
+  "Returns a string representing the given LocalTime instance in the form
+  determined by the given formatter."
+  [^DateTimeFormatter fmt ^LocalTime lt]
+  (.print fmt lt))
+
 
 (defn show-formatters
   "Shows how a given DateTime, or by default the current time, would be
