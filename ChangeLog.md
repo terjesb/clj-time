@@ -1,4 +1,4 @@
-## Changes Betweet 0.8.0 and 0.9.0
+## Changes Between 0.8.0 and 0.9.0
 
 ### Clojure 1.2-1.4 Support Dropped
 
