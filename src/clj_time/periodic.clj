@@ -15,8 +15,6 @@
           (iterate inc 0))))
   ([^DateTime start ^DateTime end ^ReadablePeriod period-like]
    (let [^Period period (.toPeriod period-like)]
-     (->> (iterate inc 0)
-          (map (fn [i]
-                 (ct/plus start (.multipliedBy period i))))
-          (take-while (fn [^DateTime next]
-                        (ct/before? next end)))))))
+     (take-while (fn [^DateTime next]
+                   (ct/before? next end))
+                 (periodic-seq start period-like)))))
