@@ -6,6 +6,6 @@
   "Returns an infinite sequence of date-time values growing over specific period"
   [^DateTime start ^ReadablePeriod period-like]
    (let [^Period period (.toPeriod period-like)]
-     (map (fn [^long i]
+     (map (fn [i]
             (ct/plus start (.multipliedBy period i)))
           (iterate inc 0))))
