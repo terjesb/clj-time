@@ -3,7 +3,11 @@
   (:import [org.joda.time DateTime ReadablePeriod Period]))
 
 (defn periodic-seq
-  "Returns an infinite sequence of date-time values growing over specific period"
+  "Returns a sequence of date-time values growing over specific period.
+  The 2 argument function takes as input the starting value and the growing value,
+  returning a lazy infinite sequence.
+  The 3 argument function takes as input the starting value, the upper bound value,
+  and the growing value, return a lazy sequence."
   ([^DateTime start ^ReadablePeriod period-like]
    (let [^Period period (.toPeriod period-like)]
      (map (fn [i]
