@@ -33,3 +33,16 @@
          d1 (second uds)
          d2 (nth uds 2)
          d3 (nth uds 3))))
+
+(deftest test-limited-periodic-sequence
+  (let [d0 (date-time 2014 1 31)
+        d1 (date-time 2014 2 28)
+        d2 (date-time 2014 3 31)
+        d3 (date-time 2014 4 30)
+        uds (periodic-seq d0 d3 (months 1))]
+    (are [a b] (= a b)
+         d0 (first uds)
+         d1 (second uds)
+         d2 (nth uds 2))
+    (are [i] (thrown? IndexOutOfBoundsException (nth uds i)) 3)))
+

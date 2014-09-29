@@ -1,4 +1,4 @@
-(defproject clj-time/clj-time "0.9.0-SNAPSHOT"
+(defproject clj-time/clj-time "0.9.0-beta2-SNAPSHOT"
   :description "A date and time library for Clojure, wrapping Joda Time."
   :url "https://github.com/clj-time/clj-time"
   :mailing-list {:name "clj-time mailing list"
@@ -14,8 +14,7 @@
                      :plugins      [[lein-midje "3.0.0"]
                                     [midje-readme "1.0.3"]]
                      :midje-readme {:require "[clj-time.core :as t] [clj-time.predicates :as pr]"}}
-             :1.5 {:repositories [["snapshots" "https://oss.sonatype.org/content/repositories/snapshots/"]]
-                   :dependencies [[org.clojure/clojure "1.5.1"]]}
+             :1.7    {:dependencies [[org.clojure/clojure "1.7.0-alpha1"]]}
              :master {:repositories [["snapshots" "https://oss.sonatype.org/content/repositories/snapshots/"]]
                    :dependencies [[org.clojure/clojure "1.7.0-master-SNAPSHOT"]]}}
-  :aliases {"test-all" ["with-profile" "dev,1.5,default:dev,master,default:dev,default,midje:dev,1.5,midje" "test"]})
+  :aliases {"test-all" ["with-profile" "dev,master,default,midje:dev,default,midje:dev,1.7,midje" "test"]})

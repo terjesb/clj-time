@@ -107,7 +107,9 @@
   (plus- [this ^ReadablePeriod period]
     "Returns a new date/time corresponding to the given date/time moved forwards by the given Period(s).")
   (minus- [this ^ReadablePeriod period]
-    "Returns a new date/time corresponding to the given date/time moved backwards by the given Period(s)."))
+    "Returns a new date/time corresponding to the given date/time moved backwards by the given Period(s).")
+  (first-day-of-the-month- [this] "Returns the first day of the month")
+  (last-day-of-the-month- [this] "Returns the last day of the month"))
 
 (extend-protocol DateTimeProtocol
   org.joda.time.DateTime
@@ -127,6 +129,10 @@
   (before? [this ^ReadableInstant that] (.isBefore this that))
   (plus- [this ^ReadablePeriod period] (.plus this period))
   (minus- [this ^ReadablePeriod period] (.minus this period))
+  (first-day-of-the-month- [this]
+    (.. ^DateTime this dayOfMonth withMinimumValue))
+  (last-day-of-the-month- [this]
+     (.. ^DateTime this dayOfMonth withMaximumValue))
 
   org.joda.time.DateMidnight
   (year [this] (.getYear this))
@@ -145,6 +151,10 @@
   (before? [this ^ReadableInstant that] (.isBefore this that))
   (plus- [this ^ReadablePeriod period] (.plus this period))
   (minus- [this ^ReadablePeriod period] (.minus this period))
+  (first-day-of-the-month- [this]
+    (.. ^DateMidnight this dayOfMonth withMinimumValue))
+  (last-day-of-the-month- [this]
+     (.. ^DateMidnight this dayOfMonth withMaximumValue))
 
   org.joda.time.LocalDateTime
   (year [this] (.getYear this))
@@ -163,6 +173,10 @@
   (before? [this ^ReadablePartial that] (.isBefore this that))
   (plus- [this ^ReadablePeriod period] (.plus this period))
   (minus- [this ^ReadablePeriod period] (.minus this period))
+  (first-day-of-the-month- [this]
+    (.. ^LocalDateTime this dayOfMonth withMinimumValue))
+  (last-day-of-the-month- [this]
+     (.. ^LocalDateTime this dayOfMonth withMaximumValue))
 
   org.joda.time.YearMonth
   (year [this] (.getYear this))
@@ -181,6 +195,10 @@
   (before? [this ^ReadablePartial that] (.isBefore this that))
   (plus- [this ^ReadablePeriod period] (.plus this period))
   (minus- [this ^ReadablePeriod period] (.minus this period))
+  (first-day-of-the-month- [this]
+    (.. ^LocalDate this dayOfMonth withMinimumValue))
+  (last-day-of-the-month- [this]
+     (.. ^LocalDate this dayOfMonth withMaximumValue))
 
   org.joda.time.LocalTime
   (hour [this] (.getHourOfDay this))
@@ -627,26 +645,23 @@
   [d]
   (in-minutes (interval d (now))))
 
-
-(defn ^DateTime last-day-of-the-month
-  ([^DateTime dt]
-     (last-day-of-the-month (.getYear dt) (.getMonthOfYear dt)))
+(defn first-day-of-the-month
   ([^long year ^long month]
-     (.. ^DateTime (date-time year month) dayOfMonth withMaximumValue)))
+     (first-day-of-the-month- (date-time year month)))
+  ([dt]
+     (first-day-of-the-month- dt)))
+
+(defn last-day-of-the-month
+  ([^long year ^long month]
+     (last-day-of-the-month- (date-time year month)))
+  ([dt]
+     (last-day-of-the-month- dt)))
 
 (defn number-of-days-in-the-month
   (^long [^DateTime dt]
-         (number-of-days-in-the-month (.getYear dt) (.getMonthOfYear dt)))
+         (day (last-day-of-the-month- dt)))
   (^long [^long year ^long month]
-         (let [^DateTime dt (last-day-of-the-month year month)]
-           (.getDayOfMonth dt))))
-
-(defn ^DateTime first-day-of-the-month
-  ([^DateTime dt]
-     (first-day-of-the-month (.getYear dt) (.getMonthOfYear dt)))
-  ([^long year ^long month]
-     (.. ^DateTime (date-time year month) dayOfMonth withMinimumValue)))
-
+         (day (last-day-of-the-month- (date-time year month)))))
 
 (defn ^DateTime today-at
   ([^long hours ^long minutes ^long seconds ^long millis]
