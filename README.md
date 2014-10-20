@@ -196,7 +196,8 @@ date-time printed in their format:
 ```
 
 Remember that `mm` is minutes, `MM` is months, `ss` is seconds and
-`SS` is milliseconds.
+`SS` is milliseconds. You can find the [complete list of patterns](http://www.joda.org/joda-time/key_format.html)
+on the Joda Time website.
 
 Once you have a formatter, parsing and printing are straightforward:
 
