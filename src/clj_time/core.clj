@@ -346,6 +346,11 @@
   [^String id]
   (DateTimeZone/forID id))
 
+(defn available-ids
+  "Returns a set of available IDs for use with time-zone-for-id."
+  []
+  (DateTimeZone/getAvailableIDs))
+
 (defn default-time-zone
   "Returns the default DateTimeZone for the current environment."
   []
