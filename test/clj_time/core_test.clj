@@ -123,6 +123,9 @@
 (deftest test-time-zone-for-id
   (is (= utc (time-zone-for-id "UTC"))))
 
+(deftest test-available-ids
+  (is (some #{"UTC"} (available-ids))))
+
 (deftest test-to-time-zone
   (let [tz  (time-zone-for-offset 2)
         dt1 (date-time 1986 10 14 6)
