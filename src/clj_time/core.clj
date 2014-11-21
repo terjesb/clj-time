@@ -111,6 +111,17 @@
   (first-day-of-the-month- [this] "Returns the first day of the month")
   (last-day-of-the-month- [this] "Returns the last day of the month"))
 
+(defprotocol InTimeUnitProtocol
+  "Interface for in-<time unit> functions"
+  (in-millis [this] "Return the time in milliseconds.")
+  (in-seconds [this] "Return the time in seconds.")
+  (in-minutes [this] "Return the time in minutes.")
+  (in-hours [this] "Return the time in hours.")
+  (in-days [this] "Return the time in days.")
+  (in-weeks [this] "Return the time in weeks")
+  (in-months [this] "Return the time in months")
+  (in-years [this] "Return the time in years"))
+
 (extend-protocol DateTimeProtocol
   org.joda.time.DateTime
   (year [this] (.getYear this))
@@ -428,6 +439,52 @@
   ([^Integer n]
      (Seconds/seconds n)))
 
+(extend-protocol InTimeUnitProtocol
+  org.joda.time.Interval 
+  (in-millis [this] (.toDurationMillis this))
+  (in-seconds [this] (.getSeconds (.toPeriod this (seconds))))
+  (in-minutes [this] (.getMinutes (.toPeriod this (minutes))))
+  (in-hours [this] (.getHours (.toPeriod this (hours))))
+  (in-days [this] (.getDays (.toPeriod this (days))))
+  (in-weeks [this] (.getWeeks (.toPeriod this (weeks))))
+  (in-months [this] (.getMonths (.toPeriod this (months))))
+  (in-years [this] (.getYears (.toPeriod this (years))))
+  org.joda.time.ReadablePeriod
+  (in-millis [this] (-> this .toPeriod .toStandardDuration .getMillis))
+  (in-seconds [this] (-> this .toPeriod .toStandardSeconds .getSeconds))
+  (in-minutes [this] (-> this .toPeriod .toStandardMinutes .getMinutes))
+  (in-hours [this] (-> this .toPeriod .toStandardHours .getHours))
+  (in-days [this] (-> this .toPeriod .toStandardDays .getDays))
+  (in-weeks [this] (-> this .toPeriod .toStandardWeeks .getWeeks))
+  (in-months [this] 
+    (condp instance? this
+      org.joda.time.Months (.getMonths this)
+      org.joda.time.Years (* 12 (.getYears this))
+      (throw 
+        (UnsupportedOperationException. 
+          "Cannot convert to Months because months vary in length."))))
+  (in-years [this] 
+    (condp instance? this 
+      org.joda.time.Months (int (/ (.getMonths this) 12))
+      org.joda.time.Years (.getYears this)
+      (throw 
+        (UnsupportedOperationException. 
+          "Cannot convert to Years because years vary in length.")))))
+
+(defn in-msecs
+  "DEPRECATED: Returns the number of milliseconds in the given Interval."
+  {:deprecated "0.6.0"}
+  [^Interval in]
+  (deprecated "in-msecs has been deprecated in favor of in-millis")
+  (in-millis in))
+ 
+(defn in-secs
+  "DEPRECATED: Returns the number of standard seconds in the given Interval."
+  {:deprecated "0.6.0"}
+  [^Interval in]
+  (deprecated "in-secs has been deprecated in favor of in-seconds")
+  (in-seconds in))
+ 
 (defn secs
   "DEPRECATED"
   {:deprecated "0.6.0"}
@@ -517,59 +574,6 @@
   [^Interval in & by]
   (.withEnd in (apply plus (end in) by)))
 
-(defn in-millis
-  "Returns the number of milliseconds in the given Interval."
-  [^Interval in]
-  (.toDurationMillis in))
-
-(defn in-msecs
-  "DEPRECATED: Returns the number of milliseconds in the given Interval."
-  {:deprecated "0.6.0"}
-  [^Interval in]
-  (deprecated "in-msecs has been deprecated in favor of in-millis")
-  (in-millis in))
-
-(defn in-seconds
-  "Returns the number of standard seconds in the given Interval."
-  [^Interval in]
-  (.getSeconds (.toPeriod in (seconds))))
-
-(defn in-secs
-  "DEPRECATED: Returns the number of standard seconds in the given Interval."
-  {:deprecated "0.6.0"}
-  [^Interval in]
-  (deprecated "in-secs has been deprecated in favor of in-seconds")
-  (in-seconds in))
-
-(defn in-minutes
-  "Returns the number of standard minutes in the given Interval."
-  [^Interval in]
-  (.getMinutes (.toPeriod in (minutes))))
-
-(defn in-hours
-  "Returns the number of standard hours in the given Interval."
-  [^Interval in]
-  (.getHours (.toPeriod in (hours))))
-
-(defn in-days
-  "Returns the number of standard days in the given Interval."
-  [^Interval in]
-  (.getDays (.toPeriod in (days))))
-
-(defn in-weeks
-  "Returns the number of standard weeks in the given Interval."
-  [^Interval in]
-  (.getWeeks (.toPeriod in (weeks))))
-
-(defn in-months
-  "Returns the number of standard months in the given Interval."
-  [^Interval in]
-  (.getMonths (.toPeriod in (months))))
-
-(defn in-years
-  "Returns the number of standard years in the given Interval."
-  [^Interval in]
-  (.getYears (.toPeriod in (years))))
 
 (defn within?
   "With 2 arguments: Returns true if the given Interval contains the given
