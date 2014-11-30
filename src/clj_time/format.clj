@@ -79,6 +79,11 @@
   [^DateTimeFormatter f ^DateTimeZone dtz]
   (.withZone f dtz))
 
+(defn with-default-year
+  "Return a copy of a formatter that uses the given default year."
+  [^DateTimeFormatter f ^Integer default-year]
+  (.withDefaultYear f default-year))
+
 (def ^{:doc "Map of ISO 8601 and a single RFC 822 formatters that can be used for parsing and, in most
              cases, printing."}
   formatters
