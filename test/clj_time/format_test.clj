@@ -99,7 +99,10 @@
            (unparse fmt (date-time 2010 3 11 17 49 20 881)))))
   (let [fmt (with-pivot-year (formatter "YY") 2050)]
     (is (= (date-time 2075 1 1)
-           (parse fmt "75")))))
+           (parse fmt "75"))))
+  (let [fmt (with-default-year (formatter "MM dd") 2010)]
+    (is (= (date-time 2010 3 11)
+           (parse fmt "03 11")))))
 
 (deftest test-multi-parser
   (let [fmt (formatter utc "YYYY-MM-dd HH:mm" "YYYY/MM/dd@HH:mm" "YYYYMMddHHmm")]

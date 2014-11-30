@@ -23,8 +23,8 @@
    By default the parse function always returns a DateTime instance with a UTC
    time zone, and the unparse function always represents a given DateTime
    instance in UTC. A formatter can be modified to different timezones, locales,
-   etc with the functions with-zone, with-locale, with-chronology, and
-   with-pivot-year."
+   etc with the functions with-zone, with-locale, with-chronology,
+   with-default-year and with-pivot-year."
   (:refer-clojure :exclude [extend second])
   (:use [clojure.set :only (difference)])
   (:use clj-time.core)
@@ -78,6 +78,11 @@
   "Return a copy of a formatter that uses the given DateTimeZone."
   [^DateTimeFormatter f ^DateTimeZone dtz]
   (.withZone f dtz))
+
+(defn with-default-year
+  "Return a copy of a formatter that uses the given default year."
+  [^DateTimeFormatter f ^Integer default-year]
+  (.withDefaultYear f default-year))
 
 (def ^{:doc "Map of ISO 8601 and a single RFC 822 formatters that can be used for parsing and, in most
              cases, printing."}
