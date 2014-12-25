@@ -4,6 +4,6 @@
 
 `clj-time` now officially supports Clojure `1.5.1` and later versions.
 
-### Joda Time 2.4
+### Joda Time 2.6
 
-[Joda Time](http://www.joda.org/joda-time/) has been [upgraded to `2.4`](http://www.joda.org/joda-time/upgradeto240.html).
+[Joda Time](http://www.joda.org/joda-time/) has been [upgraded to `2.6`](http://www.joda.org/joda-time/upgradeto260.html).
