@@ -11,7 +11,7 @@
   :min-lein-version "2.0.0"
   :profiles {:dev {:plugins [[codox "0.8.10"]]}
              :midje {:dependencies [[midje "1.6.3"]]
-                     :plugins      [[lein-midje "3.0.0"]
+                     :plugins      [[lein-midje "3.1.3"]
                                     [midje-readme "1.0.3"]]
                      :midje-readme {:require "[clj-time.core :as t] [clj-time.predicates :as pr]"}}
              :1.7    {:dependencies [[org.clojure/clojure "1.7.0-alpha4"]]}
