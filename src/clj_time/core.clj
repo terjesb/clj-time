@@ -458,17 +458,17 @@
   (in-weeks [this] (-> this .toPeriod .toStandardWeeks .getWeeks))
   (in-months [this] 
     (condp instance? this
-      org.joda.time.Months (.getMonths this)
-      org.joda.time.Years (* 12 (.getYears this))
-      (throw 
-        (UnsupportedOperationException. 
+      org.joda.time.Months (.getMonths ^org.joda.time.Months this)
+      org.joda.time.Years (* 12 (.getYears ^org.joda.time.Years this))
+      (throw
+        (UnsupportedOperationException.
           "Cannot convert to Months because months vary in length."))))
-  (in-years [this] 
-    (condp instance? this 
-      org.joda.time.Months (int (/ (.getMonths this) 12))
-      org.joda.time.Years (.getYears this)
-      (throw 
-        (UnsupportedOperationException. 
+  (in-years [this]
+    (condp instance? this
+      org.joda.time.Months (int (/ (.getMonths ^org.joda.time.Months this) 12))
+      org.joda.time.Years (.getYears ^org.joda.time.Years this)
+      (throw
+        (UnsupportedOperationException.
           "Cannot convert to Years because years vary in length.")))))
 
 (defn in-msecs
