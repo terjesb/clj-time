@@ -62,7 +62,7 @@
   "Convert `obj` to Unix epoch."
   [obj]
   (let [millis (to-long obj)]
-    (and millis (/ millis 1000))))
+    (and millis (quot millis 1000))))
 
 (defn to-date
   "Convert `obj` to a Java Date instance."

@@ -124,7 +124,8 @@
   (is (= (long 0) (to-epoch 0)))
   (is (= 893462400 (to-epoch 893462400000)))
   (is (= 893462400 (to-epoch (Timestamp. 893462400000))))
-  (is (= 893462400 (to-epoch "1998-04-25T00:00:00.000Z"))))
+  (is (= 893462400 (to-epoch "1998-04-25T00:00:00.000Z")))
+  (is (= 893462400 (to-epoch "1998-04-25T00:00:00.500Z"))))
 
 (deftest test-to-string
   (is (nil? (to-string nil)))
