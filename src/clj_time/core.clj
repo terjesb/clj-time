@@ -43,7 +43,7 @@
      #<DateTime 1986-10-21T22:00:00.000-02:00>
 
    In addition to time-zone-for-offset, you can use the time-zone-for-id and
-   default-time-zone functions and the utc Var to constgruct or get DateTimeZone
+   default-time-zone functions and the utc Var to construct or get DateTimeZone
    instances.
 
    The functions after? and before? determine the relative position of two
@@ -72,7 +72,7 @@
                  (date-time 1987))
      true
 
-   To find the amount of time encompased by an interval, use in-seconds and
+   To find the amount of time encompassed by an interval, use in-seconds and
    in-minutes:
 
      => (in-minutes (interval (date-time 1986 10 2) (date-time 1986 10 14)))
@@ -80,7 +80,7 @@
 
    Note that all functions in this namespace work with Joda objects or ints. If
    you need to print or parse date-times, see clj-time.format. If you need to
-   ceorce date-times to or from other types, see clj-time.coerce."
+   coerce date-times to or from other types, see clj-time.coerce."
   (:refer-clojure :exclude [extend second])
   (:import (org.joda.time ReadablePartial ReadableDateTime ReadableInstant ReadablePeriod DateTime
                           DateMidnight YearMonth LocalDate LocalTime DateTimeZone Period PeriodType Interval
