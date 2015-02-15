@@ -1,6 +1,8 @@
 ## Changes Between 0.9.0 and 0.10.0
 
-No changes yet.
+### Joda Time 2.7
+
+[Joda Time](http://www.joda.org/joda-time/) has been [upgraded to `2.7`](http://www.joda.org/joda-time/upgradeto270.html).
 
 
 ## Changes Between 0.8.0 and 0.9.0
