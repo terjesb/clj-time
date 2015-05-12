@@ -102,6 +102,7 @@
   (sec [this]   "Return the second of minute component of the given date/time.")
   (second [this]   "Return the second of minute component of the given date/time.")
   (milli [this]   "Return the millisecond of second component of the given date/time.")
+  (equal? [this that] "Returns true if ReadableDateTime 'this' is strictly equal to date/time 'that'.")
   (after? [this that] "Returns true if ReadableDateTime 'this' is strictly after date/time 'that'.")
   (before? [this that] "Returns true if ReadableDateTime 'this' is strictly before date/time 'that'.")
   (plus- [this ^ReadablePeriod period]
@@ -137,6 +138,7 @@
     (.getSecondOfMinute this))
   (second [this] (.getSecondOfMinute this))
   (milli [this] (.getMillisOfSecond this))
+  (equal? [this ^ReadableInstant that] (.isEqual this that))
   (after? [this ^ReadableInstant that] (.isAfter this that))
   (before? [this ^ReadableInstant that] (.isBefore this that))
   (plus- [this ^ReadablePeriod period] (.plus this period))

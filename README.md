@@ -116,11 +116,15 @@ timezone-related shifting).
 => #<LocalDate 2013-03-20>
 ```
 
-The functions `after?` and `before?` determine the relative position of two
-DateTime instances:
+The functions `equal?`, `after?`, and `before?` determine the relative position
+of two DateTime instances:
 
 ``` clj
+(t/equal? (t/date-time 1986 10) (t/date-time 1986 10))
+=> true
 (t/after? (t/date-time 1986 10) (t/date-time 1986 9))
+=> true
+(t/before? (t/date-time 1986 9) (t/date-time 1986 10))
 => true
 ```
 

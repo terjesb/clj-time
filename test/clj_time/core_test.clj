@@ -140,6 +140,14 @@
     (is (= 6 (hour dt2)))
     (is (> (.getMillis dt1) (.getMillis dt2)))))
 
+(deftest test-equal?
+  (is (equal? (date-time 2013 01 01 00)
+              (from-time-zone (date-time 2013 01 01 01)
+                              (time-zone-for-offset 1))))
+  (is (equal? (date-time 1987) (date-time 1987)))
+  (is (not (equal? (date-time 1986) (date-time 1987))))
+  (is (not (equal? (date-time 1987) (date-time 1986)))))
+
 (deftest test-after?
   (is (after? (date-time 1987) (date-time 1986)))
   (is (not (after? (date-time 1986) (date-time 1987))))
