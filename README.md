@@ -339,6 +339,32 @@ check for common conditions. For instance:
 => false
 ```
 
+### clj-time.jdbc
+
+`clj-time.jdbc` registers protocol extensions so you don’t have to use
+`clj-time.coerce` yourself to coerce to and from SQL timestamps.
+
+From the REPL:
+
+```clojure
+=> (require 'clj-time.jdbc)
+nil
+```
+
+In your project:
+
+```clojure
+(ns my.neat.project
+  (:require [clj-time.jdbc]))
+
+; They're registered and ready to use.
+```
+
+Now you can use `org.joda.time.DateTime` objects when "writing" to the database
+in place of `java.sql.Timestamp` objects, and expect `org.joda.time.DateTime`
+objects when "reading" where you would have previously expected
+`java.sql.Timestamp` objects.
+
 ## Development
 
 Running the tests:
