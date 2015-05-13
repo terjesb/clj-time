@@ -601,8 +601,8 @@
   ([^Interval i ^ReadableDateTime dt]
      (.contains i dt))
   ([^ReadablePartial start ^ReadablePartial end ^ReadablePartial test]
-     (or (= start test)
-         (= end test)
+     (or (equal? start test)
+         (equal? end test)
          (and (before? start test) (after? end test)))))
 
 (defn overlaps?
@@ -616,7 +616,7 @@
     ^ReadablePartial start-b ^ReadablePartial end-b]
      (or (and (before? start-b end-a) (after? end-b start-a))
          (and (after? end-b start-a) (before? start-b end-a))
-         (or (= start-a end-b) (= start-b end-a)))))
+         (or (equal? start-a end-b) (equal? start-b end-a)))))
 
 (defn abuts?
   "Returns true if Interval i-a abuts i-b, i.e. then end of i-a is exactly the
