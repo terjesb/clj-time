@@ -4,6 +4,21 @@
 
 [Joda Time](http://www.joda.org/joda-time/) has been [upgraded to `2.7`](http://www.joda.org/joda-time/upgradeto270.html).
 
+### `equal?`
+
+A new predicate `equal?` has been added, which can be used like `before?` and
+`after?` to assert two instants represent identical points in time regardless of
+differences in time zone.
+
+Contributed by [@gws](https://github.com/gws).
+
+### `clj-time.jdbc`
+
+A new namespace `clj-time.jdbc` has been added which extends protocols in
+clojure.java.jdbc to allow for easy coercion to and from java.sql.Timestamp
+driven by `clj-time.coerce`.
+
+Contributed by [@gws](https://github.com/gws).
 
 ## Changes Between 0.8.0 and 0.9.0
 
