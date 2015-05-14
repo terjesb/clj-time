@@ -163,6 +163,7 @@
     (.getSecondOfMinute this))
   (second [this] (.getSecondOfMinute this))
   (milli [this] (.getMillisOfSecond this))
+  (equal? [this ^ReadableInstant that] (.isEqual this that))
   (after? [this ^ReadableInstant that] (.isAfter this that))
   (before? [this ^ReadableInstant that] (.isBefore this that))
   (plus- [this ^ReadablePeriod period] (.plus this period))
@@ -187,6 +188,7 @@
     (.getSecondOfMinute this))
   (second [this] (.getSecondOfMinute this))
   (milli [this] (.getMillisOfSecond this))
+  (equal? [this ^ReadablePartial that] (.isEqual this that))
   (after? [this ^ReadablePartial that] (.isAfter this that))
   (before? [this ^ReadablePartial that] (.isBefore this that))
   (plus- [this ^ReadablePeriod period] (.plus this period))
@@ -201,6 +203,7 @@
   org.joda.time.YearMonth
   (year [this] (.getYear this))
   (month [this] (.getMonthOfYear this))
+  (equal? [this ^ReadablePartial that] (.isEqual this that))
   (after? [this ^ReadablePartial that] (.isAfter this that))
   (before? [this ^ReadablePartial that] (.isBefore this that))
   (plus- [this ^ReadablePeriod period] (.plus this period))
@@ -211,6 +214,7 @@
   (month [this] (.getMonthOfYear this))
   (day [this] (.getDayOfMonth this))
   (day-of-week [this] (.getDayOfWeek this))
+  (equal? [this ^ReadablePartial that] (.isEqual this that))
   (after? [this ^ReadablePartial that] (.isAfter this that))
   (before? [this ^ReadablePartial that] (.isBefore this that))
   (plus- [this ^ReadablePeriod period] (.plus this period))
@@ -227,6 +231,7 @@
   (minute [this] (.getMinuteOfHour this))
   (second [this] (.getSecondOfMinute this))
   (milli [this] (.getMillisOfSecond this))
+  (equal? [this ^ReadablePartial that] (.isEqual this that))
   (after? [this ^ReadablePartial that] (.isAfter this that))
   (before? [this ^ReadablePartial that] (.isBefore this that))
   (plus- [this ^ReadablePeriod period] (.plus this period))
@@ -596,8 +601,8 @@
   ([^Interval i ^ReadableDateTime dt]
      (.contains i dt))
   ([^ReadablePartial start ^ReadablePartial end ^ReadablePartial test]
-     (or (= start test)
-         (= end test)
+     (or (equal? start test)
+         (equal? end test)
          (and (before? start test) (after? end test)))))
 
 (defn overlaps?
@@ -611,7 +616,7 @@
     ^ReadablePartial start-b ^ReadablePartial end-b]
      (or (and (before? start-b end-a) (after? end-b start-a))
          (and (after? end-b start-a) (before? start-b end-a))
-         (or (= start-a end-b) (= start-b end-a)))))
+         (or (equal? start-a end-b) (equal? start-b end-a)))))
 
 (defn abuts?
   "Returns true if Interval i-a abuts i-b, i.e. then end of i-a is exactly the
