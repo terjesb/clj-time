@@ -78,6 +78,13 @@
      => (in-minutes (interval (date-time 1986 10 2) (date-time 1986 10 14)))
      17280
 
+   The overlap function can be used to get an Interval representing the
+   overlap between two intervals:
+
+     => (overlap (t/interval (t/date-time 1986) (t/date-time 1990))
+                             (t/interval (t/date-time 1987) (t/date-time 1991)))
+     #<Interval 1987-01-01T00:00:00.000Z/1990-01-01T00:00:00.000Z>
+
    Note that all functions in this namespace work with Joda objects or ints. If
    you need to print or parse date-times, see clj-time.format. If you need to
    coerce date-times to or from other types, see clj-time.coerce."
@@ -617,6 +624,21 @@
      (or (and (before? start-b end-a) (after? end-b start-a))
          (and (after? end-b start-a) (before? start-b end-a))
          (or (equal? start-a end-b) (equal? start-b end-a)))))
+
+(defn overlap
+  "Returns an Interval representing the overlap of the specified Intervals.
+   Returns nil if the Intervals do not overlap.
+   The first argument must not be nil.
+   If the second argument is nil then the overlap of the first argument
+   and a zero duration interval with both start and end times equal to the
+   current time is returned."
+  [^Interval i-a ^Interval i-b]
+     ;; joda-time AbstractInterval.overlaps:
+     ;;    null argument means a zero length interval 'now'.
+     (cond (nil? i-b) (let [n (now)] (overlap i-a (interval n n)))
+           (.overlaps i-a i-b) (interval (latest (start i-a) (start i-b))
+                                         (earliest (end i-a) (end i-b)))
+           :else nil))
 
 (defn abuts?
   "Returns true if Interval i-a abuts i-b, i.e. then end of i-a is exactly the

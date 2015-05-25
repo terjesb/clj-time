@@ -156,6 +156,15 @@ intervals in the corresponding temporal units:
 => 17280
 ```
 
+The `overlap` function can be used to get an `Interval` representing the
+overlap between two intervals:
+
+``` clj
+(overlap (t/interval (t/date-time 1986) (t/date-time 1990))
+         (t/interval (t/date-time 1987) (t/date-time 1991)))
+=> #<Interval 1987-01-01T00:00:00.000Z/1990-01-01T00:00:00.000Z>
+```
+
 `today-at` returns a moment in time at the given hour,
 minute and second on the current date:
 

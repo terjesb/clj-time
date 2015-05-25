@@ -464,6 +464,28 @@
     (is (not (overlaps? ld1 ld2 ld3 ld4)))
     (is (not (overlaps? ld1 ld3 ld4 ld5)))))
 
+(deftest test-overlap
+  (let [d1 (date-time 1985)
+        d2 (date-time 1986)
+        d3 (date-time 1987)
+        d4 (date-time 1988)
+        n (now)
+        n1 (minus n (minutes 5))
+        n2 (plus n (minutes 5))]
+    (is (nil? (overlap (interval d1 d2) nil)))
+    (is (let [t (overlap (interval n1 n2) nil)]
+          ;; nil is a zero length duration at 'now'
+          (and
+            (< (in-millis (interval n (start t))) 1000)
+            (= 0 (in-millis t)))))
+    (is (= (interval d2 d2) (overlap (interval d1 d3) (interval d2 d2))))
+    (is (nil? (overlap (interval d1 d1) (interval d1 d1)))) ;; The intervals abut
+    (is (nil? (overlap (interval d1 d2) (interval d2 d3)))) ;; The intervals abut
+    (is (= (interval d2 d3) (overlap (interval d1 d3) (interval d2 d4))))
+    (is (= (interval d2 d3) (overlap (interval d1 d3) (interval d2 d3))))
+    (is (nil? (overlap (interval d1 d2) (interval d2 d3))))
+    (is (nil? (overlap (interval d1 d2) (interval d3 d4))))))
+
 (deftest test-abuts?
   (let [d1 (date-time 1985)
         d2 (date-time 1986)
