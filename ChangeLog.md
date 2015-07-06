@@ -5,6 +5,11 @@ No changes yet.
 
 ## Changes Between 0.9.0 and 0.10.0
 
+### clj-time.jdbc
+
+`clj-time.jdbc` is a new namespace that, when loaded, extends `clojure.java.jdbc`
+protocols for Joda Time data types.
+
 ### clj-time.instant
 
 `clj-time.instant` is a new namespace that, when loaded, makes it possible
