@@ -1,5 +1,10 @@
 ## Changes Between 0.9.0 and 0.10.0
 
+### clj-time.instant
+
+`clj-time.instant` is a new namespace that, when loaded, makes it possible
+for the Clojure reader to serialize Joda Time data types.
+
 ### Joda Time 2.7
 
 [Joda Time](http://www.joda.org/joda-time/) has been [upgraded to `2.7`](http://www.joda.org/joda-time/upgradeto270.html).
