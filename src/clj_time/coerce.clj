@@ -107,6 +107,14 @@
   (if-let [dt (to-date-time obj)]
     (LocalDateTime. (.getMillis (from-time-zone dt (default-time-zone))))))
 
+(defn in-time-zone
+  "Convert `obj` into `tz`, return org.joda.time.LocalDate instance."
+  [obj tz]
+  (if-let [dt (to-date-time obj)]
+    (-> dt
+        (to-time-zone tz)
+        .toLocalDate)))
+
 (extend-protocol ICoerce
   nil
   (to-date-time [_]
