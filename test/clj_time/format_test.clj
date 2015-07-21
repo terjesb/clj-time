@@ -1,7 +1,7 @@
 (ns clj-time.format-test
   (:refer-clojure :exclude [extend second])
-  (:use clojure.test
-        (clj-time core format))
+  (:require [clojure.test :refer :all]
+            [clj-time [core :refer :all] [format :refer :all]])
   (:import [org.joda.time DateTimeZone]
            java.util.Locale))
 

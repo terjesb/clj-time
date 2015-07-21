@@ -1,7 +1,7 @@
 (ns clj-time.coerce-test
   (:refer-clojure :exclude [extend second])
-  (:use clojure.test)
-  (:use (clj-time core coerce))
+  (:require [clojure.test :refer :all]
+            [clj-time [core :refer :all] [coerce :refer :all]])
   (:import java.util.Date java.sql.Timestamp
            [org.joda.time LocalDate LocalDateTime]))
 

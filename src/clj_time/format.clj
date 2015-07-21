@@ -26,14 +26,14 @@
    etc with the functions with-zone, with-locale, with-chronology,
    with-default-year and with-pivot-year."
   (:refer-clojure :exclude [extend second])
-  (:use [clojure.set :only (difference)])
-  (:use clj-time.core)
-  (:import (java.util Locale)
-           (org.joda.time Chronology DateTime DateTimeZone Interval LocalDateTime
-                          Period PeriodType LocalDate LocalTime)
-           (org.joda.time.format DateTimeFormat DateTimeFormatter DateTimePrinter
-                                 DateTimeFormatterBuilder DateTimeParser
-                                 ISODateTimeFormat)))
+  (:require [clj-time.core :refer :all]
+            [clojure.set :refer [difference]])
+  (:import [java.util Locale]
+           [org.joda.time Chronology DateTime DateTimeZone Interval
+                          LocalDateTime Period PeriodType LocalDate LocalTime]
+           [org.joda.time.format DateTimeFormat DateTimeFormatter
+                                 DateTimePrinter DateTimeFormatterBuilder
+                                 DateTimeParser ISODateTimeFormat]))
 
 (declare formatter)
 ;; The formatters map and show-formatters idea are strait from chrono.

@@ -89,11 +89,12 @@
    you need to print or parse date-times, see clj-time.format. If you need to
    coerce date-times to or from other types, see clj-time.coerce."
   (:refer-clojure :exclude [extend second])
-  (:import (org.joda.time ReadablePartial ReadableDateTime ReadableInstant ReadablePeriod DateTime
-                          DateMidnight YearMonth LocalDate LocalTime DateTimeZone Period PeriodType Interval
-                          Years Months Weeks Days Hours Minutes Seconds LocalDateTime MutableDateTime
-                          DateTimeUtils)
-           (org.joda.time.base BaseDateTime)))
+  (:import [org.joda.time ReadablePartial ReadableDateTime ReadableInstant
+                          ReadablePeriod DateTime DateMidnight YearMonth
+                          LocalDate LocalTime DateTimeZone Period PeriodType
+                          Interval Years Months Weeks Days Hours Minutes Seconds
+                          LocalDateTime MutableDateTime DateTimeUtils]
+           [org.joda.time.base BaseDateTime]))
 
 (defn deprecated [message]
   (println "DEPRECATION WARNING: " message))
