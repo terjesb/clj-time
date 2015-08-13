@@ -1,6 +1,13 @@
 ## Changes Between 0.10.0 and 0.11.0
 
-No changes yet.
+### Joda Time 2.8
+
+[Joda Time](http://www.joda.org/joda-time/) has been [upgraded to `2.8.2`](http://www.joda.org/joda-time/upgradeto282.html).
+
+### Clojure 1.7 by Default
+
+The library now depends on Clojure `1.7.0`.
+
 
 
 ## Changes Between 0.9.0 and 0.10.0
