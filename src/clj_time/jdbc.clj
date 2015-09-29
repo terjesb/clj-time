@@ -17,7 +17,13 @@
 (extend-protocol jdbc/IResultSetReadColumn
   java.sql.Timestamp
   (result-set-read-column [v _2 _3]
-    (tc/from-sql-time v)))
+    (tc/from-sql-time v))
+  java.sql.Date
+  (result-set-read-column [v _2 _3]
+    (tc/from-sql-date v))
+  java.sql.Time
+  (result-set-read-column [v _2 _3]
+    (org.joda.time.DateTime. v)))
 
 ; http://clojure.github.io/java.jdbc/#clojure.java.jdbc/ISQLValue
 (extend-protocol jdbc/ISQLValue
