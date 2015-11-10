@@ -35,15 +35,17 @@
                                  DateTimePrinter DateTimeFormatterBuilder
                                  DateTimeParser ISODateTimeFormat]))
 
-(declare formatter)
+(declare formatters)
 ;; The formatters map and show-formatters idea are strait from chrono.
 
 (defn formatter
-  "Returns a custom formatter for the given date-time pattern."
-  ([^String fmts]
+  "Returns a custom formatter for the given date-time pattern or keyword."
+  ([fmts]
      (formatter fmts utc))
-  ([^String fmts ^DateTimeZone dtz]
-     (.withZone (DateTimeFormat/forPattern fmts) dtz))
+  ([fmts ^DateTimeZone dtz]
+   (if-let [dtf ^DateTimeFormatter (get formatters fmts)]
+     (.withZone dtf dtz)
+     (.withZone (DateTimeFormat/forPattern fmts) dtz)))
   ([^DateTimeZone dtz fmts & more]
     (let [printer (.getPrinter ^DateTimeFormatter (formatter fmts dtz))
           parsers (map #(.getParser ^DateTimeFormatter (formatter % dtz)) (cons fmts more))]

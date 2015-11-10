@@ -6,9 +6,15 @@
            java.util.Locale))
 
 (deftest test-formatter
-  (let [fmt (formatter "yyyyMMdd")]
-    (is (= (date-time 2010 3 11)
-           (parse fmt "20100311")))))
+  (testing "with string pattern"
+    (let [fmt (formatter "yyyyMMdd")]
+      (is (= (date-time 2010 3 11)
+             (parse fmt "20100311")))))
+  (testing "with keyword"
+    (let [dtz (time-zone-for-id "America/Detroit")
+          fmt (formatter dtz :year-month-day :basic-date "YY/dd/MM")]
+      (is (= (from-time-zone (date-time 1997 06 17) dtz)
+             (parse fmt "97/17/06"))))))
 
 (deftest test-formatter-local
   (let [fmt (formatter-local "yyyyMMdd")]
