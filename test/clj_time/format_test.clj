@@ -103,6 +103,13 @@
   (let [fmt (with-locale (formatters :rfc822) Locale/ITALY)]
     (is (= "gio, 11 mar 2010 17:49:20 +0000"
            (unparse fmt (date-time 2010 3 11 17 49 20 881)))))
+  (let [current-locale (java.util.Locale/getDefault)]
+    (java.util.Locale/setDefault java.util.Locale/ITALY)
+    (try
+      (is (= "Thu, 11 Mar 2010 17:49:20 +0000"
+             (unparse (formatters :rfc822) (date-time 2010 3 11 17 49 20 881))))
+      (finally
+        (java.util.Locale/setDefault current-locale))))
   (let [fmt (with-pivot-year (formatter "YY") 2050)]
     (is (= (date-time 2075 1 1)
            (parse fmt "75"))))

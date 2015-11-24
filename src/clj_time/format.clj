@@ -142,7 +142,7 @@
      :year (ISODateTimeFormat/year)
      :year-month (ISODateTimeFormat/yearMonth)
      :year-month-day (ISODateTimeFormat/yearMonthDay)
-     :rfc822 (formatter "EEE, dd MMM yyyy HH:mm:ss Z")
+     :rfc822 (with-locale (formatter "EEE, dd MMM yyyy HH:mm:ss Z") java.util.Locale/US)
      :mysql (formatter "yyyy-MM-dd HH:mm:ss")})))
 
 (def ^{:private true} parsers
