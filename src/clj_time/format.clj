@@ -43,9 +43,9 @@
   ([fmts]
      (formatter fmts utc))
   ([fmts ^DateTimeZone dtz]
-   (if-let [dtf ^DateTimeFormatter (get formatters fmts)]
-     (.withZone dtf dtz)
-     (.withZone (DateTimeFormat/forPattern fmts) dtz)))
+   (cond (keyword? fmts) (.withZone ^DateTimeFormatter (get formatters fmts) dtz)
+         (string?  fmts) (.withZone (DateTimeFormat/forPattern fmts) dtz)
+         :else           (.withZone ^DateTimeFormatter fmts dtz)))
   ([^DateTimeZone dtz fmts & more]
     (let [printer (.getPrinter ^DateTimeFormatter (formatter fmts dtz))
           parsers (map #(.getParser ^DateTimeFormatter (formatter % dtz)) (cons fmts more))]
