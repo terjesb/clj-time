@@ -50,7 +50,7 @@ Please ask questions on the [clj-time mailing list](http://groups.google.com/for
 The main namespace for date-time operations in the `clj-time` library is `clj-time.core`.
 
 ``` clj
-=> (require '[clj-time.core :as t])
+(require '[clj-time.core :as t])
 ```
 
 Create a DateTime instance with date-time, specifying the year, month,
@@ -76,7 +76,7 @@ Once you have a date-time, use accessors like `hour` and `second` to
 access the corresponding fields:
 
 
-``` clj
+```clojure
 (t/hour (t/date-time 1986 10 14 22))
 => 22
 ```
@@ -119,7 +119,7 @@ timezone-related shifting).
 The functions `equal?`, `after?`, and `before?` determine the relative position
 of two DateTime instances:
 
-``` clj
+```clojure
 (t/equal? (t/date-time 1986 10) (t/date-time 1986 10))
 => true
 (t/after? (t/date-time 1986 10) (t/date-time 1986 9))
@@ -142,7 +142,7 @@ An `Interval` is used to represent the span of time between two
 `DateTime` instances. Construct one using `interval`, then query them
 using `within?`, `overlaps?`, and `abuts?`
 
-``` clj
+```clojure
 (t/within? (t/interval (t/date-time 1986) (t/date-time 1990))
               (t/date-time 1987))
 => true
@@ -151,7 +151,7 @@ using `within?`, `overlaps?`, and `abuts?`
 The `in-seconds` and `in-minutes` functions can be used to describe
 intervals in the corresponding temporal units:
 
-``` clj
+```clojure
 (t/in-minutes (t/interval (t/date-time 1986 10 2) (t/date-time 1986 10 14)))
 => 17280
 ```
@@ -168,7 +168,7 @@ overlap between two intervals:
 `today-at` returns a moment in time at the given hour,
 minute and second on the current date:
 
-``` clojure
+``` clj
 (t/today-at 12 00)
 => #<DateTime 2013-03-29T12:00:00.000Z>
 (t/today-at 12 00 05)
@@ -186,7 +186,7 @@ If you need to parse or print date-times, use `clj-time.format`:
 Parsing and printing are controlled by formatters. You can either use
 one of the built in ISO8601 formatters or define your own, e.g.:
 
-``` clj
+```clojure
 (def built-in-formatter (f/formatters :basic-date-time))
 (def custom-formatter (f/formatter "yyyyMMdd"))
 ```
@@ -208,7 +208,8 @@ Once you have a formatter, parsing and printing are straightforward:
 ``` clj
 (f/parse custom-formatter "20100311")
 => #<DateTime 2010-03-11T00:00:00.000Z>
-
+```
+```clojure
 (f/unparse custom-formatter (t/date-time 2010 10 3))
 => "20101003"
 ```
@@ -217,7 +218,7 @@ To parse dates in multiple formats and format dates in just one
 format, you can do this:
 
 
-``` clj
+```clojure
 (def multi-parser (f/formatter (t/default-time-zone) "YYYY-MM-dd" "YYYY/MM/dd"))
 
 (f/unparse multi-parser (f/parse multi-parser "2012-02-01"))
@@ -239,10 +240,11 @@ coercing Joda `DateTime` instances to and from various other types:
 
 For example, to convert a Joda `DateTime` to and from a Java `long`:
 
-``` clj
+```clojure
 (c/to-long (t/date-time 1998 4 25))
 => 893462400000
-
+```
+``` clj
 (c/from-long 893462400000)
 => #<DateTime 1998-04-25T00:00:00.000Z>
 ```
@@ -250,7 +252,7 @@ For example, to convert a Joda `DateTime` to and from a Java `long`:
 And by the magic of protocols you can pass in an isoformat string and
 get the unix epoch milliseconds:
 
-``` clj
+```clojure
 (c/to-long "2013-08-01")
 => 1375315200000
 ```
@@ -310,7 +312,7 @@ to the format-key passed in with
 `clj-time.periodic/periodic-seq` returns an infinite sequence of instants
 separated by a time period starting with the given point in time:
 
-``` clojure
+``` clj
 (require '[clj-time.periodic :as p])
 (require '[clj-time.core :as t])
 
@@ -324,11 +326,11 @@ separated by a time period starting with the given point in time:
 `clj-time.predicates` comes with a set of handy predicates to
 check for common conditions. For instance:
 
-```clojure
-
+``` clj
 (require '[clj-time.core :as t])
 (require '[clj-time.predicates :as pr])
-
+```
+``` clojure
 (pr/monday? (t/date-time 1999 9 9))
 => false
 
@@ -355,14 +357,13 @@ check for common conditions. For instance:
 
 From the REPL:
 
-```clojure
-=> (require 'clj-time.jdbc)
-nil
+``` clj
+(require 'clj-time.jdbc)
 ```
 
 In your project:
 
-```clojure
+``` clj
 (ns my.neat.project
   (:require [clj-time.jdbc]))
 
