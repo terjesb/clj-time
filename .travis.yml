@@ -1,7 +1,7 @@
 language: clojure
 before_script:
   - rm -f test/readme.clj
-  - echo y | lein upgrade
+  - echo y | sudo lein upgrade
 script: lein test-all
 jdk:
   - openjdk6
