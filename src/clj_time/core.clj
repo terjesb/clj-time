@@ -285,6 +285,16 @@
   ([^Long year ^Long month ^Long day]
     (DateMidnight. year month day ^DateTimeZone utc)))
 
+(defn min-date
+  "Minimum of the provided DateTimes."
+  [dt & dts]
+  (reduce #(if (before? %1 %2) %1 %2) dt dts))
+
+(defn max-date
+  "Maximum of the provided DateTimes."
+  [dt & dts]
+  (reduce #(if (after? %1 %2) %1 %2) dt dts))
+
 (defn ^DateTime date-time
   "Constructs and returns a new DateTime in UTC.
    Specify the year, month of year, day of month, hour of day, minute of hour,

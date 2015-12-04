@@ -59,6 +59,23 @@
     (is (= 0    (second d)))
     (is (= 0    (milli  d)))))
 
+(deftest test-min-and-max
+  (let [ds [(date-time 1986 10 14 4 3 2 1)
+            (date-time 1986 12 14 4 3 2 1)
+            (date-time 1987 10 14 11 3 2 5)
+            (date-time 2014 10 14 4 3 2 1)
+            (date-time 1986 10 14 4 3 2 2)
+            (date-time 1985 10 14 4 3 2 1)
+            (date-time 1985 10 14 4 3 2 2)]]
+    (is (= (date-time 1985 10 14 4 3 2 1)
+           (apply min-date ds)))
+    (is (= (date-time 2014 10 14 4 3 2 1)
+           (apply max-date ds))))
+  (is (= (date-time 1986 10 14 4 3 2 1)
+         (apply min-date [(date-time 1986 10 14 4 3 2 1)])))
+  (is (= (date-time 1986 10 14 4 3 2 1)
+         (apply max-date [(date-time 1986 10 14 4 3 2 1)]))))
+
 (deftest test-local-date-time-and-accessors
   (let [d (local-date-time 1986)]
     (is (= 1986 (year   d)))
