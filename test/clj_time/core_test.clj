@@ -18,6 +18,21 @@
                         (today-at-midnight (time-zone-for-offset -3)))]
     (is (= 14 (day midnight)))))
 
+
+(deftest test-with-time-at-start-of-day
+  (let [d (date-time 2010 1 1)]
+    (is (= d (with-time-at-start-of-day d))))
+  (let [start-of-day (-> (date-time 2010 1 15 2)
+                         (to-time-zone (time-zone-for-offset -3))
+                         (with-time-at-start-of-day))]
+    (is (= 14 (day start-of-day))))
+  (let [d (-> (date-time 2015 3 27 23)
+              (from-time-zone (time-zone-for-id "Asia/Gaza")))
+        d-plus-1h (-> d
+                      (plus (hours 1)))]
+    (is (= (hour d-plus-1h) (hour (with-time-at-start-of-day d-plus-1h))))
+    (is (not (zero? (hour d-plus-1h))))))
+
 (deftest test-epoch
   (let [e (epoch)]
     (is (= 1970 (year e)))

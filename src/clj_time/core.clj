@@ -261,12 +261,19 @@
   []
   (LocalTime. ))
 
-(defn today-at-midnight
-  "Returns a DateMidnight for today at midnight in the UTC time zone."
+(defn ^{:deprecated "0.12.0"} today-at-midnight
+  "DEPRECATED: Please use with-time-at-start-of-day instead. See http://goo.gl/nQCmKd
+  Returns a DateMidnight for today at midnight in the UTC time zone."
   ([]
    (DateMidnight. ^DateTimeZone utc))
   ([^DateTimeZone tz]
    (DateMidnight. tz)))
+
+(defn ^DateTime with-time-at-start-of-day
+  "Returns a DateTime representing the start of the day. Normally midnight,
+  but not always true, as in some time zones with daylight savings."
+  [dt]
+  (.withTimeAtStartOfDay dt))
 
 (defn epoch
   "Returns a DateTime for the begining of the Unix epoch in the UTC time zone."
