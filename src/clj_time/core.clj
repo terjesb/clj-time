@@ -728,6 +728,14 @@
   (^long [^long year ^long month]
          (day (last-day-of-the-month- (date-time year month)))))
 
+(defn nth-day-of-the-month
+  "Returns the nth day of the month."
+  ([^long year ^long month ^long n]
+   (nth-day-of-the-month (date-time year month) n))
+  ([^DateTime dt ^long n]
+   (plus (first-day-of-the-month dt)
+         (days (- n 1)))))
+
 (defn ^DateTime today-at
   ([^long hours ^long minutes ^long seconds ^long millis]
      (let [^MutableDateTime mdt (.toMutableDateTime ^DateTime (now))]
