@@ -631,6 +631,26 @@
     (is (= d9 (first-day-of-the-month d10)))
     (is (= d9 (first-day-of-the-month d11)))))
 
+(deftest test-nth-day-of-the-month
+  (let [july-1  (date-time 2012 7 1)
+        july-10 (date-time 2012 7 10)
+        july-15 (date-time 2012 7 15)
+        july-31 (date-time 2012 7 31)]
+
+    (is (= july-10 (nth-day-of-the-month july-1  10)))
+    (is (= july-10 (nth-day-of-the-month july-10 10)))
+    (is (= july-10 (nth-day-of-the-month july-15 10)))
+    (is (= july-10 (nth-day-of-the-month july-31 10)))
+
+    (is (= july-1 (nth-day-of-the-month july-1  1)))
+    (is (= july-1 (nth-day-of-the-month july-10 1)))
+    (is (= july-1 (nth-day-of-the-month july-15 1)))
+    (is (= july-1 (nth-day-of-the-month july-31 1)))
+
+    (is (= july-31 (nth-day-of-the-month july-1  31)))
+    (is (= july-31 (nth-day-of-the-month july-10 31)))
+    (is (= july-31 (nth-day-of-the-month july-15 31)))
+    (is (= july-31 (nth-day-of-the-month july-31 31)))))
 
 (deftest test-today-at
   (let [^DateTime n  (now)
