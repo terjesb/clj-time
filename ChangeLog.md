@@ -1,3 +1,39 @@
+## Changes Between 0.11.0 and 0.12.0
+
+### Joda Time 2.9.3
+
+[Joda Time](http://www.joda.org/joda-time/) has been [upgraded to `2.9.3`](http://www.joda.org/joda-time/upgradeto293.html).
+
+### java.jdbc coercions
+
+`java.sql.Date` and `java.sql.Time` are now coerced automatically if you `require` `clj-time.jdbc` (previously only `java.sql.Timestamp` was coerced).
+
+### Formatters
+
+The `formatter` function now accepts keywords and formatter objects, as well as string formats, so you can easily select a standard format (with a keyword) or provide a specific formatter object.
+
+### Clojure 1.8 by Default
+
+The library now depends on Clojure `1.8.0` and is tested against `1.6.0`, `1.7.0`, and `1.9.0-master-SNAPSHOT`.
+
+### Enhancements
+
+* `first-day-of-the-month?` and `last-day-of-the-month?` -- aliases to improve consistency (so it's `the-month` everywhere).
+* `min-date` and `max-date` -- to return the minimum or maximum of two or more dates.
+* `nth-day-of-the-month` -- return the Nth day of the year/month, or date/time.
+* `nth-day-of-the-month?` -- return true if a given date/time is on the Nth day of its month.
+* `with-time-at-start-of-day` -- return the time at the start of the day, including timezone and DST support.
+
+### Deprecations
+
+* `today-at-midnight` -- deprecated in favor of `with-time-at-start-of-day`.
+
+### Bug Fixes
+
+[Issue 185](https://github.com/clj-time/clj-time/issues/185) is fixed by explicitly tying the `:rfc822` formatter to the US locale.
+
+The examples in the README are now automatically tested (by midje-readme) so they are more likely to be valid.
+
 ## Changes Between 0.10.0 and 0.11.0
 
 ### Joda Time 2.8
