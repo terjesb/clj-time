@@ -321,6 +321,8 @@ separated by a time period starting with the given point in time:
 (take 10 (p/periodic-seq (t/now) (t/hours 12)))
 ```
 
+In particular, if you ask for a sequence of instants separated by a month, you will get dates where the month increases each time (rather than being, say, 30 days apart).
+
 ### clj-time.predicates
 
 `clj-time.predicates` comes with a set of handy predicates to
