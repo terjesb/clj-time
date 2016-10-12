@@ -276,7 +276,7 @@
   (.withTimeAtStartOfDay dt))
 
 (defn epoch
-  "Returns a DateTime for the begining of the Unix epoch in the UTC time zone."
+  "Returns a DateTime for the beginning of the Unix epoch in the UTC time zone."
   []
   (DateTime. (long 0) ^DateTimeZone utc))
 
