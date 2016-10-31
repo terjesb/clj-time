@@ -2,7 +2,7 @@
 
 No changes yet.
 
-## Changes Between 0.12.0 and 0.12.1 (unreleased)
+## Changes Between 0.12.0 and 0.12.1
 
 * Updated Joda Time (to 2.9.4) and several testing dependencies as well.
 * `floor` now retains timezone information (#204).
