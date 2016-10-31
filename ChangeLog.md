@@ -1,6 +1,10 @@
-## Changes Between 0.12.1 and 0.13.0 (unreleased)
+## Changes Between 0.12.2 and 0.13.0 (unreleased)
 
 No changes yet.
+
+## Changes Between 0.12.1 and 0.12.2
+
+* More reflection warnings removed (#221).
 
 ## Changes Between 0.12.0 and 0.12.1
 

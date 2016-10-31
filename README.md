@@ -21,7 +21,7 @@ If you are using Maven, add the following repository definition to your `pom.xml
 With Leiningen:
 
 ``` clj
-[clj-time "0.12.1"]
+[clj-time "0.12.2"]
 ```
 
 With Maven:
@@ -30,7 +30,7 @@ With Maven:
 <dependency>
   <groupId>clj-time</groupId>
   <artifactId>clj-time</artifactId>
-  <version>0.12.1</version>
+  <version>0.12.2</version>
 </dependency>
 ```
 
@@ -392,4 +392,3 @@ The complete [API documentation](http://clj-time.github.com/clj-time/doc/index.h
 ## License
 
 Released under the MIT License: <https://github.com/clj-time/clj-time/blob/master/MIT-LICENSE.txt>
-
