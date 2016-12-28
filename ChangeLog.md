@@ -1,6 +1,6 @@
-## Changes Between 0.12.2 and 0.13.0 (unreleased)
+## Changes Between 0.12.2 and 0.13.0
 
-No changes yet.
+* Update Joda Time to 2.9.7 (#223).
 
 ## Changes Between 0.12.1 and 0.12.2
 
