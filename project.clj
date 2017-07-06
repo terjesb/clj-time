@@ -13,7 +13,7 @@
   :global-vars {*warn-on-reflection* true}
   :profiles {:dev {:dependencies [[org.clojure/java.jdbc "0.6.1"]]
                    :plugins [[codox "0.8.10"]]}
-             :midje {:dependencies [[midje "1.9.0-alpha17"]]
+             :midje {:dependencies [[midje "1.9.0-alpha5"]]
                      :plugins      [[lein-midje "3.2.1"]
                                     [midje-readme "1.0.9"]]
                      :midje-readme {:require "[clj-time.core :as t] [clj-time.predicates :as pr] [clj-time.format :as f] [clj-time.coerce :as c]"}}
