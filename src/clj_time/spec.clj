@@ -1,7 +1,7 @@
 (ns clj-time.spec
   "This namespace requires Clojure 1.9 or later. It defines a set of predicates plus a set of spec defs with associated generators."
-  (:require [clojure.spec :as spec]
-            [clojure.spec.gen :as gen]
+  (:require [clojure.spec.alpha :as spec]
+            [clojure.spec.gen.alpha :as gen]
             [clj-time.types :refer [date-time? local-date-time? local-date? time-zone?]]
             [clj-time.core :refer [date-time]]
             [clj-time.coerce :refer [to-date-time to-long]])
