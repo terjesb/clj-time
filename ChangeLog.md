@@ -1,3 +1,10 @@
+## Changes Between 0.13.0 and 0.14.0
+
+* Add `from-epoch`.
+* Clarify `today-at` is UTC.
+* Add optional `clj-time.spec` namespace (requires Clojure 1.9 Alpha 17).
+* Add `clj-time.types` namespace with type-based predicates.
+
 ## Changes Between 0.12.2 and 0.13.0
 
 * Update Joda Time to 2.9.7 (#223).

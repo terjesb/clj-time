@@ -1,4 +1,5 @@
 (ns clj-time.types-test
+  (:refer-clojure :exclude [second extend])
   (:require [clojure.test :refer :all]
             [clj-time.types :as types]
             [clj-time.core :refer :all]))
@@ -15,5 +16,3 @@
   (is (not (types/date-time? (local-date 2018 8 22))))
   (is (not (types/local-date-time? (local-date 2018 8 22))))
   (is (types/local-date? (local-date 2018 8 22))))
-
-
