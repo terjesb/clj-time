@@ -24,12 +24,11 @@
   [^Long millis]
   (DateTime. millis ^DateTimeZone utc))
 
-(defn from-epoch
+(defn ^DateTime from-epoch
   "Returns a DateTime instance in the UTC time zone
    from given Unix epoch."
   [^Long epoch]
   (from-long (* epoch 1000)))
-
 
 (defn ^DateTime from-string
   "return DateTime instance from string using
@@ -59,17 +58,17 @@
   (when sql-time
     (from-long (.getTime sql-time))))
 
-(defn to-long
+(defn ^Long to-long
   "Convert `obj` to the number of milliseconds after the Unix epoch."
   [obj]
   (if-let [dt (to-date-time obj)]
     (.getMillis dt)))
 
-(defn to-epoch
+(defn ^Long to-epoch
   "Convert `obj` to Unix epoch."
   [obj]
-  (let [millis (to-long obj)]
-    (and millis (quot millis 1000))))
+  (if-let [millis (to-long obj)]
+    (quot millis 1000)))
 
 (defn ^Date to-date
   "Convert `obj` to a Java Date instance."
