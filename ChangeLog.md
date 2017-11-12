@@ -1,3 +1,9 @@
+## Changes Between 0.14.0 and 0.14.1
+
+* Switches `clojure.spec` to `clojure.spec.alpha` to work with latest Clojure 1.9 builds.
+* Adds `week-year` to go with `week-number-of-year` (#239, #240).
+* Adds function return type hints across the board (#226).
+
 ## Changes Between 0.13.0 and 0.14.0
 
 * Add `from-epoch`.
