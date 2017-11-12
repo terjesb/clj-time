@@ -592,6 +592,12 @@
   (is (= 1 (week-number-of-year (date-time 2012 12 31))))
   (is (= 1 (week-number-of-year (date-time 2013 1 1)))))
 
+(deftest test-week-year
+  (is (= 2015 (week-year (date-time 2016 1 3))))
+  (is (= 2016 (week-year (date-time 2016 1 4))))
+  (is (= 2016 (week-year (date-time 2017 1 1))))
+  (is (= 2017 (week-year (date-time 2017 1 2)))))
+
 (deftest test-number-of-days-in-the-month
   (is (= 31 (number-of-days-in-the-month 2012 1)))
   (is (= 31 (number-of-days-in-the-month (date-time 2012 1 3))))
