@@ -274,7 +274,7 @@
   ([^DateTimeZone tz]
    (DateMidnight. tz)))
 
-(defn ^DateTime with-time-at-start-of-day
+(defn ^org.joda.time.DateTime with-time-at-start-of-day
   "Returns a DateTime representing the start of the day. Normally midnight,
   but not always true, as in some time zones with daylight savings."
   [^DateTime dt]
@@ -307,7 +307,7 @@
   [dt & dts]
   (reduce #(if (after? %1 %2) %1 %2) dt dts))
 
-(defn ^DateTime date-time
+(defn ^org.joda.time.DateTime date-time
   "Constructs and returns a new DateTime in UTC.
    Specify the year, month of year, day of month, hour of day, minute of hour,
    second of minute, and millisecond of second. Note that month and day are
@@ -741,7 +741,7 @@
    (plus (first-day-of-the-month dt)
          (days (- n 1)))))
 
-(defn ^DateTime today-at
+(defn ^org.joda.time.DateTime today-at
   ([^long hours ^long minutes ^long seconds ^long millis]
      (let [^MutableDateTime mdt (.toMutableDateTime ^DateTime (now))]
        (.toDateTime (doto mdt
@@ -767,7 +767,7 @@
   `(do-at* ~base-date-time
     (fn [] ~@body)))
 
-(defn ^DateTime floor
+(defn ^org.joda.time.DateTime floor
   "Floors the given date-time dt to the given time unit dt-fn,
   e.g. (floor (now) hour) returns (now) for all units
   up to and including the hour"
