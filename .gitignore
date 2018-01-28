@@ -6,6 +6,7 @@ clj-time.jar
 pom.xml
 *.jar
 *~
+.cpcache
 .lein-*
 .nrepl-*
 checkouts
