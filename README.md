@@ -36,7 +36,7 @@ With Maven:
 
 ## Bugs and Enhancements
 
-Please open issues against the [official clj-time repo on Github](https://github.com/clj-time/clj-time/issues).
+Please open issues against the [official clj-time repo on Github](https://github.com/clj-time/clj-time/issues). `clj-time` is a very thin wrapper around Joda Time. That means that if Joda Time has a "peculiar behavior", it's likely to be surfaced directly in `clj-time` as well. A good example of this is `clj-time.format/unparse` which simply calls Joda Time's `.print` method -- and if the date passed in happens to be `nil`, you silently get back the _current date/time_ (many people would expect an exception!).
 
 ## Mailing List
 
@@ -231,6 +231,8 @@ format, you can do this:
 (f/unparse multi-parser (f/parse multi-parser "2012/02/01"))
 => "2012-02-01"
 ```
+
+Note: Joda Time's `.print` method accepts a null date/time object and substitutes the current date/time, so `(f/unparse my-fmt nil)` will not throw an exception -- it will just silently return the current date/time!
 
 ### clj-time.coerce
 
