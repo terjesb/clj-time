@@ -1,7 +1,11 @@
 # `clj-time` <a href="http://travis-ci.org/#!/clj-time/clj-time/builds"><img src="https://secure.travis-ci.org/clj-time/clj-time.png" /></a> [![Dependency Status](https://www.versioneye.com/clojure/clj-time:clj-time/badge.png)](https://www.versioneye.com/clojure/clj-time:clj-time) [![Join the chat at https://gitter.im/clj-time/clj-time](https://badges.gitter.im/clj-time/clj-time.svg)](https://gitter.im/clj-time/clj-time?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
-A date and time library for Clojure, wrapping the [Joda Time](http://www.joda.org/joda-time/) library.
+A date and time library for Clojure, wrapping the [Joda Time](http://www.joda.org/joda-time/) library. **The Joda Time website says:**
+
+> Note that from Java SE 8 onwards, users are asked to migrate to java.time (JSR-310) - a core part of the JDK which replaces this project.
+
+If you are using Java 8 or later, consider using the built-in Java Time instead of Joda Time -- and look at [clojure.java-time](https://github.com/dm3/clojure.java-time) if you want a Clojure wrapper for that.
 
 ## Artifacts
 
