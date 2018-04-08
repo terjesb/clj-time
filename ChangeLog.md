@@ -1,6 +1,6 @@
 ## Changes Between 0.14.2 and 0.14.3
 
-* Added deprecation notice and recommendation to move to Java Time (and [clojure.java-time](https://github.com/dm3/clojure.java-time).
+* Added deprecation notice and recommendation to move to Java Time (and [clojure.java-time](https://github.com/dm3/clojure.java-time)).
 * Clarified behavior of functions when passed `nil` (due to how Joda Time handles `null` objects).
 * Update to Joda Time 2.9.9.
 * Drop Clojure 1.6.0 support.
