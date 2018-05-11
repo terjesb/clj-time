@@ -1,3 +1,7 @@
+## Changes Between 0.14.3 and master
+
+* On Clojure 1.9 and later, `ReadableInstant` now extends to `Inst`, providing `inst?` and `inst-ms` on most Joda Time types (#248, #249)
+
 ## Changes Between 0.14.2 and 0.14.3
 
 * Added deprecation notice and recommendation to move to Java Time (and [clojure.java-time](https://github.com/dm3/clojure.java-time)).
