@@ -1,3 +1,5 @@
+(def java7? (.startsWith (System/getProperty "java.version") "1.7"))
+
 (defproject clj-time/clj-time "0.14.4"
   :description "A date and time library for Clojure, wrapping Joda Time."
   :url "https://github.com/clj-time/clj-time"
@@ -25,4 +27,8 @@
                                      [org.clojure/test.check "0.9.0"]]
                       :test-paths ["test" "test_clj_1.9"]}}
 
-  :aliases {"test-all" ["with-profile" "dev,spec,default,midje:dev,master,default,midje:dev,default,midje:dev,1.7,midje:dev,1.8,midje" "test"]})
+  :aliases {"test-all" ["with-profile"
+                        ~(str "dev,spec,default,midje:"
+                              (when-not java7? "dev,master,default,midje:")
+                              "dev,default,midje:dev,1.7,midje:dev,1.8,midje")
+                        "test"]})
