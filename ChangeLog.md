@@ -1,3 +1,10 @@
+## Changes Between 0.14.4 and 0.14.5
+
+* Update Joda Time to 2.10 (#254, @novalis).
+* Update various dev/test dependencies; clean up `spec_test.clj` to avoid Clojure refer warnings.
+* Drop `oraclejdk7` from test matrix (we still support `openjdk7`); add `openjdk8`; test Clojure 1.10 on Java 8+ only (#253).
+* Switch to versions.deps.co for tracking outdated dependencies (#252, @v-kolesnikov).
+
 ## Changes Between 0.14.3 and 0.14.4
 
 * On Clojure 1.9 and later, `ReadableInstant` now extends to `Inst`, providing `inst?` and `inst-ms` on most Joda Time types (#248, #249)

@@ -1,8 +1,10 @@
 (ns clj-time.spec-test
-  (:require [clojure.test :refer :all]
+  (:require [clojure.test :refer [deftest is]]
             [clojure.spec.alpha :as spec]
             [clojure.spec.gen.alpha :as gen]
-            [clj-time.core :refer :all]
+            [clj-time.core :refer [before?
+                                   date-time
+                                   local-date local-date-time]]
             [clj-time.types :as types]
             [clj-time.spec :as ts]))
 

@@ -1,6 +1,6 @@
 (def java7? (.startsWith (System/getProperty "java.version") "1.7"))
 
-(defproject clj-time/clj-time "0.14.4"
+(defproject clj-time/clj-time "0.14.5"
   :description "A date and time library for Clojure, wrapping Joda Time."
   :url "https://github.com/clj-time/clj-time"
   :mailing-list {:name "clj-time mailing list"
@@ -13,9 +13,9 @@
                  [org.clojure/clojure "1.9.0" :scope "provided"]]
   :min-lein-version "2.0.0"
   :global-vars {*warn-on-reflection* true}
-  :profiles {:dev {:dependencies [[org.clojure/java.jdbc "0.7.5"]]
-                   :plugins [[codox "0.8.10"]]}
-             :midje {:dependencies [[midje "1.9.0-alpha5"]]
+  :profiles {:dev {:dependencies [[org.clojure/java.jdbc "0.7.8"]]
+                   :plugins [[codox "0.10.5"]]}
+             :midje {:dependencies [[midje "1.9.3"]]
                      :plugins      [[lein-midje "3.2.1"]
                                     [midje-readme "1.0.9"]]
                      :midje-readme {:require "[clj-time.core :as t] [clj-time.predicates :as pr] [clj-time.format :as f] [clj-time.coerce :as c]"}}
@@ -24,11 +24,15 @@
              :master {:repositories [["snapshots" "https://oss.sonatype.org/content/repositories/snapshots/"]]
                       :dependencies [[org.clojure/clojure "1.10.0-master-SNAPSHOT"]]}
              :spec   {:dependencies [[org.clojure/clojure "1.9.0"]
-                                     [org.clojure/test.check "0.9.0"]]
+                                     [org.clojure/test.check "0.10.0-alpha3"]]
                       :test-paths ["test" "test_clj_1.9"]}}
 
   :aliases {"test-all" ["with-profile"
-                        ~(str "dev,spec,default,midje:"
-                              (when-not java7? "dev,master,default,midje:")
-                              "dev,default,midje:dev,1.7,midje:dev,1.8,midje")
+                        ~(str "dev,spec,default,midje:" ; 1.9 + spec
+                              (when-not java7?
+                                ;; 1.10 requires Java 8+
+                                "dev,master,default,midje:")
+                              "dev,default,midje:" ; 1.9 without spec
+                              "dev,1.7,midje:" ; 1.7 is earliest we support
+                              "dev,1.8,midje") ; 1.8 is supported too
                         "test"]})
