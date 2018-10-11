@@ -1,3 +1,7 @@
+## Changes Between 0.14.6 and 0.14.6
+
+* Add tagged literal support (in `clj-time.coerce`) (#255, @jconti).
+
 ## Changes Between 0.14.4 and 0.14.5
 
 * Update Joda Time to 2.10 (#254, @novalis).
