@@ -248,7 +248,7 @@ The namespace `clj-time.coerce` contains utility functions for
 coercing Joda `DateTime` instances to and from various other types:
 
 
-``` clj
+```clojure
 (require '[clj-time.coerce :as c])
 ```
 
@@ -281,23 +281,22 @@ To support serialization to the ubiquitous [EDN format](https://github.com/edn-f
 will deserialize.  There is a \"data_readers.clj\" file, or if not loaded a `data-readers` var
 to use with `clojure.edn`.
 
-```clj
+```clojure
 (pr-str (t/date-time 1998 4 25))
-=> #clj-time/date-time "1998-04-25T00:00:00.000Z"
+=> "#clj-time/date-time \"1998-04-25T00:00:00.000Z\""
 ```
 
-```clj
+```clojure
 (require '[clojure.edn :as edn])
 => nil
 ```
 
-```clj
+```clojure
 (def x (edn/read-string {:readers c/data-readers}
                         (pr-str (t/date-time 1998 4 25))))
-=> #'user/x
 ```
 
-```clj
+```clojure
 (type x)
 => org.joda.time.DateTime
 ```
@@ -378,7 +377,7 @@ check for common conditions. For instance:
 (require '[clj-time.core :as t])
 (require '[clj-time.predicates :as pr])
 ```
-``` clojure
+```clojure
 (pr/monday? (t/date-time 1999 9 9))
 => false
 
