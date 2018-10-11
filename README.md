@@ -276,10 +276,11 @@ There are also conversions to and from `java.util.Date` (`to-date` and
 `java.sql.Timestamp` (`to-sql-time` and `from-sql-time`) and several
 other types.
 
-To support serialization to the ubiquitous [EDN format](https://github.com/edn-format/edn),
-`pr`, `prn` etc. will serialize date-times in a tagged-literal format, that `clojure.edn/read`
-will deserialize.  There is a \"data_readers.clj\" file, or if not loaded a `data-readers` var
-to use with `clojure.edn`.
+To support serialization to the ubiquitous
+[EDN format](https://github.com/edn-format/edn),
+`pr`, `prn` etc. will serialize Joda `DateTime` in a tagged-literal format,
+that `clojure.edn/read` will deserialize.  There is a `data_readers.clj`
+file, or if not loaded a `data-readers` var to use with `clojure.edn`.
 
 ```clojure
 (pr-str (t/date-time 1998 4 25))
