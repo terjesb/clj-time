@@ -1,6 +1,6 @@
-## Changes Between 0.14.6 and 0.14.6
+## Changes Between 0.14.5 and 0.15.0
 
-* Add tagged literal support (in `clj-time.coerce`) (#255, @jconti).
+* Add tagged literal support (in `clj-time.coerce`) (#255, @jconti). `DateTime` can be converted `to-edn` and can be printed as `#clj-time/date-time "..."`, and `data_readers.clj` provides the conversion from that back to `DateTime`.
 
 ## Changes Between 0.14.4 and 0.14.5
 

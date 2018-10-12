@@ -1,6 +1,6 @@
 (def java7? (.startsWith (System/getProperty "java.version") "1.7"))
 
-(defproject clj-time/clj-time "0.14.5"
+(defproject clj-time/clj-time "0.15.0"
   :description "A date and time library for Clojure, wrapping Joda Time."
   :url "https://github.com/clj-time/clj-time"
   :mailing-list {:name "clj-time mailing list"
