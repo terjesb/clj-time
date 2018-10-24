@@ -1,3 +1,7 @@
+## Changes Between 0.15.0 and 0.15.1
+
+* Add `adjust` for intervals, so they can be "moved" backwards and forwards by one or more periods (#257).
+
 ## Changes Between 0.14.5 and 0.15.0
 
 * Add tagged literal support (in `clj-time.coerce`) (#255, @jconti). `DateTime` can be converted `to-edn` and can be printed as `#clj-time/date-time "..."`, and `data_readers.clj` provides the conversion from that back to `DateTime`.

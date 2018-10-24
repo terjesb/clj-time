@@ -620,6 +620,16 @@
   [^Interval in & by]
   (.withEnd in (apply plus (end in) by)))
 
+(defn adjust
+  "Returns an Interval with the start and end adjusted by the specified Periods."
+  [^Interval in & by]
+  (interval (apply plus (start in) by)
+            (apply plus (end in) by)))
+
+(comment
+  (from-now (days 4))
+  (interval (now) (from-now (days 4)))
+  (adjust (interval (now) (from-now (days 4))) (hours -4) (minutes 30)))
 
 (defn within?
   "With 2 arguments: Returns true if the given Interval contains the given

@@ -381,7 +381,7 @@
   (is (= 30240 (-> 3 weeks in-minutes)))
   (is (thrown? UnsupportedOperationException (-> 2 months in-minutes)))
   (is (thrown? UnsupportedOperationException (-> 2 years in-minutes))))
- 
+
 (deftest test-period-in-hours
   (is (= 0   (-> 30 seconds in-hours)))
   (is (= 0   (-> 4 minutes in-hours)))
@@ -426,6 +426,18 @@
   (is (thrown? UnsupportedOperationException (-> 2 weeks in-years)))
   (is (= 1 (-> 14 months in-years)))
   (is (= 3 (-> 3 years in-years))))
+
+(deftest test-adjust
+  (let [s (now) e (plus s (hours 3))
+        i (interval s e)]
+    (is (abuts? i (adjust i (hours 3))))
+    (is (abuts? i (adjust i (hours -3))))
+    (is (not (within? i (plus s (hours 4)))))
+    (is (within? (adjust i (hours 3)) (plus s (hours 4))))
+    (is (not (within? i (minus s (hours 2)))))
+    (is (within? (adjust i (hours -3)) (minus s (hours 2))))
+    (is (overlaps? i (adjust i (hours 1))))
+    (is (overlaps? i (adjust i (hours -1))))))
 
 (deftest test-within?
   (let [d1 (date-time 1985)
