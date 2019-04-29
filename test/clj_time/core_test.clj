@@ -5,6 +5,9 @@
   (:import java.util.Date
            org.joda.time.DateTime))
 
+;; visual sanity check on version being used:
+(println "\nTesting clj-time with Clojure" (clojure-version) "\n")
+
 (deftest test-now
   (is (= (date-time 2010 1 1)
          (do-at (date-time 2010 1 1)
