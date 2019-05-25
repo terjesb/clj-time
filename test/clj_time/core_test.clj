@@ -506,8 +506,10 @@
     (is (overlaps? ld1 ld5 ld1 ld5))
     (is (overlaps? ld1 ld5 ld2 ld4))
     (is (overlaps? ld2 ld4 ld1 ld5))
-    (is (overlaps? ld1 ld2 ld2 ld3))
-    (is (overlaps? ld2 ld3 ld1 ld2))
+    ;; these ranges abut and do not overlap -- fixed in #264
+    (is (not (overlaps? ld1 ld2 ld2 ld3)))
+    ;; these ranges abut and do not overlap -- fixed in #264
+    (is (not (overlaps? ld2 ld3 ld1 ld2)))
     (is (not (overlaps? ld1 ld2 ld3 ld4)))
     (is (not (overlaps? ld1 ld3 ld4 ld5)))))
 

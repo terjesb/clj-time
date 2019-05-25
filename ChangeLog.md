@@ -1,3 +1,8 @@
+## Changes Made Since 0.15.2
+
+* Fix `overlaps?` with four arguments (#264).
+* Improve tests and documentation (#258, #259, #260, @bhaskarsaraogi)
+
 ## Changes Between 0.15.0 and 0.15.1
 
 * Add `adjust` for intervals, so they can be "moved" backwards and forwards by one or more periods (#257).

@@ -655,8 +655,7 @@
   ([^ReadablePartial start-a ^ReadablePartial end-a
     ^ReadablePartial start-b ^ReadablePartial end-b]
      (or (and (before? start-b end-a) (after? end-b start-a))
-         (and (after? end-b start-a) (before? start-b end-a))
-         (or (equal? start-a end-b) (equal? start-b end-a)))))
+         (and (after? end-b start-a) (before? start-b end-a)))))
 
 (defn overlap
   "Returns an Interval representing the overlap of the specified Intervals.
