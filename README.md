@@ -5,11 +5,15 @@
 
 # clj-time
 
-A date and time library for Clojure, wrapping the [Joda Time](http://www.joda.org/joda-time/) library. **The Joda Time website says:**
+A date and time library for Clojure, wrapping the [Joda Time](http://www.joda.org/joda-time/) library.
+
+## Project Status 
+
+**The Joda Time website says:**
 
 > Note that from Java SE 8 onwards, users are asked to migrate to java.time (JSR-310) - a core part of the JDK which replaces this project.
 
-If you are using Java 8 or later, consider using the built-in Java Time instead of Joda Time -- and look at [clojure.java-time](https://github.com/dm3/clojure.java-time) if you want a Clojure wrapper for that, or [cljc.java-time](https://github.com/henryw374/cljc.java-time) for a thin Clojure(Script) wrapper. See [Converting from Joda Time to java.time](http://blog.joda.org/2014/11/converting-from-joda-time-to-javatime.html) for more details about the similarities and differences between the two libraries.
+**If you are using Java 8 or later, consider using the built-in Java Time instead of Joda Time -- and look at [clojure.java-time](https://github.com/dm3/clojure.java-time) if you want a Clojure wrapper for that, or [cljc.java-time](https://github.com/henryw374/cljc.java-time) for a thin Clojure(Script) wrapper. See [Converting from Joda Time to java.time](http://blog.joda.org/2014/11/converting-from-joda-time-to-javatime.html) for more details about the similarities and differences between the two libraries.**
 
 ## Artifacts
 
