@@ -1,4 +1,4 @@
-## Changes Made Since 0.15.2
+## Changes Made Since 0.15.1
 
 * Fix `overlaps?` with four arguments (#264).
 * Improve tests and documentation (#258, #259, #260, @bhaskarsaraogi)
