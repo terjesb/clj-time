@@ -1,4 +1,4 @@
-## Changes Made Since 0.15.1
+## Changes Between 0.15.1 and 0.15.2
 
 * Add type hints to reduce reflection warnings for users (#268, #269, @vemv)
 * Fix `overlaps?` with four arguments (#264).
