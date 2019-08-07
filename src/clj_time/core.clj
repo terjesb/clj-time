@@ -257,12 +257,14 @@
 
 (defn now
   "Returns a DateTime for the current instant in the UTC time zone."
+  ^org.joda.time.DateTime
   []
   (DateTime. ^DateTimeZone utc))
 
 (defn time-now
   "Returns a LocalTime for the current instant without date or time zone
   using ISOChronology in the current time zone."
+  ^org.joda.time.LocalTime
   []
   (LocalTime. ))
 
@@ -274,14 +276,16 @@
   ([^DateTimeZone tz]
    (DateMidnight. tz)))
 
-(defn ^org.joda.time.DateTime with-time-at-start-of-day
+(defn with-time-at-start-of-day
   "Returns a DateTime representing the start of the day. Normally midnight,
   but not always true, as in some time zones with daylight savings."
+  ^org.joda.time.DateTime
   [^DateTime dt]
   (.withTimeAtStartOfDay dt))
 
 (defn epoch
   "Returns a DateTime for the beginning of the Unix epoch in the UTC time zone."
+  ^org.joda.time.DateTime
   []
   (DateTime. (long 0) ^DateTimeZone utc))
 
@@ -290,12 +294,12 @@
    Specify the year, month of year, day of month. Note that month and day are
    1-indexed. Any number of least-significant components can be ommited, in which case
    they will default to 1."
-  ([year]
-    (date-midnight year 1 1))
-  ([^long year ^long month]
-    (date-midnight year month 1))
-  ([^Long year ^Long month ^Long day]
-    (DateMidnight. year month day ^DateTimeZone utc)))
+  (^DateMidnight [year]
+   (date-midnight year 1 1))
+  (^DateMidnight [^long year ^long month]
+   (date-midnight year month 1))
+  (^DateMidnight [^Long year ^Long month ^Long day]
+   (DateMidnight. year month day ^DateTimeZone utc)))
 
 (defn min-date
   "Minimum of the provided DateTimes."
@@ -307,99 +311,102 @@
   [dt & dts]
   (reduce #(if (after? %1 %2) %1 %2) dt dts))
 
-(defn ^org.joda.time.DateTime date-time
+(defn date-time
   "Constructs and returns a new DateTime in UTC.
    Specify the year, month of year, day of month, hour of day, minute of hour,
    second of minute, and millisecond of second. Note that month and day are
    1-indexed while hour, second, minute, and millis are 0-indexed.
    Any number of least-significant components can be ommited, in which case
    they will default to 1 or 0 as appropriate."
-  ([year]
+  (^org.joda.time.DateTime [year]
    (date-time year 1 1 0 0 0 0))
-  ([year month]
+  (^org.joda.time.DateTime [year month]
    (date-time year month 1 0 0 0 0))
-  ([year month day]
+  (^org.joda.time.DateTime [year month day]
    (date-time year month day 0 0 0 0))
-  ([year month day hour]
+  (^org.joda.time.DateTime [year month day hour]
    (date-time year month day hour 0 0 0))
-  ([year month day hour minute]
+  (^org.joda.time.DateTime [year month day hour minute]
    (date-time year month day hour minute 0 0))
-  ([year month day hour minute second]
+  (^org.joda.time.DateTime [year month day hour minute second]
    (date-time year month day hour minute second 0))
-  ([^Integer year ^Integer month ^Integer day ^Integer hour
-    ^Integer minute ^Integer second ^Integer millis]
+  (^org.joda.time.DateTime [^Integer year ^Integer month ^Integer day ^Integer hour
+                            ^Integer minute ^Integer second ^Integer millis]
    (DateTime. year month day hour minute second millis ^DateTimeZone utc)))
 
-(defn ^org.joda.time.LocalDateTime local-date-time
+(defn local-date-time
   "Constructs and returns a new LocalDateTime.
    Specify the year, month of year, day of month, hour of day, minute of hour,
    second of minute, and millisecond of second. Note that month and day are
    1-indexed while hour, second, minute, and millis are 0-indexed.
    Any number of least-significant components can be ommited, in which case
    they will default to 1 or 0 as appropriate."
-  ([year]
+  (^org.joda.time.LocalDateTime [year]
    (local-date-time year 1 1 0 0 0 0))
-  ([year month]
+  (^org.joda.time.LocalDateTime [year month]
    (local-date-time year month 1 0 0 0 0))
-  ([year month day]
+  (^org.joda.time.LocalDateTime [year month day]
    (local-date-time year month day 0 0 0 0))
-  ([year month day hour]
+  (^org.joda.time.LocalDateTime [year month day hour]
    (local-date-time year month day hour 0 0 0))
-  ([year month day hour minute]
+  (^org.joda.time.LocalDateTime [year month day hour minute]
    (local-date-time year month day hour minute 0 0))
-  ([year month day hour minute second]
+  (^org.joda.time.LocalDateTime [year month day hour minute second]
    (local-date-time year month day hour minute second 0))
-  ([^Integer year ^Integer month ^Integer day ^Integer hour
-    ^Integer minute ^Integer second ^Integer millis]
+  (^org.joda.time.LocalDateTime [^Integer year ^Integer month ^Integer day ^Integer hour
+                   ^Integer minute ^Integer second ^Integer millis]
    (LocalDateTime. year month day hour minute second millis)))
 
-(defn ^org.joda.time.YearMonth year-month
+(defn year-month
   "Constructs and returns a new YearMonth.
    Specify the year and month of year. Month is 1-indexed and defaults
    to January (1)."
-  ([year]
-     (year-month year 1))
-  ([^Integer year ^Integer month]
-     (YearMonth. year month)))
+  (^org.joda.time.YearMonth [year]
+   (year-month year 1))
+  (^org.joda.time.YearMonth [^Integer year ^Integer month]
+   (YearMonth. year month)))
 
-(defn ^org.joda.time.LocalDate local-date
+(defn local-date
   "Constructs and returns a new LocalDate.
    Specify the year, month, and day. Does not deal with timezones."
+  ^org.joda.time.LocalDate
   [^Integer year ^Integer month ^Integer day]
   (LocalDate. year month day))
 
-(defn ^org.joda.time.LocalTime local-time
+(defn local-time
   "Constructs and returns a new LocalTime.
    Specify the hour of day, minute of hour, second of minute, and millisecond of second.
    Any number of least-significant components can be ommited, in which case
    they will default to 1 or 0 as appropriate."
-  ([hour]
+  (^org.joda.time.LocalTime [hour]
    (local-time hour 0 0 0))
-  ([hour minute]
+  (^org.joda.time.LocalTime [hour minute]
    (local-time hour minute 0 0))
-  ([hour minute second]
+  (^org.joda.time.LocalTime [hour minute second]
    (local-time hour minute second 0))
-  ([^Integer hour ^Integer minute ^Integer second ^Integer millis]
+  (^org.joda.time.LocalTime [^Integer hour ^Integer minute ^Integer second ^Integer millis]
    (LocalTime. hour minute second millis))
   )
 
-(defn ^org.joda.time.LocalDate today
+(defn today
   "Constructs and returns a new LocalDate representing today's date.
    LocalDate objects do not deal with timezones at all."
+  ^org.joda.time.LocalDate
   []
   (LocalDate.))
 
 (defn time-zone-for-offset
   "Returns a DateTimeZone for the given offset, specified either in hours or
    hours and minutes."
-  ([hours]
+  (^org.joda.time.DateTimeZone [hours]
    (DateTimeZone/forOffsetHours hours))
-  ([hours minutes]
+  (^org.joda.time.DateTimeZone [hours minutes]
    (DateTimeZone/forOffsetHoursMinutes hours minutes)))
 
 (defn time-zone-for-id
   "Returns a DateTimeZone for the given ID, which must be in long form, e.g.
    'America/Matamoros'."
+  ^org.joda.time.DateTimeZone
   [^String id]
   (DateTimeZone/forID id))
 
@@ -410,80 +417,81 @@
 
 (defn default-time-zone
   "Returns the default DateTimeZone for the current environment."
+  ^org.joda.time.DateTimeZone
   []
   (DateTimeZone/getDefault))
 
-(defn ^org.joda.time.DateTime
-  to-time-zone
+(defn to-time-zone
   "Returns a new ReadableDateTime corresponding to the same absolute instant in time as
    the given ReadableDateTime, but with calendar fields corresponding to the given
    TimeZone."
+  ^org.joda.time.DateTime
   [^DateTime dt ^DateTimeZone tz]
   (.withZone dt tz))
 
-(defn ^org.joda.time.DateTime
-  from-time-zone
+(defn from-time-zone
   "Returns a new ReadableDateTime corresponding to the same point in calendar time as
    the given ReadableDateTime, but for a correspondingly different absolute instant in
    time."
+  ^org.joda.time.DateTime
   [^DateTime dt ^DateTimeZone tz]
   (.withZoneRetainFields dt tz))
 
 (defn years
   "Given a number, returns a Period representing that many years.
    Without an argument, returns a PeriodType representing only years."
-  ([]
-     (PeriodType/years))
-  ([^Integer n]
-     (Years/years n)))
+  (^org.joda.time.PeriodType []
+   (PeriodType/years))
+  (^org.joda.time.Years [^Integer n]
+   (Years/years n)))
 
 (defn months
   "Given a number, returns a Period representing that many months.
    Without an argument, returns a PeriodType representing only months."
-  ([]
-     (PeriodType/months))
-  ([^Integer n]
-     (Months/months n)))
+  (^org.joda.time.PeriodType []
+   (PeriodType/months))
+  (^org.joda.time.Months [^Integer n]
+   (Months/months n)))
 
 (defn weeks
   "Given a number, returns a Period representing that many weeks.
    Without an argument, returns a PeriodType representing only weeks."
-  ([]
-     (PeriodType/weeks))
-  ([^Integer n]
-     (Weeks/weeks n)))
+  (^org.joda.time.PeriodType []
+   (PeriodType/weeks))
+  (^org.joda.time.Weeks [^Integer n]
+   (Weeks/weeks n)))
 
 (defn days
   "Given a number, returns a Period representing that many days.
    Without an argument, returns a PeriodType representing only days."
-  ([]
-     (PeriodType/days))
-  ([^Integer n]
-     (Days/days n)))
+  (^org.joda.time.PeriodType []
+   (PeriodType/days))
+  (^org.joda.time.Days [^Integer n]
+   (Days/days n)))
 
 (defn hours
   "Given a number, returns a Period representing that many hours.
    Without an argument, returns a PeriodType representing only hours."
-  ([]
-     (PeriodType/hours))
-  ([^Integer n]
-     (Hours/hours n)))
+  (^org.joda.time.PeriodType []
+   (PeriodType/hours))
+  (^org.joda.time.Hours [^Integer n]
+   (Hours/hours n)))
 
 (defn minutes
   "Given a number, returns a Period representing that many minutes.
    Without an argument, returns a PeriodType representing only minutes."
-  ([]
-     (PeriodType/minutes))
-  ([^Integer n]
-     (Minutes/minutes n)))
+  (^org.joda.time.PeriodType []
+   (PeriodType/minutes))
+  (^org.joda.time.Minutes [^Integer n]
+   (Minutes/minutes n)))
 
 (defn seconds
   "Given a number, returns a Period representing that many seconds.
    Without an argument, returns a PeriodType representing only seconds."
-  ([]
-     (PeriodType/seconds))
-  ([^Integer n]
-     (Seconds/seconds n)))
+  (^org.joda.time.PeriodType []
+   (PeriodType/seconds))
+  (^org.joda.time.Seconds [^Integer n]
+   (Seconds/seconds n)))
 
 (extend-protocol InTimeUnitProtocol
   org.joda.time.Interval
@@ -544,10 +552,10 @@
 (defn millis
   "Given a number, returns a Period representing that many milliseconds.
    Without an argument, returns a PeriodType representing only milliseconds."
-  ([]
-     (PeriodType/millis))
-  ([^Integer n]
-     (Period/millis n)))
+  (^org.joda.time.PeriodType []
+   (PeriodType/millis))
+  (^org.joda.time.Period [^Integer n]
+   (Period/millis n)))
 
 (defn plus
   "Returns a new date/time corresponding to the given date/time moved forwards by
@@ -601,7 +609,7 @@
 (defn interval
   "Returns an interval representing the span between the two given ReadableDateTimes.
    Note that intervals are closed on the left and open on the right."
-  [^ReadableDateTime dt-a ^ReadableDateTime dt-b]
+  ^Interval [^ReadableDateTime dt-a ^ReadableDateTime dt-b]
   (Interval. dt-a dt-b))
 
 (defn start
@@ -776,11 +784,11 @@
   `(do-at* ~base-date-time
     (fn [] ~@body)))
 
-(defn ^org.joda.time.DateTime floor
+(defn floor
   "Floors the given date-time dt to the given time unit dt-fn,
   e.g. (floor (now) hour) returns (now) for all units
   up to and including the hour"
-  ([^DateTime dt dt-fn]
+  (^org.joda.time.DateTime [^DateTime dt dt-fn]
    (let [dt-fns [year month day hour minute second milli]
          tz (.getZone dt)]
     (.withZoneRetainFields

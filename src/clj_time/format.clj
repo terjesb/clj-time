@@ -38,15 +38,15 @@
 (declare formatters)
 ;; The formatters map and show-formatters idea are strait from chrono.
 
-(defn ^org.joda.time.format.DateTimeFormatter formatter
+(defn formatter
   "Returns a custom formatter for the given date-time pattern or keyword."
-  ([fmts]
+  (^org.joda.time.format.DateTimeFormatter [fmts]
      (formatter fmts utc))
-  ([fmts ^DateTimeZone dtz]
+  (^org.joda.time.format.DateTimeFormatter [fmts ^DateTimeZone dtz]
    (cond (keyword? fmts) (.withZone ^DateTimeFormatter (get formatters fmts) dtz)
          (string?  fmts) (.withZone (DateTimeFormat/forPattern fmts) dtz)
          :else           (.withZone ^DateTimeFormatter fmts dtz)))
-  ([^DateTimeZone dtz fmts & more]
+  (^org.joda.time.format.DateTimeFormatter [^DateTimeZone dtz fmts & more]
     (let [printer (.getPrinter ^DateTimeFormatter (formatter fmts dtz))
           parsers (map #(.getParser ^DateTimeFormatter (formatter % dtz)) (cons fmts more))]
       (-> (DateTimeFormatterBuilder.)
@@ -56,34 +56,34 @@
         (.toFormatter)
         (.withZone dtz)))))
 
-(defn ^org.joda.time.format.DateTimeFormat formatter-local
+(defn formatter-local
   "Returns a custom formatter with no time zone info."
-  ([^String fmt]
+  (^org.joda.time.format.DateTimeFormat [^String fmt]
      (DateTimeFormat/forPattern fmt)))
 
-(defn ^org.joda.time.format.DateTimeFormatter with-chronology
+(defn with-chronology
   "Return a copy of a formatter that uses the given Chronology."
-  [^DateTimeFormatter f ^Chronology c]
+  ^org.joda.time.format.DateTimeFormatter [^DateTimeFormatter f ^Chronology c]
   (.withChronology f c))
 
-(defn ^org.joda.time.format.DateTimeFormatter with-locale
+(defn with-locale
   "Return a copy of a formatter that uses the given Locale."
-  [^DateTimeFormatter f ^Locale l]
+  ^org.joda.time.format.DateTimeFormatter [^DateTimeFormatter f ^Locale l]
   (.withLocale f l))
 
-(defn ^org.joda.time.format.DateTimeFormatter with-pivot-year
+(defn with-pivot-year
   "Return a copy of a formatter that uses the given pivot year."
-  [^DateTimeFormatter f ^Long pivot-year]
+  ^org.joda.time.format.DateTimeFormatter [^DateTimeFormatter f ^Long pivot-year]
   (.withPivotYear f pivot-year))
 
-(defn ^org.joda.time.format.DateTimeFormatter with-zone
+(defn with-zone
   "Return a copy of a formatter that uses the given DateTimeZone."
-  [^DateTimeFormatter f ^DateTimeZone dtz]
+  ^org.joda.time.format.DateTimeFormatter [^DateTimeFormatter f ^DateTimeZone dtz]
   (.withZone f dtz))
 
-(defn ^org.joda.time.format.DateTimeFormatter with-default-year
+(defn with-default-year
   "Return a copy of a formatter that uses the given default year."
-  [^DateTimeFormatter f ^Integer default-year]
+  ^org.joda.time.format.DateTimeFormatter [^DateTimeFormatter f ^Integer default-year]
   (.withDefaultYear f default-year))
 
 (def ^{:doc "Map of ISO 8601 and a single RFC 822 formatters that can be used for parsing and, in most
@@ -153,43 +153,43 @@
 (def ^{:private true} printers
   (difference (set (keys formatters)) parsers))
 
-(defn ^org.joda.time.DateTime parse
+(defn parse
   "Returns a DateTime instance in the UTC time zone obtained by parsing the
    given string according to the given formatter."
-  ([^DateTimeFormatter fmt ^String s]
+  (^org.joda.time.DateTime [^DateTimeFormatter fmt ^String s]
      (.parseDateTime fmt s))
-  ([^String s]
+  (^org.joda.time.DateTime [^String s]
      (first
       (for [f (vals formatters)
             :let [d (try (parse f s) (catch Exception _ nil))]
             :when d] d))))
 
-(defn ^org.joda.time.LocalDateTime parse-local
+(defn parse-local
   "Returns a LocalDateTime instance obtained by parsing the
    given string according to the given formatter."
-  ([^DateTimeFormatter fmt ^String s]
+  (^org.joda.time.LocalDateTime [^DateTimeFormatter fmt ^String s]
      (.parseLocalDateTime fmt s))
-  ([^String s]
+  (^org.joda.time.LocalDateTime [^String s]
      (first
       (for [f (vals formatters)
             :let [d (try (parse-local f s) (catch Exception _ nil))]
             :when d] d))))
 
-(defn ^org.joda.time.LocalDate parse-local-date
+(defn parse-local-date
   "Returns a LocalDate instance obtained by parsing the
    given string according to the given formatter."
-  ([^DateTimeFormatter fmt ^String s]
+  (^org.joda.time.LocalDate [^DateTimeFormatter fmt ^String s]
      (.parseLocalDate fmt s))
-  ([^String s]
+  (^org.joda.time.LocalDate [^String s]
      (first
       (for [f (vals formatters)
             :let [d (try (parse-local-date f s) (catch Exception _ nil))]
             :when d] d))))
 
-(defn ^org.joda.time.LocalTime parse-local-time
+(defn parse-local-time
   "Returns a LocalTime instance obtained by parsing the
   given string according to the given formatter."
-  ([^DateTimeFormatter fmt ^ String s]
+  (^org.joda.time.LocalTime [^DateTimeFormatter fmt ^ String s]
    (.parseLocalTime fmt s))
    ([^String s]
      (first
@@ -200,25 +200,25 @@
 (defn unparse
   "Returns a string representing the given DateTime instance in UTC and in the
   form determined by the given formatter."
-  [^DateTimeFormatter fmt ^DateTime dt]
+  ^String [^DateTimeFormatter fmt ^DateTime dt]
   (.print fmt dt))
 
 (defn unparse-local
   "Returns a string representing the given LocalDateTime instance in the
   form determined by the given formatter."
-  [^DateTimeFormatter fmt ^LocalDateTime dt]
+  ^String [^DateTimeFormatter fmt ^LocalDateTime dt]
   (.print fmt dt))
 
 (defn unparse-local-date
   "Returns a string representing the given LocalDate instance in the form
   determined by the given formatter."
-  [^DateTimeFormatter fmt ^LocalDate ld]
+  ^String [^DateTimeFormatter fmt ^LocalDate ld]
   (.print fmt ld))
 
 (defn unparse-local-time
   "Returns a string representing the given LocalTime instance in the form
   determined by the given formatter."
-  [^DateTimeFormatter fmt ^LocalTime lt]
+  ^String [^DateTimeFormatter fmt ^LocalTime lt]
   (.print fmt lt))
 
 

@@ -19,22 +19,25 @@
 (defprotocol ICoerce
   (to-date-time ^org.joda.time.DateTime [obj] "Convert `obj` to a Joda DateTime instance."))
 
-(defn ^org.joda.time.DateTime from-long
+(defn from-long
   "Returns a DateTime instance in the UTC time zone corresponding to the given
    number of milliseconds after the Unix epoch."
+  ^org.joda.time.DateTime
   [^Long millis]
   (DateTime. millis ^DateTimeZone utc))
 
-(defn ^org.joda.time.DateTime from-epoch
+(defn from-epoch
   "Returns a DateTime instance in the UTC time zone
    from given Unix epoch."
+  ^org.joda.time.DateTime
   [^Long epoch]
   (from-long (* epoch 1000)))
 
-(defn ^org.joda.time.DateTime from-string
+(defn from-string
   "return DateTime instance from string using
    formatters in clj-time.format, returning first
    which parses"
+  ^org.joda.time.DateTime
   [^String s]
   (time-fmt/parse s))
 
@@ -42,53 +45,61 @@
   "tagged literal support if loader does not find \"data_readers.clj\""
   {'clj-time/date-time from-string})
 
-(defn ^org.joda.time.DateTime from-date
+(defn from-date
   "Returns a DateTime instance in the UTC time zone corresponding to the given
    Java Date object."
+  ^org.joda.time.DateTime
   [^java.util.Date date]
   (when date
     (from-long (.getTime date))))
 
-(defn ^org.joda.time.DateTime from-sql-date
+(defn from-sql-date
   "Returns a DateTime instance in the UTC time zone corresponding to the given
    java.sql.Date object."
+  ^org.joda.time.DateTime
   [^java.sql.Date sql-date]
   (when sql-date
     (from-long (.getTime sql-date))))
 
-(defn ^org.joda.time.DateTime from-sql-time
+(defn from-sql-time
   "Returns a DateTime instance in the UTC time zone corresponding to the given
    java.sql.Timestamp object."
+  ^org.joda.time.DateTime
   [^java.sql.Timestamp sql-time]
   (when sql-time
     (from-long (.getTime sql-time))))
 
-(defn ^Long to-long
+(defn to-long
   "Convert `obj` to the number of milliseconds after the Unix epoch."
+  ^Long
   [obj]
   (when-let [dt (to-date-time obj)]
     (.getMillis dt)))
 
-(defn ^Long to-epoch
+(defn to-epoch
   "Convert `obj` to Unix epoch."
+  ^Long
   [obj]
   (when-let [millis (to-long obj)]
     (quot millis 1000)))
 
-(defn ^java.util.Date to-date
+(defn to-date
   "Convert `obj` to a Java Date instance."
+  ^java.util.Date
   [obj]
   (when-let [dt (to-date-time obj)]
     (Date. (.getMillis dt))))
 
-(defn ^java.sql.Date to-sql-date
+(defn to-sql-date
   "Convert `obj` to a java.sql.Date instance."
+  ^java.sql.Date
   [obj]
   (when-let [dt (to-date-time obj)]
     (java.sql.Date. (.getMillis dt))))
 
-(defn ^java.sql.Timestamp to-sql-time
+(defn to-sql-time
   "Convert `obj` to a java.sql.Timestamp instance."
+  ^java.sql.Timestamp
   [obj]
   (when-let [dt (to-date-time obj)]
     (java.sql.Timestamp. (.getMillis dt))))
@@ -96,12 +107,14 @@
 (defn to-string
   "Returns a string representation of obj in UTC time-zone
   using (ISODateTimeFormat/dateTime) date-time representation."
+  ^String
   [obj]
   (when-let [dt (to-date-time obj)]
     (time-fmt/unparse (:date-time time-fmt/formatters) dt)))
 
-(defn ^String to-edn
+(defn to-edn
   "Convert `obj` to a string representation readable by clojure.edn/read."
+  ^String
   [obj]
   (when-let [dt (to-date-time obj)]
     (str "#clj-time/date-time \"" (to-string dt) "\"")))
@@ -111,26 +124,30 @@
   [v ^java.io.Writer w]
   (.write w (to-edn v)))
 
-(defn ^java.sql.Timestamp to-timestamp
+(defn to-timestamp
   "Convert `obj` to a Java SQL Timestamp instance."
+  ^java.sql.Timestamp
   [obj]
   (when-let [dt (to-date-time obj)]
     (java.sql.Timestamp. (.getMillis dt))))
 
-(defn ^org.joda.time.LocalDate to-local-date
+(defn to-local-date
   "Convert `obj` to a org.joda.time.LocalDate instance"
+  ^org.joda.time.LocalDate
   [obj]
   (when-let [dt (to-date-time obj)]
     (LocalDate. (.getMillis (from-time-zone dt (default-time-zone))))))
 
-(defn ^org.joda.time.LocalDateTime to-local-date-time
+(defn to-local-date-time
   "Convert `obj` to a org.joda.time.LocalDateTime instance"
+  ^org.joda.time.LocalDateTime
   [obj]
   (when-let [dt (to-date-time obj)]
     (LocalDateTime. (.getMillis (from-time-zone dt (default-time-zone))))))
 
-(defn ^org.joda.time.LocalDate in-time-zone
+(defn in-time-zone
   "Convert `obj` into `tz`, return org.joda.time.LocalDate instance."
+  ^org.joda.time.LocalDate
   [obj tz]
   (when-let [dt (to-date-time obj)]
     (-> dt
