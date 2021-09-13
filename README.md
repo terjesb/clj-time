@@ -444,7 +444,7 @@ Running the tests:
 
 ## Documentation
 
-The complete [API documentation](http://clj-time.github.com/clj-time/doc/index.html) is also available (codox generated).
+The complete [API documentation](http://clj-time.github.io/clj-time/doc/index.html) is also available (codox generated).
 
 ## License
 
